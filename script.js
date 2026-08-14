@@ -31,7 +31,7 @@ const kamus = {
     },
     jp: {
         title: "炭素足跡の計算", subtitle: "Ethnicitizen コミュニティクラウドファンディング — 共に森林を守ろう",
-        sec1: "1. 公共料金＆燃料セクター", labelNama: "お名前 / グループ名", placeholderNama: "例：緑의友",
+        sec1: "1. 公共料金＆燃料セクター", labelNama: "お名前 / グループ名", placeholderNama: "例：緑の友",
         labelListrik: "月間電気使用量 (kWh)", labelBbm: "車両燃料消費量 (リットル / 月)", labelSampah: "有機廃棄物の排出量 (Kg / 日)",
         sec2: "2. 移動＆運輸セクター", labelMotor: "バイク移動距離 (Km / 月)", labelMobil: "自動車移動距離 (Km / 月)",
         labelPesawat: "航空移動距離 (Km / 月)", labelLaut: "船舶・フェリー移動距離 (Km / 月)",
@@ -40,12 +40,12 @@ const kamus = {
         btnHitung: "排出量の分析を開始", hasilTitle: "生態学的影響分析結果：", hasilEmisi: "推定月間排出量：",
         hasilBeban: "目標相殺負荷：", btnWa: "今すぐWhatsApp経由で支援を送る", certTitle: "再植林証明書",
         certSub: "気候持続可能性コミットメント証明書が以下に授与されます：", certTxt1: "アクションプログラム ",
-        certTxt2: " に資金を提供することにより、", certTxt3: " kg CO₂e の日々の温室効果ガス排出影響を相殺することに積極的に参加しました。このプログラムは、地域の最前線のコミュニティによって運営され、自然の森林被覆を維持し、地域の食料安全保障（アグロフォレストリー）を保護し、定期的な集中的モニタリングを実施しています。",
+        certTxt2: " に資金を提供することにより地、", certTxt3: " kg CO₂e の日々の温室効果ガス排出影響を相殺することに積極的に参加しました。このプログラムは、地域の最前線のコミュニティによって運営され、自然の森林被覆を維持し、地域の食料安全保障（アグロフォレストリー）を保護し、定期的な集中的モニタリングを実施しています。",
         certTgl: "発行日：", certMetode: "計算方法：IPCCエネルギー＆運輸セクター", ttdJabatan: "Ethnicitizen 発起人",
         pohonNama: "アグロフォレストリー樹木の採用とケア", patroliNama: "地域主導型森林管理区域における森林パトロール活動"
     },
     kr: {
-        title: "탄소 발자국 계산기", subtitle: "Ethnicitizen 커뮤니티 크라우드펀딩 플랫폼 — 함께 우리 산림을 지킵시다",
+        title: "탄소 발자국 계산기", subtitle: "Ethnicitizen 크라우드펀딩 플랫폼 — 함께 우리 산림을 지킵시다",
         sec1: "1. 유틸리티 및 연료 부문", labelNama: "성함 / 단체명", placeholderNama: "예: 녹색 친구",
         labelListrik: "월간 전력 소비량 (kWh)", labelBbm: "차량 연료 소비량 (리터 / 월)", labelSampah: "유기 폐기물 배출량 (Kg / 일)",
         sec2: "2. 여행 및 교통 부문", labelMotor: "오토바이 주행 거리 (Km / 월)", labelMobil: "자동차 주행 거리 (Km / 월)",
@@ -95,14 +95,6 @@ function gantiBahasa(lang) {
     document.getElementById('txt-hasil-beban').innerText = kamus[lang].hasilBeban;
 }
 
-window.onload = function() {
-    let browserLang = navigator.language || navigator.userLanguage;
-    browserLang = browserLang.substr(0, 2);
-    if (browserLang === 'ja') browserLang = 'jp';
-    if (browserLang === 'ko') browserLang = 'kr';
-    gantiBahasa(browserLang);
-};
-
 function prosesHitungKarbon() {
     const namaUser = document.getElementById('nama').value || 'Citizen';
     const listrik = parseFloat(document.getElementById('listrik').value) || 0;
@@ -136,7 +128,7 @@ function prosesHitungKarbon() {
     document.getElementById('wpCertTitle').innerText = kamus[bahasaAktif].certTitle;
     document.getElementById('wpCertSub').innerText = kamus[bahasaAktif].certSub;
     document.getElementById('certNama').innerText = namaUser;
-    
+
     if(bahasaAktif === 'jp') {
         document.getElementById('certTextContainer').innerHTML = `アクションプログラム <strong>${namaProgram}</strong> に資金を提供することにより、<strong>${targetJumlahUnit}</strong> ユニット、<strong>${totalEmisi.toFixed(2)}</strong> kg CO₂e の日々の温室効果ガス排出影響を相殺することに積極的に参加しました。このプログラムは、地域の最前線のコミュニティによって運営され、自然の森林被覆を維持し、地域の食料安全保障（アグロフォレストリー）を保護し、定期的な集中的モニタリングを実施しています。`;
     } else if(bahasaAktif === 'kr') {
@@ -163,9 +155,6 @@ function prosesHitungKarbon() {
 
 function unduhPDF() {
     const elemenSertifikat = document.getElementById("sertifikatBox");
-    const tombolCetak = document.getElementById("btn-cetak");
-    tombolCetak.style.display = "none";
-
     const opsiCetak = {
         margin:       0.5,
         filename:     'Sertifikat-Hijau-Ethnicitizen.pdf',
@@ -173,8 +162,5 @@ function unduhPDF() {
         html2canvas:  { scale: 2, useClowd: true, logging: false },
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
     };
-
-    html2pdf().set(opsiCetak).from(elemenSertifikat).save().then(() => {
-        tombolCetak.style.display = "inline-block";
-    });
+    html2pdf().set(opsiCetak).from(elemenSertifikat).save();
 }
