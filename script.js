@@ -12,7 +12,8 @@ const kamus = {
         certSub: "Piagam Komitmen Kelestarian Iklim diberikan kepada:", certTxt1: "Telah berpartisipasi aktif menyeimbangkan dampak emisi gas rumah kaca harian sebesar ",
         certTxt2: " kg CO₂e melalui pendanaan program aksi ", certTxt3: " sebanyak ", certTxt4: " unit aksi. Program ini dioperasikan oleh komunitas garda depan warga lokal demi mempertahankan tutupan hutan alam, perlindungan pangan lokal (*Agroforestry*), serta pemantauan intensif berkala, selaras dengan ketentuan Perpres No. 110/2025.",
         certTgl: "Tanggal Terbit: ", certMetode: "Metode Hitung: IPCC Sektor Energi & Transportasi", ttdJabatan: "Inisiator Ethnicitizen",
-        pohonNama: "Adopsi & Perawatan Pohon Agroforestry", patroliNama: "Operasional Patroli Areal Pengelolaan Hutan Berbasis Masyarakat"
+        pohonNama: "Adopsi & Perawatan Pohon Agroforestry", patroliNama: "Operasional Patroli Areal Pengelolaan Hutan Berbasis Masyarakat",
+        btnCetak: "🖨️ Cetak PDF Sertifikat"
     },
     en: {
         title: "Calculate Your Carbon Footprint", subtitle: "Ethnicitizen Community Crowdfunding Platform — Together Protecting Our Forests",
@@ -27,7 +28,8 @@ const kamus = {
         certSub: "Climate Sustainability Commitment Certificate awarded to:", certTxt1: "Has actively participated in balancing the daily greenhouse gas emissions impact of ",
         certTxt2: " kg CO₂e by funding the action program ", certTxt3: " for ", certTxt4: " units of action. This program is operated by local frontline communities to maintain natural forest cover, protect local food security (*Agroforestry*), and conduct regular intensive monitoring, in line with Indonesian Regulation Perpres No. 110/2025.",
         certTgl: "Date of Issue: ", certMetode: "Calculation Method: IPCC Energy & Transport Sector", ttdJabatan: "Ethnicitizen Initiator",
-        pohonNama: "Agroforestry Tree Adoption & Care", patroliNama: "Forest Patrol Operations in Community-Based Forest Management Areas"
+        pohonNama: "Agroforestry Tree Adoption & Care", patroliNama: "Forest Patrol Operations in Community-Based Forest Management Areas",
+        btnCetak: "🖨️ Download PDF Certificate"
     },
     jp: {
         title: "炭素足跡の計算", subtitle: "Ethnicitizen コミュニティクラウドファンディング — 共に森林を守ろう",
@@ -40,12 +42,13 @@ const kamus = {
         btnHitung: "排出量の分析を開始", hasilTitle: "生態学的影響分析結果：", hasilEmisi: "推定月間排出量：",
         hasilBeban: "目標相殺負荷：", btnWa: "今すぐWhatsApp経由で支援を送る", certTitle: "再植林証明書",
         certSub: "気候持続可能性コミットメント証明書が以下に授与されます：", certTxt1: "アクションプログラム ",
-        certTxt2: " に資金を提供することにより地、", certTxt3: " kg CO₂e の日々の温室効果ガス排出影響を相殺することに積極的に参加しました。このプログラムは、地域の最前線のコミュニティによって運営され、自然の森林被覆を維持し、地域の食料安全保障（アグロフォレストリー）を保護し、定期的な集中的モニタリングを実施しています。",
+        certTxt2: " に資金を提供することにより、", certTxt3: " kg CO₂e の日々の温室効果ガス排出影響を相殺することに積極的に参加しました。このプログラムは、地域の最前線のコミュニティによって運営され、自然の森林被覆を維持し、地域の食料安全保障（アグロフォレストリー）を保護し、定期的な集中的モニタリングを実施しています。",
         certTgl: "発行日：", certMetode: "計算方法：IPCCエネルギー＆運輸セクター", ttdJabatan: "Ethnicitizen 発起人",
-        pohonNama: "アグロフォレストリー樹木の採用とケア", patroliNama: "地域主導型森林管理区域における森林パトロール活動"
+        pohonNama: "アグロフォレストリー樹木の採用とケア", patroliNama: "地域主導型森林管理区域における森林パトロール活動",
+        btnCetak: "🖨️ PDF証明書をダウンロード"
     },
     kr: {
-        title: "탄소 발자국 계산기", subtitle: "Ethnicitizen 크라우드펀딩 플랫폼 — 함께 우리 산림을 지킵시다",
+        title: "탄소 발자국 계산기", subtitle: "Ethnicitizen 커뮤니티 크라우드펀딩 플랫폼 — 함께 우리 산림을 지킵시다",
         sec1: "1. 유틸리티 및 연료 부문", labelNama: "성함 / 단체명", placeholderNama: "예: 녹색 친구",
         labelListrik: "월간 전력 소비량 (kWh)", labelBbm: "차량 연료 소비량 (리터 / 월)", labelSampah: "유기 폐기물 배출량 (Kg / 일)",
         sec2: "2. 여행 및 교통 부문", labelMotor: "오토바이 주행 거리 (Km / 월)", labelMobil: "자동차 주행 거리 (Km / 월)",
@@ -57,7 +60,8 @@ const kamus = {
         certSub: "기후 지속 가능성 서약 인증서가 다음에게 수여됩니다:", certTxt1: "행동 프로그램 ",
         certTxt2: " 에 자금을 지원함으로써 ", certTxt3: " kg CO₂e 의 일일 온실가스 배출 영향을 상쇄하는 데 적극적으로 참여했습니다. 이 프로그램은 지역 전선 커뮤니티가 천연 산림 피복을 유지하고 지역 식량 안보(아그로포레스트리)를 보호하며 정기적인 집중 모니터링을 수행하기 위해 운영됩니다.",
         certTgl: "발행일: ", certMetode: "계산 방법: IPCC 에너지 및 교통 부문", ttdJabatan: "Ethnicitizen 제안자",
-        pohonNama: "아그로포레스트리 나무 입양 및 관리", patroliNama: "지역 사회 기반 산림 관리 구역의 산림 순찰 운영"
+        pohonNama: "아그로포레스트리 나무 입양 및 관리", patroliNama: "지역 사회 기반 산림 관리 구역의 산림 순찰 운영",
+        btnCetak: "🖨️ PDF 인증서 다운로드"
     }
 };
 
@@ -93,7 +97,16 @@ function gantiBahasa(lang) {
     document.getElementById('txt-hasil-title').innerText = kamus[lang].hasilTitle;
     document.getElementById('txt-hasil-emisi').innerText = kamus[lang].hasilEmisi;
     document.getElementById('txt-hasil-beban').innerText = kamus[lang].hasilBeban;
+    document.getElementById('btn-cetak').innerText = kamus[lang].btnCetak;
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    let browserLang = navigator.language || navigator.userLanguage;
+    browserLang = browserLang.substr(0, 2);
+    if (browserLang === 'ja') browserLang = 'jp';
+    if (browserLang === 'ko') browserLang = 'kr';
+    gantiBahasa(browserLang);
+});
 
 function prosesHitungKarbon() {
     const namaUser = document.getElementById('nama').value || 'Citizen';
@@ -128,7 +141,7 @@ function prosesHitungKarbon() {
     document.getElementById('wpCertTitle').innerText = kamus[bahasaAktif].certTitle;
     document.getElementById('wpCertSub').innerText = kamus[bahasaAktif].certSub;
     document.getElementById('certNama').innerText = namaUser;
-
+    
     if(bahasaAktif === 'jp') {
         document.getElementById('certTextContainer').innerHTML = `アクションプログラム <strong>${namaProgram}</strong> に資金を提供することにより、<strong>${targetJumlahUnit}</strong> ユニット、<strong>${totalEmisi.toFixed(2)}</strong> kg CO₂e の日々の温室効果ガス排出影響を相殺することに積極的に参加しました。このプログラムは、地域の最前線のコミュニティによって運営され、自然の森林被覆を維持し、地域の食料安全保障（アグロフォレストリー）を保護し、定期的な集中的モニタリングを実施しています。`;
     } else if(bahasaAktif === 'kr') {
@@ -146,7 +159,9 @@ function prosesHitungKarbon() {
     document.getElementById('hashId').innerText = randomHash;
 
     const pesanWA = `Platform: Ethnicitizen Crowdfunding\nName: ${namaUser}\nEmissions: ${totalEmisi.toFixed(2)} kg CO2e\nProgram: ${namaProgram} (${targetJumlahUnit} Unit)\nTotal Support: IDR ${totalBiayaDonasi.toLocaleString('id-ID')}\nLedger ID: ${randomHash}`;
-    document.getElementById('linkDonasi').href = `https://wa.me{encodeURIComponent(pesanWA)}`;
+    
+    // PERBAIKAN FORMAT UTAMA: Menggunakan tautan resmi ://whatsapp.com agar tidak eror "site can't be reached"
+    document.getElementById('linkDonasi').href = `https://://whatsapp.com/send?phone=6285766594397&text=${encodeURIComponent(pesanWA)}`;
 
     document.getElementById('hasilBox').style.display = 'block';
     document.getElementById('sertifikatBox').style.display = 'block';
@@ -155,6 +170,11 @@ function prosesHitungKarbon() {
 
 function unduhPDF() {
     const elemenSertifikat = document.getElementById("sertifikatBox");
+    const tombolCetak = document.getElementById("btn-cetak");
+    
+    // Sembunyikan tombol cetak agar file hasil download PDF bersih
+    tombolCetak.style.display = "none";
+
     const opsiCetak = {
         margin:       0.5,
         filename:     'Sertifikat-Hijau-Ethnicitizen.pdf',
@@ -162,5 +182,8 @@ function unduhPDF() {
         html2canvas:  { scale: 2, useClowd: true, logging: false },
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
     };
-    html2pdf().set(opsiCetak).from(elemenSertifikat).save();
+    
+    html2pdf().set(opsiCetak).from(elemenSertifikat).save().then(() => {
+        tombolCetak.style.display = "inline-block";
+    });
 }
