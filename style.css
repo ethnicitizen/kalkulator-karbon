@@ -1,110 +1,174 @@
-// =================================================================
-// BAGIAN A: KAMUS TRANSLASI MULTIBAHASA (SALIN INI PALING ATAS)
-// =================================================================
-
-const kamus = {
-    id: {
-        title: "Hitung Jejak Karbonmu", subtitle: "Platform Crowdfunding Komunitas Ethnicitizen — Bersama Jaga Hutan Kita",
-        sec1: "1. Sektor Utilitas & Bahan Bakar", labelNama: "Nama Anda / Nama Kelompok", placeholderNama: "Contoh: Sahabat Hijau",
-        labelListrik: "Konsumsi Listrik Bulanan (kWh)", labelBbm: "Konsumsi BBM Kendaraan (Liter / Bulan)", labelSampah: "Produksi Sampah Organik (Kg / Hari)",
-        sec2: "2. Sektor Perjalanan & Transportasi", labelMotor: "Jarak Motor Pribadi (Km / Bulan)", labelMobil: "Jarak Mobil Pribadi (Km / Bulan)",
-        labelPesawat: "Jarak Penerbangan Udara (Km / Bulan)", labelLaut: "Jarak Kapal / Feri Laut (Km / Bulan)",
-        sec3: "3. Metode Penyeimbangan Karbon (Offset)", labelMetode: "Pilih Program Kontribusi Anda",
-        optPohon: "Pohon Asuh (Penanaman & Agroforestry - Rp 50.000 / unit)", optPatroli: "Patroli Hutan (Areal Pengelolaan Hutan Berbasis Masyarakat - Rp 35.000 / unit)",
-        btnHitung: "Mulai Analisis Emisi", hasilTitle: "Hasil Analisis Dampak Ekologis:", hasilEmisi: "Estimasi Emisi Bulanan:",
-        hasilBeban: "Target Beban Kompensasi:", btnWa: "Salurkan Dukungan Via WhatsApp Sekarang", certTitle: "CERTIFICATE OF REFORESTATION",
-        certSub: "Piagam Komitmen Kelestarian Iklim diberikan kepada:", certTxt1: "Telah berpartisipasi aktif menyeimbangkan dampak emisi gas rumah kaca harian sebesar ",
-        certTxt2: " kg CO₂e melalui pendanaan program aksi ", certTxt3: " sebanyak ", certTxt4: " unit aksi. Program ini dioperasikan oleh komunitas garda depan warga lokal demi mempertahankan tutupan hutan alam, perlindungan pangan lokal (*Agroforestry*), serta pemantauan intensif berkala, selaras dengan ketentuan Perpres No. 110/2025.",
-        certTgl: "Tanggal Terbit: ", certMetode: "Metode Hitung: IPCC Sektor Energi & Transportasi", ttdJabatan: "Inisiator Ethnicitizen",
-        pohonNama: "Adopsi & Perawatan Pohon Agroforestry", patroliNama: "Operasional Patroli Areal Pengelolaan Hutan Berbasis Masyarakat"
-    },
-    en: {
-        title: "Calculate Your Carbon Footprint", subtitle: "Ethnicitizen Community Crowdfunding Platform — Together Protecting Our Forests",
-        sec1: "1. Utility & Fuel Sector", labelNama: "Your Name / Group Name", placeholderNama: "e.g., Green Friend",
-        labelListrik: "Monthly Electricity Consumption (kWh)", labelBbm: "Vehicle Fuel Consumption (Liters / Month)", labelSampah: "Organic Waste Production (Kg / Day)",
-        sec2: "2. Travel & Transportation Sector", labelMotor: "Motorcycle Distance (Km / Month)", labelMobil: "Car Distance (Km / Month)",
-        labelPesawat: "Air Travel Distance (Km / Month)", labelLaut: "Sea/Ferry Travel Distance (Km / Month)",
-        sec3: "3. Carbon Offset Method", labelMetode: "Choose Your Contribution Program",
-        optPohon: "Tree Adoption (Planting & Agroforestry - IDR 50,000 / unit)", optPatroli: "Forest Patrol (Community-Based Forest Management Area - IDR 35,000 / unit)",
-        btnHitung: "Start Emission Analysis", hasilTitle: "Ecological Impact Analysis Results:", hasilEmisi: "Estimated Monthly Emissions:",
-        hasilBeban: "Target Compensation Load:", btnWa: "Send Support Via WhatsApp Now", certTitle: "CERTIFICATE OF REFORESTATION",
-        certSub: "Climate Sustainability Commitment Certificate awarded to:", certTxt1: "Has actively participated in balancing the daily greenhouse gas emissions impact of ",
-        certTxt2: " kg CO₂e by funding the action program ", certTxt3: " for ", certTxt4: " units of action. This program is operated by local frontline communities to maintain natural forest cover, protect local food security (*Agroforestry*), and conduct regular intensive monitoring, in line with Indonesian Regulation Perpres No. 110/2025.",
-        certTgl: "Date of Issue: ", certMetode: "Calculation Method: IPCC Energy & Transport Sector", ttdJabatan: "Ethnicitizen Initiator",
-        pohonNama: "Agroforestry Tree Adoption & Care", patroliNama: "Forest Patrol Operations in Community-Based Forest Management Areas"
-    },
-    jp: {
-        title: "炭素足跡の計算", subtitle: "Ethnicitizen コミュニティクラウドファンディング — 共に森林を守ろう",
-        sec1: "1. 公共料金＆燃料セクター", labelNama: "お名前 / グループ名", placeholderNama: "例：緑の友",
-        labelListrik: "月間電気使用量 (kWh)", labelBbm: "車両燃料消費量 (リットル / 月)", labelSampah: "有機廃棄物の排出量 (Kg / 日)",
-        sec2: "2. 移動＆運輸セクター", labelMotor: "バイク移動距離 (Km / 月)", labelMobil: "自動車移動距離 (Km / 月)",
-        labelPesawat: "航空移動距離 (Km / 月)", labelLaut: "船舶・フェリー移動距離 (Km / 月)",
-        sec3: "3. カーボンオフセット方法", labelMetode: "支援プログラムの選択",
-        optPohon: "里親の木 (植林＆アグロフォレストリー - 50,000 IDR / ユニット)", optPatroli: "森林パトロール (地域主導型森林管理区域 - 35,000 IDR / ユニット)",
-        btnHitung: "排出量の分析を開始", hasilTitle: "生態学的影響分析結果：", hasilEmisi: "推定月間排出量：",
-        hasilBeban: "目標相殺負荷：", btnWa: "今すぐWhatsApp経由で支援を送る", certTitle: "再植林証明書",
-        certSub: "気候持続可能性コミットメント証明書が以下に授与されます：", certTxt1: "アクションプログラム ",
-        certTxt2: " に資金を提供することにより、", certTxt3: " kg CO₂e の日々の温室効果ガス排出影響を相殺することに積極的に参加しました。このプログラムは、地域の最前線のコミュニティによって運営され、自然の森林被覆を維持し、地域の食料安全保障（アグロフォレストリー）を保護し、定期的な集中的モニタリングを実施しています。",
-        certTgl: "発行日：", certMetode: "計算方法：IPCCエネルギー＆運輸セクター", ttdJabatan: "Ethnicitizen 発起人",
-        pohonNama: "ア그로포레스트리 나무 입양 및 관리", patroliNama: "지역 사회 기반 산림 관리 구역의 산림 순찰 운영"
-    },
-    kr: {
-        title: "탄소 발자국 계산기", subtitle: "Ethnicitizen 커뮤니티 크라우드펀딩 플랫폼 — 함께 우리 산림을 지킵시다",
-        sec1: "1. 유틸리티 및 연료 부문", labelNama: "성함 / 단체명", placeholderNama: "예: 녹색 친구",
-        labelListrik: "월간 전력 소비량 (kWh)", labelBbm: "차량 연료 소비량 (리터 / 월)", labelSampah: "유기 폐기물 배출량 (Kg / 일)",
-        sec2: "2. 여행 및 교통 부문", labelMotor: "오토바이 주행 거리 (Km / 월)", labelMobil: "자동차 주행 거리 (Km / 월)",
-        labelPesawat: "항공 여행 거리 (Km / 월)", labelLaut: "선박/페리 여행 거리 (Km / 월)",
-        sec3: "3. 탄소 상쇄 방법", labelMetode: "기부 프로그램 선택",
-        optPohon: "나무 입양 (식재 및 아그로포레스트리 지원 - 50,000 IDR / 유닛)", optPatroli: "산림 순찰 (지역 사회 기반 산림 관리 구역 - 35,000 IDR / 유닛)",
-        btnHitung: "배출량 분석 시작", hasilTitle: "생태학적 영향 분석 결과:", hasilEmisi: "예상 월간 배출량:",
-        hasilBeban: "목표 상쇄 부하:", btnWa: "지금 WhatsApp으로 기부하기", certTitle: "재조림 인증서",
-        certSub: "기후 지속 가능성 서약 인증서가 다음에게 수여됩니다:", certTxt1: "행동 프로그램 ",
-        certTxt2: " 에 자금을 지원함으로써 ", certTxt3: " kg CO₂e 의 일일 온실가스 배출 영향을 상쇄하는 데 적극적으로 참여했습니다. 이 프로그램은 지역 전선 커뮤니티가 천연 산림 피복을 유지하고 지역 식량 안보(아그로포레스트리)를 보호하며 정기적인 집중 모니터링을 수행하기 위해 운영됩니다.",
-        certTgl: "발행일: ", certMetode: "계체 방법: IPCC 에너지 및 교통 부문", ttdJabatan: "Ethnicitizen 제안자",
-        pohonNama: "아그로포레스트리 나무 입양 및 관리", patroliNama: "지역 사회 기반 산림 관리 구역의 산림 순찰 운영"
-    }
-};
-
-let bahasaAktif = 'id';
-
-function gantiBahasa(lang) {
-    if (!kamus[lang]) lang = 'id';
-    bahasaAktif = lang;
-    
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById('btn-' + lang).classList.add('active');
-
-    document.getElementById('txt-title').innerText = kamus[lang].title;
-    document.getElementById('txt-subtitle').innerText = kamus[lang].subtitle;
-    document.getElementById('sec-1').innerText = kamus[lang].sec1;
-    document.getElementById('lbl-nama').innerText = kamus[lang].labelNama;
-    document.getElementById('nama').placeholder = kamus[lang].placeholderNama;
-    document.getElementById('lbl-listrik').innerText = kamus[lang].labelListrik;
-    document.getElementById('lbl-bbm').innerText = kamus[lang].labelBbm;
-    document.getElementById('lbl-sampah').innerText = kamus[lang].labelSampah;
-    document.getElementById('sec-2').innerText = kamus[lang].sec2;
-    document.getElementById('lbl-motor').innerText = kamus[lang].labelMotor;
-    document.getElementById('lbl-mobil').innerText = kamus[lang].labelMobil;
-    document.getElementById('lbl-pesawat').innerText = kamus[lang].labelPesawat;
-    document.getElementById('lbl-laut').innerText = kamus[lang].labelLaut;
-    document.getElementById('sec-3').innerText = kamus[lang].sec3;
-    document.getElementById('lbl-metode').innerText = kamus[lang].labelMetode;
-    
-    document.getElementById('opt-pohon').innerText = kamus[lang].optPohon;
-    document.getElementById('opt-patroli').innerText = kamus[lang].optPatroli;
-    
-    document.getElementById('btn-hitung').innerText = kamus[lang].btnHitung;
-    document.getElementById('txt-hasil-title').innerText = kamus[lang].hasilTitle;
-    document.getElementById('txt-hasil-emisi').innerText = kamus[lang].hasilEmisi;
-    document.getElementById('txt-hasil-beban').innerText = kamus[lang].hasilBeban;
+:root {
+    --bg-color: #f3f9f6;
+    --primary: #00b4d8; 
+    --forest-green: #10b981; 
+    --dark-green: #064e3b; 
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(16, 185, 129, 0.18);
+    --glow: 0 0 30px rgba(16, 185, 129, 0.2);
 }
 
-window.onload = function() {
-    let browserLang = navigator.language || navigator.userLanguage;
-    browserLang = browserLang.substr(0, 2);
-    
-    if (browserLang === 'ja') browserLang = 'jp';
-    if (browserLang === 'ko') browserLang = 'kr';
-    
-    gantiBahasa(browserLang);
-};
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    background-image: 
+        linear-gradient(rgba(243, 249, 246, 0.85), rgba(243, 249, 246, 0.95)), 
+        url('https://unsplash.com');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0;
+    padding: 20px 15px 50px 15px;
+    color: #1f2937;
+}
+
+.lang-switcher {
+    max-width: 600px;
+    margin: 0 auto 15px auto;
+    text-align: right;
+}
+
+.lang-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 6px 12px;
+    margin-left: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dark-green);
+    transition: all 0.2s;
+}
+
+.lang-btn.active, .lang-btn:hover {
+    background: var(--forest-green);
+    color: white;
+    border-color: var(--forest-green);
+}
+
+.carbon-container {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 20px 45px rgba(6, 78, 59, 0.05), var(--glow);
+}
+
+.carbon-container h2 {
+    margin-top: 0;
+    color: var(--dark-green);
+    font-size: 26px;
+    text-align: center;
+    font-weight: 800;
+}
+
+.carbon-container p.subtitle {
+    text-align: center;
+    color: #4b5563;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0d9488;
+    border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+    padding-bottom: 5px;
+    margin: 30px 0 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--dark-green);
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.btn-hitung {
+    width: 100%;
+    background: linear-gradient(135deg, var(--forest-green), #047857);
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.hasil-box {
+    display: none;
+    margin-top: 35px;
+    padding: 25px;
+    background-color: rgba(16, 185, 129, 0.08);
+    border-radius: 18px;
+    border-left: 6px solid var(--forest-green);
+}
+
+.angka-hasil {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--forest-green);
+}
+
+.btn-donasi {
+    display: block;
+    text-align: center;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    margin-top: 25px;
+}
+
+.sertifikat-container {
+    display: none;
+    max-width: 680px;
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.95);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)), url('https://unsplash.com');
+    background-size: cover;
+    padding: 55px;
+    border-radius: 32px;
+    border: 2px solid var(--glass-border);
+    text-align: center;
+}
+
+.issuer-title { font-size: 13px; font-weight: 800; color: #0d9488; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 5px;}
+.badge-web3 { display: inline-block; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); padding: 6px 14px; border-radius: 30px; font-size: 10px; font-weight: 700; color: var(--dark-green); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 25px;}
+.sertifikat-header { font-size: 30px; color: var(--dark-green); font-weight: 800; margin-bottom: 5px;}
+.sertifikat-nama { font-size: 34px; font-weight: 800; color: #111827; margin: 15px 0; background: linear-gradient(125deg, var(--dark-green), #0d9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+.divider-line { width: 100px; height: 3px; background: linear-gradient(90deg, var(--forest-green), var(--primary)); margin: 12px auto 25px auto;}
+.sertifikat-text { font-size: 14px; line-height: 1.7; color: #4b5563; margin: 0 auto 35px auto; max-width: 550px;}
+.sertifikat-footer { margin-top: 40px; display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #e5e7eb; padding-top: 25px;}
+.info-blok { text-align: left; font-size: 12px; color: #6b7280; line-height: 1.6;}
+.ttd-blok { text-align: center; min-width: 180px;}
+.ttd-grafis { font-family: 'Great Vibes', cursive; font-size: 42px; color: #047857; line-height: 1; transform: rotate(-3deg); }
+.ttd-nama { font-size: 13px; font-weight: 700; color: var(--dark-green); margin-top: 10px; border-top: 1px solid #d1d5db; padding-top: 5px;}
+.ttd-jabatan { font-size: 11px; color: #6b7280; text-transform: uppercase;}
