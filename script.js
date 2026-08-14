@@ -1,4 +1,8 @@
-// const kamus = {
+// =================================================================
+// BAGIAN A: KAMUS TRANSLASI MULTIBAHASA (SALIN INI PALING ATAS)
+// =================================================================
+
+const kamus = {
     id: {
         title: "Hitung Jejak Karbonmu", subtitle: "Platform Crowdfunding Komunitas Ethnicitizen — Bersama Jaga Hutan Kita",
         sec1: "1. Sektor Utilitas & Bahan Bakar", labelNama: "Nama Anda / Nama Kelompok", placeholderNama: "Contoh: Sahabat Hijau",
@@ -61,7 +65,7 @@
     }
 };
 
-// let bahasaAktif = 'id';
+let bahasaAktif = 'id';
 
 function gantiBahasa(lang) {
     if (!kamus[lang]) lang = 'id';
@@ -105,7 +109,11 @@ window.onload = function() {
     gantiBahasa(browserLang);
 };
 
-// function prosesHitungKarbon() {
+// =================================================================
+// BAGIAN B: MESIN UTAMA PERHITUNGAN EMISI (TEMPEL TEPAT DI BAWAHNYA)
+// =================================================================
+
+function prosesHitungKarbon() {
     const namaUser = document.getElementById('nama').value || 'Citizen';
     const listrik = parseFloat(document.getElementById('listrik').value) || 0;
     const wilayah = document.getElementById('wilayah').value;
@@ -143,8 +151,11 @@ window.onload = function() {
     document.getElementById('totalAktivitas').innerText = targetJumlahUnit;
     document.getElementById('labelAktivitas').innerText = labelUnitText;
 
+    // =================================================================
+// BAGIAN C: PENGISIAN SERTIFIKAT & CHAT WHATSAPP (TEMPEL DI PALING BAWAH)
+// =================================================================
 
-//  document.getElementById('wpCertTitle').innerText = kamus[bahasaAktif].certTitle;
+    document.getElementById('wpCertTitle').innerText = kamus[bahasaAktif].certTitle;
     document.getElementById('wpCertSub').innerText = kamus[bahasaAktif].certSub;
     document.getElementById('certNama').innerText = namaUser;
     
