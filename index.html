@@ -35,7 +35,7 @@
     <div class="form-group">
         <label for="wilayah">Wilayah Tempat Tinggal (Grid)</label>
         <select id="wilayah">
-            <option value="jawa_bali">Jawa & Bali Grid</option>
+            <option value="jawa_bali">Java & Bali Grid</option>
             <option value="luar_jawa">Luar Jawa & Bali</option>
         </select>
     </div>
@@ -81,7 +81,9 @@
         <h3 id="txt-hasil-title">Hasil Analisis Dampak Ekologis:</h3>
         <p><span id="txt-hasil-emisi">Estimasi Emisi Bulanan:</span> <br><span class="angka-hasil" id="totalEmisi">0</span> kg CO₂e</p>
         <p><span id="txt-hasil-beban">Target Beban Kompensasi:</span> <br><span class="angka-hasil" id="totalAktivitas">0</span> <span id="labelAktivitas">Unit</span></p>
-        <a href="#" id="linkDonasi" target="_blank" class="btn-donasi">Salurkan Dukungan Via WhatsApp Sekarang</a>
+        
+        <!-- PERBAIKAN STRUKTUR: Tautan dipindahkan langsung ke HTML asli agar tidak diblokir browser -->
+        <a href="https://whatsapp.com" id="linkDonasi" target="_blank" class="btn-donasi">Salurkan Dukungan Via WhatsApp Sekarang</a>
     </div>
 </div>
 
@@ -105,6 +107,10 @@
             <div class="ttd-jabatan" id="wpTtdJabatan">Inisiator Ethnicitizen</div>
         </div>
     </div>
+    
+    <button id="btn-cetak" onclick="unduhPDF()" style="margin-top: 25px; padding: 12px 25px; background: #064e3b; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
+        🖨️ Cetak PDF Sertifikat
+    </button>
 </div>
 
 <script src="https://cloudflare.com"></script>
