@@ -154,9 +154,27 @@ function prosesHitungKarbon() {
     document.getElementById('hashId').innerText = randomHash;
 
     const pesanWA = `Platform: Ethnicitizen Crowdfunding\nName: ${namaUser}\nEmissions: ${totalEmisi.toFixed(2)} kg CO2e\nProgram: ${namaProgram} (${targetJumlahUnit} Unit)\nTotal Support: IDR ${totalBiayaDonasi.toLocaleString('id-ID')}\nLedger ID: ${randomHash}`;
-    document.getElementById('linkDonasi').href = `https://wa.me/6285766594397{encodeURIComponent(pesanWA)}`;
+    document.getElementById('linkDonasi').href = `https://wa.me{encodeURIComponent(pesanWA)}`;
 
     document.getElementById('hasilBox').style.display = 'block';
     document.getElementById('sertifikatBox').style.display = 'block';
     document.getElementById('sertifikatBox').scrollIntoView({ behavior: 'smooth' });
+}
+
+function unduhPDF() {
+    const elemenSertifikat = document.getElementById("sertifikatBox");
+    const tombolCetak = document.getElementById("btn-cetak");
+    tombolCetak.style.display = "none";
+
+    const opsiCetak = {
+        margin:       0.5,
+        filename:     'Sertifikat-Hijau-Ethnicitizen.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useClowd: true, logging: false },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+    };
+
+    html2pdf().set(opsiCetak).from(elemenSertifikat).save().then(() => {
+        tombolCetak.style.display = "inline-block";
+    });
 }
