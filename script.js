@@ -6,7 +6,7 @@ const kamus = {
         sec2: "2. Sektor Perjalanan & Transportasi", labelMotor: "Jarak Motor Pribadi (Km / Bulan)", labelMobil: "Jarak Mobil Pribadi (Km / Bulan)",
         labelPesawat: "Jarak Penerbangan Udara (Km / Bulan)", labelLaut: "Jarak Kapal / Feri Laut (Km / Bulan)",
         sec3: "3. Metode Penyeimbangan Karbon (Offset)", labelMetode: "Pilih Program Kontribusi Anda",
-        optPohon: "Pohon Asuh (Penanaman & Agroforestry - Rp 50.000 / unit)", optPatroli: "Patroli Hutan (Areal Pengelolaan Hutan Berbasis Masyarakat - Rp 35.000 / unit)",
+        optPohon: "Pohon Asuh (Penanaman & Agroforestry - Rp 30.000 / unit)", optPatroli: "Patroli Hutan (Areal Pengelolaan Hutan Berbasis Masyarakat - Rp 50.000 / unit)",
         btnHitung: "Mulai Analisis Emisi", hasilTitle: "Hasil Analisis Dampak Ekologis:", hasilEmisi: "Estimasi Emisi Bulanan:",
         hasilBeban: "Target Beban Kompensasi:", btnWa: "Salurkan Dukungan Via WhatsApp Sekarang",
         pohonNama: "Adopsi & Perawatan Pohon Agroforestry", patroliNama: "Operasional Patroli Areal Pengelolaan Hutan Berbasis Masyarakat"
@@ -18,7 +18,7 @@ const kamus = {
         sec2: "2. Travel & Transportation Sector", labelMotor: "Motorcycle Distance (Km / Month)", labelMobil: "Car Distance (Km / Month)",
         labelPesawat: "Air Travel Distance (Km / Month)", labelLaut: "Sea/Ferry Travel Distance (Km / Month)",
         sec3: "3. Carbon Offset Method", labelMetode: "Choose Your Contribution Program",
-        optPohon: "Tree Adoption (Planting & Agroforestry - IDR 50,000 / unit)", optPatroli: "Forest Patrol (Community-Based Forest Management Area - IDR 35,000 / unit)",
+        optPohon: "Tree Adoption (Planting & Agroforestry - IDR 30,000 / unit)", optPatroli: "Forest Patrol (Community-Based Forest Management Area - IDR 50,000 / unit)",
         btnHitung: "Start Emission Analysis", hasilTitle: "Ecological Impact Analysis Results:", hasilEmisi: "Estimated Monthly Emissions:",
         hasilBeban: "Target Compensation Load:", btnWa: "Send Support Via WhatsApp Now",
         pohonNama: "Agroforestry Tree Adoption & Care", patroliNama: "Forest Patrol Operations in Community-Based Forest Management Areas"
@@ -68,7 +68,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function prosesHitungKarbon() {
-    const namaUser = document.getElementById('nama').value || 'Citizen';
+    const namaUser = document.getElementById('nama').value || 'Ethnicitizen';
     const listrik = parseFloat(document.getElementById('listrik').value) || 0;
     const wilayah = document.getElementById('wilayah').value;
     const bbm = parseFloat(document.getElementById('bbm').value) || 0;
@@ -81,7 +81,7 @@ function prosesHitungKarbon() {
 
     const FAKTOR_LISTRIK_JAWA = 0.87; const FAKTOR_LISTRIK_LUAR = 1.11; const FAKTOR_BBM = 2.33; const FAKTOR_SAMPAH_ORGANIK = 0.41; 
     const FAKTOR_MOTOR = 0.05; const FAKTOR_MOBIL = 0.18; const FAKTOR_PESAWAT = 0.12; const FAKTOR_LAUT = 0.04;    
-    const DAYA_SERAP_POHON_BULAN = 22 / 12; const BIAYA_POHON_ASUH = 50000; const BIAYA_PATROLI_HUTAN = 35000;
+    const DAYA_SERAP_POHON_BULAN = 22 / 12; const BIAYA_POHON_ASUH = 30000; const BIAYA_PATROLI_HUTAN = 50000;
 
     let emisiListrik = listrik * (wilayah === 'jawa_bali' ? FAKTOR_LISTRIK_JAWA : FAKTOR_LISTRIK_LUAR);
     let totalEmisi = emisiListrik + (bbm * FAKTOR_BBM) + ((sampahHarian * 30) * FAKTOR_SAMPAH_ORGANIK) + (kmMotor * FAKTOR_MOTOR) + (kmMobil * FAKTOR_MOBIL) + (kmPesawat * FAKTOR_PESAWAT) + (kmLaut * FAKTOR_LAUT);
@@ -97,28 +97,35 @@ function prosesHitungKarbon() {
     document.getElementById('totalAktivitas').innerText = targetJumlahUnit;
     document.getElementById('labelAktivitas').innerText = labelUnitText;
 
+    // Generate Verification Code (Contoh: ETH-8921) dan Ledger Hash
+    const autoGenCode = "ETH-" + Math.floor(1000 + Math.random() * 9000);
     const randomHash = "0x" + Array.from({length: 8}, () => Math.floor(Math.random()*16).toString(16)).join('').toUpperCase();
+    
+    // Auto-update Tanggal Pengisian Hari Ini
+    const tanggalHariIni = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
 
-    // Simpan ke Local Storage untuk Sertifikat
+    // Simpan Ke Local Storage
     localStorage.setItem("eth_nama", namaUser);
     localStorage.setItem("eth_emisi", totalEmisi.toFixed(2));
     localStorage.setItem("eth_unit", targetJumlahUnit);
     localStorage.setItem("eth_program", namaProgram);
     localStorage.setItem("eth_hash", randomHash);
+    localStorage.setItem("eth_vcode", autoGenCode);
+    localStorage.setItem("eth_tanggal", tanggalHariIni);
+    localStorage.setItem("eth_verified", "false"); // Status verifikasi default: false
 
-    // Format Pesan WhatsApp yang Baik & Terstruktur
+    // Susun Pesan WhatsApp dengan Kode Verifikasi
     const nomorWA = "6285766594397"; // ⚠️ GANTI DENGAN NOMOR WA ADMIN ETHNICITIZEN
     const teksWA = `Halo Admin Ethnicitizen! 🌿\n\n` +
-                   `Saya ingin menyalurkan dukungan kompensasi karbon:\n` +
-                   `• *Nama/Kelompok:* ${namaUser}\n` +
-                   `• *Estimasi Emisi:* ${totalEmisi.toFixed(2)} kg CO₂e/bulan\n` +
-                   `• *Program Offset:* ${namaProgram}\n` +
-                   `• *Target Kompensasi:* ${targetJumlahUnit} ${labelUnitText}\n` +
-                   `• *Total Dukungan:* Rp ${totalBiayaDonasi.toLocaleString('id-ID')}\n` +
+                   `Saya ingin menyalurkan kompensasi karbon:\n` +
+                   `• *Nama:* ${namaUser}\n` +
+                   `• *Estimasi Emisi:* ${totalEmisi.toFixed(2)} kg CO₂e\n` +
+                   `• *Program:* ${namaProgram} (${targetJumlahUnit} ${labelUnitText})\n` +
+                   `• *Total Donasi:* Rp ${totalBiayaDonasi.toLocaleString('id-ID')}\n` +
                    `• *Ledger ID:* ${randomHash}\n\n` +
-                   `Mohon petunjuk untuk prosedur penyaluran donasi selanjutnya. Terima kasih!`;
+                   `🔐 *KODE VERIFIKASI SERTIFIKAT:* ${autoGenCode}\n\n` +
+                   `Mohon konfirmasi kode di atas untuk mengaktifkan Sertifikat Hijau saya. Terima kasih!`;
 
-    // Buat URL Resmi WhatsApp
     globalLinkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teksWA)}`;
 
     document.getElementById('hasilBox').style.display = 'block';
@@ -127,13 +134,10 @@ function prosesHitungKarbon() {
 
 function kirimWhatsApp() {
     if (globalLinkWA !== "") {
-        // Buka link WA di tab baru
         window.open(globalLinkWA, '_blank');
-        
-        // Arahkan ke halaman sertifikat setelah jeda singkat
         setTimeout(() => {
             window.location.href = "sertifikat.html";
-        }, 800);
+        }, 1000);
     } else {
         alert("Silakan klik tombol 'Mulai Analisis Emisi' terlebih dahulu.");
     }
