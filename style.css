@@ -5,8 +5,8 @@
 :root {
     /* Base Color Palette (Light Agroforestry) */
     --bg-light: #f0fdf4;         /* Hijau mint sangat muda */
-    --primary-cyan: #0284c7;      /* Cyan modern */
-    --forest-green: #059669;      /* Hijau hutan segar */
+    --primary-cyan: #0284c7;     /* Cyan modern */
+    --forest-green: #059669;     /* Hijau hutan segar */
     --emerald-glow: #10b981;     /* Emerald accent */
     
     /* Aksentuasi Emas (Gold) untuk Judul & Teks Utama */
@@ -26,7 +26,6 @@
 body.mobile-app-body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--bg-light);
-    /* Subtle Nature Texture + Soft Glow Background */
     background-image: 
         radial-gradient(circle at 50% 10%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 10% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 40%),
@@ -36,7 +35,7 @@ body.mobile-app-body {
     background-attachment: fixed;
     margin: 0;
     padding: 0;
-    color: #1e293b; /* Warna teks body gelap agar mudah dibaca */
+    color: #1e293b;
     display: flex;
     justify-content: center;
 }
@@ -122,7 +121,7 @@ body.mobile-app-body {
 .section-title {
     font-size: 12px;
     font-weight: 800;
-    color: var(--gold-main); /* Sub-Judul Berwarna Emas */
+    color: var(--gold-main);
     border-bottom: 1.5px solid rgba(217, 119, 6, 0.2);
     padding-bottom: 6px;
     margin: 25px 0 15px 0;
@@ -196,7 +195,6 @@ body.mobile-app-body {
     text-align: center;
 }
 
-/* JUDUL HASIL EMAS */
 .hasil-box h3 {
     margin-top: 0;
     font-size: 16px;
@@ -222,6 +220,12 @@ body.mobile-app-body {
     color: #ffffff;
     margin-top: 15px;
     box-shadow: 0 8px 20px rgba(217, 119, 6, 0.25);
+    transition: all 0.3s ease;
+}
+
+.btn-donasi:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(217, 119, 6, 0.35);
 }
 
 .btn-sertifikat-link {
@@ -235,7 +239,7 @@ body.mobile-app-body {
 }
 
 /* ----------------------------------------------------------
-   6. VERIFIKASI & SERTIFIKAT LIGHT (FIT A4 LANDSCAPE)
+   6. SERTIFIKAT LIGHT (FIT A4 LANDSCAPE EXACT RATIO)
    ---------------------------------------------------------- */
 .verify-modal-container {
     background: var(--glass-bg);
@@ -256,63 +260,35 @@ body.mobile-app-body {
     margin-top: 5px;
 }
 
+/* Container Sertifikat (Format A4 Landscape Ratio) */
 .sertifikat-container {
     position: relative;
-    width: 1000px;
-    height: 670px;
-    max-width: 100%;
-    margin: 10px auto;
+    width: 100%;
+    max-width: 900px;
+    min-height: 600px;
+    margin: 15px auto;
     background: #ffffff;
     background-image: 
-        radial-gradient(circle at 90% 10%, rgba(217, 119, 6, 0.06) 0%, transparent 40%),
-        radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
+        radial-gradient(circle at 90% 10%, rgba(217, 119, 6, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.06) 0%, transparent 40%);
     
-    padding: 40px 50px;
+    padding: 40px 45px;
     border-radius: 16px;
     border: 3px solid var(--forest-green);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
     text-align: center;
     box-sizing: border-box;
-    overflow: hidden; /* Mencegah elemen meluber keluar */
-}
-
-.sertifikat-header { 
-    font-size: 28px; 
-    margin: 5px 0; 
-    font-weight: 800; 
-    background: var(--gold-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.sertifikat-nama { 
-    font-size: 34px; 
-    font-weight: 800; 
-    color: #0f172a; 
-    margin: 10px 0; 
-}
-
-.sertifikat-text { 
-    font-size: 13.5px; 
-    line-height: 1.6; 
-    color: #334155; 
-    max-width: 780px; 
-    margin: 0 auto 20px auto; 
-}
-
-.sertifikat-footer { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: flex-end; 
-    border-top: 1.5px solid #e2e8f0; 
-    padding-top: 15px; 
-    margin-top: 20px; 
+    overflow: hidden;
 }
 
 /* Aksen Daun Agroforestry */
-.agro-leaf-decor { position: absolute; font-size: 22px; opacity: 0.6; }
-.agro-leaf-decor.top-left { top: 15px; left: 20px; }
-.agro-leaf-decor.top-right { top: 15px; right: 20px; }
+.agro-leaf-decor { 
+    position: absolute; 
+    font-size: 22px; 
+    opacity: 0.6; 
+}
+.agro-leaf-decor.top-left { top: 18px; left: 22px; }
+.agro-leaf-decor.top-right { top: 18px; right: 22px; }
 
 .issuer-title { 
     font-size: 11px; 
@@ -378,14 +354,14 @@ body.mobile-app-body {
     align-items: flex-end; 
     border-top: 1px solid #e2e8f0; 
     padding-top: 15px; 
-    margin-top: 15px; 
+    margin-top: 20px; 
 }
 
 .info-blok { 
     text-align: left; 
-    font-size: 10.5px; 
+    font-size: 11px; 
     color: #64748b; 
-    line-height: 1.5; 
+    line-height: 1.6; 
 }
 
 .info-blok strong {
@@ -422,17 +398,52 @@ body.mobile-app-body {
     color: #64748b; 
 }
 
-.btn-download {
+/* ----------------------------------------------------------
+   7. ACTION BUTTON & INFO VERIFIKASI (TOMBOL UPLOAD & WA)
+   ---------------------------------------------------------- */
+.action-container {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.btn-wa-kirim {
     width: 100%;
-    max-width: 280px;
-    margin: 15px auto;
-    padding: 12px;
-    background: var(--forest-green);
-    color: white;
+    max-width: 380px;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: #ffffff;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 700;
-    font-size: 13.5px;
+    font-size: 14px;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(5, 150, 105, 0.2);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-wa-kirim:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.35);
+}
+
+.btn-wa-kirim:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.info-verifikasi-admin {
+    font-size: 11.5px;
+    color: #475569;
+    margin-top: 12px;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(16, 185, 129, 0.15);
 }
