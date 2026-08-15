@@ -8,12 +8,8 @@ const kamus = {
         sec3: "3. Metode Penyeimbangan Karbon (Offset)", labelMetode: "Pilih Program Kontribusi Anda",
         optPohon: "Pohon Asuh (Penanaman & Agroforestry - Rp 50.000 / unit)", optPatroli: "Patroli Hutan (Areal Pengelolaan Hutan Berbasis Masyarakat - Rp 35.000 / unit)",
         btnHitung: "Mulai Analisis Emisi", hasilTitle: "Hasil Analisis Dampak Ekologis:", hasilEmisi: "Estimasi Emisi Bulanan:",
-        hasilBeban: "Target Beban Kompensasi:", btnWa: "Salurkan Dukungan Via WhatsApp Sekarang", certTitle: "CERTIFICATE OF REFORESTATION",
-        certSub: "Piagam Komitmen Kelestarian Iklim diberikan kepada:", certTxt1: "Telah berpartisipasi aktif menyeimbangkan dampak emisi gas rumah kaca harian sebesar ",
-        certTxt2: " kg CO₂e melalui pendanaan program aksi ", certTxt3: " sebanyak ", certTxt4: " unit aksi. Program ini dioperasikan oleh komunitas garda depan warga lokal demi mempertahankan tutupan hutan alam, perlindungan pangan lokal (*Agroforestry*), serta pemantauan intensif berkala, selaras dengan ketentuan Perpres No. 110/2025.",
-        certTgl: "Tanggal Terbit: ", certMetode: "Metode Hitung: IPCC Sektor Energi & Transportasi", ttdJabatan: "Inisiator Ethnicitizen",
-        pohonNama: "Adopsi & Perawatan Pohon Agroforestry", patroliNama: "Operasional Patroli Areal Pengelolaan Hutan Berbasis Masyarakat",
-        btnCetak: "🖨️ Cetak PDF Sertifikat"
+        hasilBeban: "Target Beban Kompensasi:", btnWa: "Salurkan Dukungan Via WhatsApp Sekarang",
+        pohonNama: "Adopsi & Perawatan Pohon Agroforestry", patroliNama: "Operasional Patroli Areal Pengelolaan Hutan Berbasis Masyarakat"
     },
     en: {
         title: "Calculate Your Carbon Footprint", subtitle: "Ethnicitizen Community Crowdfunding Platform — Together Protecting Our Forests",
@@ -24,16 +20,13 @@ const kamus = {
         sec3: "3. Carbon Offset Method", labelMetode: "Choose Your Contribution Program",
         optPohon: "Tree Adoption (Planting & Agroforestry - IDR 50,000 / unit)", optPatroli: "Forest Patrol (Community-Based Forest Management Area - IDR 35,000 / unit)",
         btnHitung: "Start Emission Analysis", hasilTitle: "Ecological Impact Analysis Results:", hasilEmisi: "Estimated Monthly Emissions:",
-        hasilBeban: "Target Compensation Load:", btnWa: "Send Support Via WhatsApp Now", certTitle: "CERTIFICATE OF REFORESTATION",
-        certSub: "Climate Sustainability Commitment Certificate awarded to:", certTxt1: "Has actively participated in balancing the daily greenhouse gas emissions impact of ",
-        certTxt2: " kg CO₂e by funding the action program ", certTxt3: " for ", certTxt4: " units of action. This program is operated by local frontline communities to maintain natural forest cover, protect local food security (*Agroforestry*), and conduct regular intensive monitoring, in line with Indonesian Regulation Perpres No. 110/2025.",
-        certTgl: "Date of Issue: ", certMetode: "Calculation Method: IPCC Energy & Transport Sector", ttdJabatan: "Ethnicitizen Initiator",
-        pohonNama: "Agroforestry Tree Adoption & Care", patroliNama: "Forest Patrol Operations in Community-Based Forest Management Areas",
-        btnCetak: "🖨️ Download PDF Certificate"
+        hasilBeban: "Target Compensation Load:", btnWa: "Send Support Via WhatsApp Now",
+        pohonNama: "Agroforestry Tree Adoption & Care", patroliNama: "Forest Patrol Operations in Community-Based Forest Management Areas"
     }
 };
 
 let bahasaAktif = 'id';
+let globalLinkWA = "";
 
 function gantiBahasa(lang) {
     if (!kamus[lang]) lang = 'id';
@@ -65,7 +58,7 @@ function gantiBahasa(lang) {
     document.getElementById('txt-hasil-title').innerText = kamus[lang].hasilTitle;
     document.getElementById('txt-hasil-emisi').innerText = kamus[lang].hasilEmisi;
     document.getElementById('txt-hasil-beban').innerText = kamus[lang].hasilBeban;
-    document.getElementById('btn-cetak').innerText = kamus[lang].btnCetak;
+    document.getElementById('btn-wa-kirim').innerText = kamus[lang].btnWa;
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -104,37 +97,27 @@ function prosesHitungKarbon() {
     document.getElementById('totalAktivitas').innerText = targetJumlahUnit;
     document.getElementById('labelAktivitas').innerText = labelUnitText;
 
-    document.getElementById('wpCertTitle').innerText = kamus[bahasaAktif].certTitle;
-    document.getElementById('wpCertSub').innerText = kamus[bahasaAktif].certSub;
-    document.getElementById('certNama').innerText = namaUser;
-
-    document.getElementById('certTextContainer').innerHTML = kamus[bahasaAktif].certTxt1 + `<strong>${totalEmisi.toFixed(2)}</strong>` + kamus[bahasaAktif].certTxt2 + `<strong>${namaProgram}</strong>` + kamus[bahasaAktif].certTxt3 + `<strong>${targetJumlahUnit}</strong>` + kamus[bahasaAktif].certTxt4;
-
-    document.getElementById('certTanggal').innerText = kamus[bahasaAktif].certTgl + new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
-    document.getElementById('certMetode').innerText = kamus[bahasaAktif].certMetode;
-    document.getElementById('wpTtdJabatan').innerText = kamus[bahasaAktif].ttdJabatan;
-    document.getElementById('linkDonasi').innerText = kamus[bahasaAktif].btnWa;
-
     const randomHash = "0x" + Array.from({length: 8}, () => Math.floor(Math.random()*16).toString(16)).join('').toUpperCase();
-    document.getElementById('hashId').innerText = randomHash;
 
-    const pesanWA = `Platform: Ethnicitizen Crowdfunding\nName: ${namaUser}\nEmissions: ${totalEmisi.toFixed(2)} kg CO2e\nProgram: ${namaProgram} (${targetJumlahUnit} Unit)\nTotal Support: IDR ${totalBiayaDonasi.toLocaleString('id-ID')}\nLedger ID: ${randomHash}`;
+    localStorage.setItem("eth_nama", namaUser);
+    localStorage.setItem("eth_emisi", totalEmisi.toFixed(2));
+    localStorage.setItem("eth_unit", targetJumlahUnit);
+    localStorage.setItem("eth_program", namaProgram);
+    localStorage.setItem("eth_hash", randomHash);
+
+    const teksMurni = "Platform: Ethnicitizen Crowdfunding\nName: " + namaUser + "\nEmissions: " + totalEmisi.toFixed(2) + " kg CO2e\nProgram: " + namaProgram + " (" + targetJumlahUnit + " Unit)\nTotal Support: IDR " + totalBiayaDonasi.toLocaleString('id-ID') + "\nLedger ID: " + randomHash;
     
-    document.getElementById('linkDonasi').href = `https://whatsapp.com{encodeURIComponent(pesanWA)}`;
+    globalLinkWA = "https://whatsapp.com" + encodeURIComponent(teksMurni);
 
     document.getElementById('hasilBox').style.display = 'block';
-    document.getElementById('sertifikatBox').style.display = 'block';
-    document.getElementById('sertifikatBox').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('hasilBox').scrollIntoView({ behavior: 'smooth' });
 }
 
-function unduhPDF() {
-    const elemenSertifikat = document.getElementById("sertifikatBox");
-    const opsiCetak = {
-        margin:       0.5,
-        filename:     'Sertifikat-Hijau-Ethnicitizen.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useClowd: true, logging: false },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
-    };
-    html2pdf().set(opsiCetak).from(elemenSertifikat).save();
+function kirimWhatsApp() {
+    if(globalLinkWA !== "") {
+        window.open(globalLinkWA, '_blank');
+        setTimeout(() => {
+            window.location.href = "sertifikat.html";
+        }, 1000);
+    }
 }
