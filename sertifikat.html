@@ -1,35 +1,86 @@
+<!-- AREA SERTIFIKAT -->
+<div class="sertifikat-container" id="sertifikatBox">
+    <div class="agro-leaf-decor top-left">🌿</div>
+    <div class="agro-leaf-decor top-right">🍃</div>
+
+    <div class="issuer-title">ETHNICITIZEN CARBON FOOTPRINT</div>
+    <div class="badge-web3">Greentech Web 3.0 Verified</div>
+
+    <h1 class="sertifikat-header">SERTIFIKAT CARBON FOOTPRINT</h1>
+    
+    <p style="font-size: 11px; color: #64748b; margin-bottom: 5px;">Diberikan dengan bangga kepada:</p>
+    <div class="sertifikat-nama" id="certNama">Nama Penanam</div>
+    
+    <div class="divider-line"></div>
+
+    <p class="sertifikat-text">
+        Atas partisipasi aktif dan kontribusi nyata dalam mendukung program <strong>Agroforestry & Carbon Offset</strong>. 
+        Tindakan ini telah membantu menyerap emisi karbon serta menjaga kelestarian ekosistem bumi untuk masa depan yang nilai dan ketentuannya sesuai dengan IPCC AR6 dan Perpres 110/2025.
+    </p>
+
+    <div class="sertifikat-footer">
+        <div class="info-blok">
+            <!-- KODE VERIFIKASI TELAH DIHAPUS SEPENUHNYA DI SINI -->
+            <p><strong>Tanggal Terbit:</strong> <span id="certTanggal">15 Agustus 2026</span></p>
+            <p><strong>Lokasi Penanaman:</strong> Areal Pengelolaan Hutan Berbasis Masyarakat</p>
+            <p><strong>Status:</strong> Menunggu Verifikasi Pembayaran Admin</p>
+        </div>
+
+        <div class="ttd-blok">
+            <div class="ttd-grafis-ethnicitizen">Ethnicitizen</div>
+            <div class="ttd-nama">P. A. Q-ting</div>
+            <div class="ttd-jabatan">Climate Action Crowdfunding Initiative</div>
+        </div>
+    </div>
+</div>
+
+<!-- TOMBOL WA & INFORMASI -->
+<div class="action-container" style="max-width: 400px; margin: 20px auto; text-align: center;">
+    <button onclick="uploadPDFKeDriveDanWA()" class="btn-wa-kirim">
+        <i class="fab fa-whatsapp"></i> Request Sertifikat & Konfirmasi WA
+    </button>
+
+    <p class="info-verifikasi-admin">
+        ℹ️ <strong>Catatan:</strong> Sertifikat akan dikirim <strong>berlaku dan terverifikasi</strong> setelah Ethnicitizen mengonfirmasi bukti pembayaran Anda.
+    </p>
+</div>
+
+<!-- SCRIPT JAVASCRIPT REVISI -->
+<script>
 async function uploadPDFKeDriveDanWA() {
     const btn = document.querySelector('.btn-wa-kirim');
     
-    // Ganti dengan Web App URL (Deployment Baru) & Nomor WA Admin
-    const urlWebAppGAS = "https://script.google.com/macros/s/AKfycbwG3rJUL5ILV62pJ7GczsoZ1alPkCbNqh_708JBtL4cQh--XMz44Og9vj3axqkZNpJl/exec"; 
-    const noAdminWA = "6285766594397"; 
-    const namaUser = document.getElementById("certNama").innerText || "Kontributor";
+    // 1. MASUKKAN URL GOOGLE APPS SCRIPT & NOMOR WA ADMIN
+    const urlWebAppGAS = "https://script.google.com/macros/s/AKfycbwNcBZIgrpVXT2xRshrZY8vukwIh2DyGJIW9uuugXGbRXWMTR7fkqMS4o6Zg0gn3B3S/exec"; 
+    const noAdminWA = "6285766594397"; // Ganti dengan nomor WA Anda (awali 62)
+
+    const namaUser = document.getElementById("certNama").innerText.trim() || "Kontributor";
 
     btn.disabled = true;
-    btn.innerHTML = '⏳ Memproses Verifikasi...';
+    btn.innerHTML = '⏳ Memproses...';
 
     const elemen = document.getElementById("sertifikatBox");
 
-    // Render PDF ke Base64
+    // 2. OPSI OPTIMASI PDF (Resolusi disesuaikan agar ukuran file kecil & ringan)
     const opsiPDF = {
         margin: 0,
-        filename: `Sertifikat-CFP-${namaUser.replace(/\s+/g, '_')}.pdf`,
-        image: { type: 'jpeg', quality: 0.95 },
-        html2canvas: { scale: 2, useCORS: true },
+        filename: `Sertifikat-${namaUser.replace(/\s+/g, '_')}.pdf`,
+        image: { type: 'jpeg', quality: 0.8 },
+        html2canvas: { scale: 1.5, useCORS: true }, 
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
     };
 
     try {
+        // Generate PDF Base64
         const pdfWorker = html2pdf().set(opsiPDF).from(elemen).outputPdf('datauristring');
         const pdfDataUri = await pdfWorker;
         const pdfBase64Data = pdfDataUri.split(',')[1];
 
-        // Kirim ke Google Apps Script tanpa bentrok CORS
+        // 3. Kirim data PDF ke Google Apps Script
         const response = await fetch(urlWebAppGAS, {
             method: 'POST',
             headers: {
-                'Content-Type': 'text/plain;charset=utf-8', // Menghindari preflight CORS
+                'Content-Type': 'text/plain;charset=utf-8',
             },
             body: JSON.stringify({
                 filename: `Sertifikat_Agroforestry_${namaUser.replace(/\s+/g, '_')}.pdf`,
@@ -42,8 +93,8 @@ async function uploadPDFKeDriveDanWA() {
         if (resData.result === "success") {
             const fileDriveUrl = resData.fileUrl;
 
-            // Format Pesan ke Admin WA
-            const pesanWA = `Halo Ethnicitizen,%0A%0ASaya telah mengajukan Sertifikat Carbon Footprint atas nama:*${encodeURIComponent(namaUser)}*.%0A%0A📁 *Link Dokumen PDF (Google Drive):*%0A${fileDriveUrl}%0A%0AMohon verifikasi pembayaran saya agar sertifikat tersebut terverifikasi sah.%0A%0ATerima kasih! 🌿`;
+            // 4. PESAN WA BERSIH (TANPA KODE VERIFIKASI SEPADAN)
+            const pesanWA = `Halo Ethnicitizen,%0A%0ASaya telah mengusulkan Sertifikat Aksi Iklim atas nama: *${encodeURIComponent(namaUser)}*.%0A%0A📁 *Link File PDF di Google Drive:*%0A${fileDriveUrl}%0A%0AMohon verifikasi pembayaran saya agar sertifikat tersebut terverifikasi.%0A%0ATerima kasih! 🌿`;
 
             window.open(`https://wa.me/${noAdminWA}?text=${pesanWA}`, '_blank');
             btn.innerHTML = '<i class="fab fa-whatsapp"></i> Berhasil Terkirim!';
@@ -52,12 +103,13 @@ async function uploadPDFKeDriveDanWA() {
         }
     } catch (err) {
         console.error("Error Detail:", err);
-        alert("Terjadi kendala saat memproses dan hubungkan langsung ke WhatsApp Admin...");
+        alert("Gagal mengunggah ke Google Drive. Menghubungkan langsung ke WhatsApp Admin...");
         
-        // Fallback jika terjadi error
-        const pesanFallback = `Halo Ethnicitizen, saya ingin konfirmasi sertifikat atas nama *${encodeURIComponent(namaUser)}*.`;
+        // Pesan WA Cadangan jika upload gagal (Tanpa Kode Verifikasi)
+        const pesanFallback = `Halo Ethnicitizen ,%0A%0ASaya ingin melakukan verifikasi sertifikat atas nama: *${encodeURIComponent(namaUser)}*.%0A%0AMohon bantuan untuk verifikasi pembayaran.%0A%0ATerima kasih! 🌿`;
         window.open(`https://wa.me/${noAdminWA}?text=${pesanFallback}`, '_blank');
     } finally {
         btn.disabled = false;
     }
 }
+</script>
