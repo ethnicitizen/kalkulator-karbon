@@ -1,37 +1,38 @@
 async function uploadPDFKeDriveDanWA() {
     const btn = document.querySelector('.btn-wa-kirim');
-    const statusText = document.querySelector('.info-verifikasi-admin');
     
-    // 1. Konfigurasi
-    const urlWebAppGAS = "https://script.google.com/macros/s/AKfycbx603m-fa20iNo3B5D-vDjhDDreevuxvorNqvfy_6Ma0O-Hl2b3pNHtBIJ_69Y3N8mX/exec"; // Dari Langkah 1
-    const noAdminWA = "6285766594397"; // Nomor WA Admin
+    // Ganti dengan Web App URL (Deployment Baru) & Nomor WA Admin
+    const urlWebAppGAS = "https://script.google.com/macros/s/AKfycbwG3rJUL5ILV62pJ7GczsoZ1alPkCbNqh_708JBtL4cQh--XMz44Og9vj3axqkZNpJl/exec"; 
+    const noAdminWA = "6285766594397"; 
     const namaUser = document.getElementById("certNama").innerText || "Kontributor";
 
-    // Ubah status tombol saat proses mengunggah
     btn.disabled = true;
-    btn.innerHTML = '⏳ Memproses Sertifikat...';
+    btn.innerHTML = '⏳ Memproses Verifikasi...';
 
     const elemen = document.getElementById("sertifikatBox");
 
-    // 2. Render Sertifikat HTML ke PDF (Format Base64)
+    // Render PDF ke Base64
     const opsiPDF = {
         margin: 0,
-        filename: `Sertifikat-${namaUser.replace(/\s+/g, '_')}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
+        filename: `Sertifikat-CFP-${namaUser.replace(/\s+/g, '_')}.pdf`,
+        image: { type: 'jpeg', quality: 0.95 },
         html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
     };
 
-    // Generate Blob PDF
-    const pdfWorker = html2pdf().set(opsiPDF).from(elemen).outputPdf('datauristring');
-    const pdfBase64Data = (await pdfWorker).split(',')[1];
-
-    // 3. Kirim File PDF ke Google Drive Admin via Google Apps Script
     try {
+        const pdfWorker = html2pdf().set(opsiPDF).from(elemen).outputPdf('datauristring');
+        const pdfDataUri = await pdfWorker;
+        const pdfBase64Data = pdfDataUri.split(',')[1];
+
+        // Kirim ke Google Apps Script tanpa bentrok CORS
         const response = await fetch(urlWebAppGAS, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8', // Menghindari preflight CORS
+            },
             body: JSON.stringify({
-                filename: `Sertifikat_CFP_${namaUser}.pdf`,
+                filename: `Sertifikat_Agroforestry_${namaUser.replace(/\s+/g, '_')}.pdf`,
                 pdfBase64: pdfBase64Data
             })
         });
@@ -41,21 +42,20 @@ async function uploadPDFKeDriveDanWA() {
         if (resData.result === "success") {
             const fileDriveUrl = resData.fileUrl;
 
-            // 4. Buat Pesan WhatsApp Berisi Link Google Drive File PDF
-            const pesanWA = `Halo Ethnicitizen ,%0A%0ASaya menunggu Sertifikat Kontribusi Hijau atas nama:*${encodeURIComponent(namaUser)}*.%0A%0A📁 *Link File Sertifikat (Google Drive):*%0A${fileDriveUrl}%0A%0AMohon verifikasi pembayaran saya agar sertifikat tersebut terverifikasi sah.%0A%0ATerima kasih! 🌿`;
+            // Format Pesan ke Admin WA
+            const pesanWA = `Halo Ethnicitizen,%0A%0ASaya telah mengajukan Sertifikat Carbon Footprint atas nama:*${encodeURIComponent(namaUser)}*.%0A%0A📁 *Link Dokumen PDF (Google Drive):*%0A${fileDriveUrl}%0A%0AMohon verifikasi pembayaran saya agar sertifikat tersebut terverifikasi sah.%0A%0ATerima kasih! 🌿`;
 
-            // Redirect ke WhatsApp Admin
             window.open(`https://wa.me/${noAdminWA}?text=${pesanWA}`, '_blank');
-            
-            btn.innerHTML = '<i class="fab fa-whatsapp"></i> Berhasil Terkirim ke Drive & WA!';
+            btn.innerHTML = '<i class="fab fa-whatsapp"></i> Berhasil Terkirim!';
         } else {
             throw new Error(resData.error);
         }
     } catch (err) {
-        alert("Gagal mengunggah PDF ke Google Drive. Menghubungkan langsung ke WhatsApp Admin...");
+        console.error("Error Detail:", err);
+        alert("Terjadi kendala saat memproses dan hubungkan langsung ke WhatsApp Admin...");
         
-        // Fallback jika upload gagal, tetap buka WA biasa
-        const pesanFallback = `Halo Admin, saya ingin verifikasi sertifikat atas nama *${encodeURIComponent(namaUser)}*.`;
+        // Fallback jika terjadi error
+        const pesanFallback = `Halo Ethnicitizen, saya ingin konfirmasi sertifikat atas nama *${encodeURIComponent(namaUser)}*.`;
         window.open(`https://wa.me/${noAdminWA}?text=${pesanFallback}`, '_blank');
     } finally {
         btn.disabled = false;
