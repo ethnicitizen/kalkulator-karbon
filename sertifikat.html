@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifikat Hijau - Ethnicitizen</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #042414;
+            background-image: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 80%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .sertifikat-container {
+            max-width: 750px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            background-image: linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)), url('https://unsplash.com');
+            background-size: cover;
+            padding: 60px;
+            border-radius: 24px;
+            border: 12px solid #064e3b;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .issuer-title { font-size: 14px; font-weight: 800; color: #0d9488; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 5px;}
+        .badge-web3 { display: inline-block; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); padding: 6px 14px; border-radius: 30px; font-size: 10px; font-weight: 700; color: #064e3b; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 25px;}
+        .sertifikat-header { font-size: 32px; color: #064e3b; font-weight: 800; margin-bottom: 5px; text-transform: uppercase;}
+        .sertifikat-nama { font-size: 36px; font-weight: 800; color: #111827; margin: 20px 0; background: linear-gradient(125deg, #064e3b, #0d9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+        .divider-line { width: 120px; height: 3px; background: linear-gradient(90deg, #10b981, #00b4d8); margin: 15px auto 25px auto;}
+        .sertifikat-text { font-size: 15px; line-height: 1.8; color: #4b5563; margin: 0 auto 45px auto; max-width: 600px;}
+        .sertifikat-footer { margin-top: 40px; display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #e5e7eb; padding-top: 25px;}
+        .info-blok { text-align: left; font-size: 12px; color: #6b7280; line-height: 1.6;}
+        .ttd-blok { text-align: center; min-width: 180px;}
+        .ttd-grafis { font-family: 'Great Vibes', cursive; font-size: 46px; color: #047857; line-height: 1; transform: rotate(-3deg); }
+        .ttd-nama { font-size: 14px; font-weight: 700; color: #064e3b; margin-top: 10px; border-top: 1px solid #d1d5db; padding-top: 5px;}
+        .btn-download { display: inline-block; margin-top: 30px; padding: 15px 35px; background: #10b981; color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: bold; cursor: pointer; text-decoration: none; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3); transition: all 0.2s;}
+        .btn-download:hover { background: #059669; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+
+<div class="sertifikat-container" id="sertifikatBox">
+    <div class="issuer-title">Komunitas Ethnicitizen</div>
+    <div class="badge-web3">Verified Community Carbon Offset</div>
+    <h4 class="sertifikat-header">CERTIFICATE OF REFORESTATION</h4>
+    <p style="font-size: 13px; color:#6b7280; margin:0; font-weight: 500;">Piagam Komitmen Kelestarian Iklim diberikan kepada:</p>
+    <div class="sertifikat-nama" id="certNama">Pahlawan Bumi</div>
+    <div class="divider-line"></div>
+    <div class="sertifikat-text">
+        Telah berpartisipasi aktif menyeimbangkan dampak emisi gas rumah kaca harian sebesar <strong id="certEmisi" style="color: #10b981;">0.00</strong> kg CO₂e melalui pendanaan program aksi <strong id="certProgram">--</strong> sebanyak <strong id="certUnit" style="color: #10b981;">0</strong> unit aksi. Program ini dioperasikan oleh komunitas garda depan warga lokal demi mempertahankan tutupan hutan alam, perlindungan pangan lokal (*Agroforestry*), serta pemantauan intensif berkala, selaras dengan ketentuan **Perpres No. 110/2025**.
+    </div>
+    <div class="sertifikat-footer">
+        <div class="info-blok">
+            <p>Tanggal Terbit: <strong id="certTanggal">-- -- ----</strong></p>
+            <p>Metode Hitung: <strong>IPCC Sektor Energi & Transportasi</strong></p>
+            <p>Ledger Hash: <strong id="hashId" style="font-family: monospace; color: #0d9488;">0x000000</strong></p>
+        </div>
+        <div class="ttd-blok">
+            <div class="ttd-grafis">P. A. Q-ting</div>
+            <div class="ttd-nama">P. A. Q-ting</div>
+            <div style="font-size:11px; color:#6b7280; text-transform:uppercase;">Inisiator Ethnicitizen</div>
+        </div>
+    </div>
+</div>
+
+<button class="btn-download" id="btn-unduh" onclick="downloadSertifikatPDF()">🖨️ Cetak PDF Sertifikat</button>
+
+<script src="https://cloudflare.com"></script>
+<script>
+    // Membaca data yang dioper dari halaman kalkulator sebelumnya secara otomatis
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("certNama").innerText = localStorage.getItem("eth_nama") || "Pahlawan Bumi";
+        document.getElementById("certEmisi").innerText = localStorage.getItem("eth_emisi") || "0.00";
+        document.getElementById("certUnit").innerText = localStorage.getItem("eth_unit") || "0";
+        document.getElementById("certProgram").innerText = localStorage.getItem("eth_program") || "Aksi Iklim";
+        document.getElementById("hashId").innerText = localStorage.getItem("eth_hash") || "0x000000";
+        document.getElementById("certTanggal").innerText = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+    });
+
+    function downloadSertifikatPDF() {
+        const elemen = document.getElementById("sertifikatBox");
+        const tombol = document.getElementById("btn-unduh");
+        tombol.style.display = "none"; // Sembunyikan tombol saat cetak
+
+        const opsi = {
+            margin:       0.2,
+            filename:     'Sertifikat-Ethnicitizen.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useClowd: true },
+            jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+        };
+        html2pdf().set(opsi).from(elemen).save().then(() => {
+            tombol.style.display = "block"; // Munculkan kembali tombol
+        });
+    }
+</script>
+</body>
+</html>
