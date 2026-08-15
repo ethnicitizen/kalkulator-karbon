@@ -1,6 +1,6 @@
 const kamus = {
     id: {
-        title: "Hitung Jejak Karbonmu", subtitle: "Platform Crowdfunding Komunitas Ethnicitizen — Bersama Jaga Hutan Kita",
+        title: "Hitung Jejak Karbonmu", subtitle: "Platform Crowdfunding Komunitas Ethnicitizen — Kelola Hutan Bersama Masyarakat",
         sec1: "1. Sektor Utilitas & Bahan Bakar", labelNama: "Nama Anda / Nama Kelompok", placeholderNama: "Contoh: Sahabat Hijau",
         labelListrik: "Konsumsi Listrik Bulanan (kWh)", labelBbm: "Konsumsi BBM Kendaraan (Liter / Bulan)", labelSampah: "Produksi Sampah Organik (Kg / Hari)",
         sec2: "2. Sektor Perjalanan & Transportasi", labelMotor: "Jarak Motor Pribadi (Km / Bulan)", labelMobil: "Jarak Mobil Pribadi (Km / Bulan)",
@@ -12,7 +12,7 @@ const kamus = {
         pohonNama: "Adopsi & Perawatan Pohon Agroforestry", patroliNama: "Operasional Patroli Areal Pengelolaan Hutan Berbasis Masyarakat"
     },
     en: {
-        title: "Calculate Your Carbon Footprint", subtitle: "Ethnicitizen Community Crowdfunding Platform — Together Protecting Our Forests",
+        title: "Calculate Your Carbon Footprint", subtitle: "Ethnicitizen Community Crowdfunding Platform — Together Managing Forests With Local Community",
         sec1: "1. Utility & Fuel Sector", labelNama: "Your Name / Group Name", placeholderNama: "e.g., Green Friend",
         labelListrik: "Monthly Electricity Consumption (kWh)", labelBbm: "Vehicle Fuel Consumption (Liters / Month)", labelSampah: "Organic Waste Production (Kg / Day)",
         sec2: "2. Travel & Transportation Sector", labelMotor: "Motorcycle Distance (Km / Month)", labelMobil: "Car Distance (Km / Month)",
@@ -116,7 +116,7 @@ function prosesHitungKarbon() {
 
     // Susun Pesan WhatsApp dengan Kode Verifikasi
     const nomorWA = "6285766594397"; // ⚠️ GANTI DENGAN NOMOR WA ADMIN ETHNICITIZEN
-    const teksWA = `Halo Admin Ethnicitizen! 🌿\n\n` +
+    const teksWA = `Halo Ethnicitizen! 🌿\n\n` +
                    `Saya ingin menyalurkan kompensasi karbon:\n` +
                    `• *Nama:* ${namaUser}\n` +
                    `• *Estimasi Emisi:* ${totalEmisi.toFixed(2)} kg CO₂e\n` +
