@@ -8,6 +8,23 @@
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .btn-sertifikat-link {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 12px 20px;
+            background-color: #047857;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .btn-sertifikat-link:hover {
+            background-color: #065f46;
+        }
+    </style>
 </head>
 <body>
 
@@ -75,11 +92,14 @@
 
     <button class="btn-hitung" id="btn-hitung" onclick="prosesHitungKarbon()">Mulai Analisis Emisi</button>
 
-    <div class="hasil-box" id="hasilBox">
+    <div class="hasil-box" id="hasilBox" style="display: none;">
         <h3 id="txt-hasil-title">Hasil Analisis Dampak Ekologis:</h3>
         <p><span id="txt-hasil-emisi">Estimasi Emisi Bulanan:</span> <br><span class="angka-hasil" id="totalEmisi">0</span> kg CO₂e</p>
         <p><span id="txt-hasil-beban">Target Beban Kompensasi:</span> <br><span class="angka-hasil" id="totalAktivitas">0</span> <span id="labelAktivitas">Unit</span></p>
+        
         <button class="btn-donasi" id="btn-wa-kirim" onclick="kirimWhatsApp()">Salurkan Dukungan Via WhatsApp Sekarang</button>
+        <br>
+        <a href="sertifikat.html" class="btn-sertifikat-link" target="_blank">📜 lihat / Cetak Sertifikat Hijau Langsung</a>
     </div>
 </div>
 
