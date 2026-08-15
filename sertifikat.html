@@ -24,7 +24,7 @@
             max-width: 750px;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            background-image: linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)), url('https://unsplash.com');
+            background-image: linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94));
             background-size: cover;
             padding: 60px;
             border-radius: 24px;
@@ -76,9 +76,10 @@
 
 <button class="btn-download" id="btn-unduh" onclick="downloadSertifikatPDF()">🖨️ Cetak PDF Sertifikat</button>
 
-<script src="https://cloudflare.com"></script>
+<!-- Library html2pdf.js yang VALID dan RESMI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <script>
-    // Membaca data yang dioper dari halaman kalkulator sebelumnya secara otomatis
     document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("certNama").innerText = localStorage.getItem("eth_nama") || "Pahlawan Bumi";
         document.getElementById("certEmisi").innerText = localStorage.getItem("eth_emisi") || "0.00";
@@ -91,17 +92,18 @@
     function downloadSertifikatPDF() {
         const elemen = document.getElementById("sertifikatBox");
         const tombol = document.getElementById("btn-unduh");
-        tombol.style.display = "none"; // Sembunyikan tombol saat cetak
+        tombol.style.display = "none";
 
         const opsi = {
-            margin:       0.2,
+            margin:       0.3,
             filename:     'Sertifikat-Ethnicitizen.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useClowd: true },
-            jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+            html2canvas:  { scale: 2, useCORS: true },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'landscape' }
         };
+
         html2pdf().set(opsi).from(elemen).save().then(() => {
-            tombol.style.display = "block"; // Munculkan kembali tombol
+            tombol.style.display = "inline-block";
         });
     }
 </script>
