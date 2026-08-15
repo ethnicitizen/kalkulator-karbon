@@ -169,7 +169,7 @@ body.mobile-app-body {
 
 .sertifikat-container {
     position: relative;
-    max-width: 840px; /* Ukuran Proporsional Landscape A4 */
+    max-width: 1754px; /* Ukuran Proporsional Landscape A4 */
     width: 100%;
     margin: 10px auto;
     background: #031e14;
@@ -215,7 +215,7 @@ body.mobile-app-body {
 
 .btn-download {
     width: 100%;
-    max-width: 280px;
+    max-width: 842px;
     margin: 15px auto;
     padding: 12px;
     background: var(--forest-green);
