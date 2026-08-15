@@ -1,140 +1,115 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sertifikat Kompensasi Karbon - Ethnicitizen</title>
+<!-- AREA SERTIFIKAT -->
+<div class="sertifikat-container" id="sertifikatBox">
+    <div class="agro-leaf-decor top-left">🌿</div>
+    <div class="agro-leaf-decor top-right">🍃</div>
+
+    <div class="issuer-title">ETHNICITIZEN CARBON FOOTPRINT</div>
+    <div class="badge-web3">Greentech Web 3.0 Verified</div>
+
+    <h1 class="sertifikat-header">SERTIFIKAT CARBON FOOTPRINT</h1>
     
-    <!-- Google Fonts & Font Awesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <p style="font-size: 11px; color: #64748b; margin-bottom: 5px;">Diberikan dengan bangga kepada:</p>
+    <div class="sertifikat-nama" id="certNama">Nama Penanam</div>
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <div class="divider-line"></div>
 
-    <!-- ⚠️ Wajib: LIBRARY HTML2PDF UNTUK MERENDER PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-</head>
-<body class="mobile-app-body">
+    <p class="sertifikat-text">
+        Atas partisipasi aktif dan kontribusi nyata dalam mendukung program <strong>Agroforestry & Carbon Offset</strong>. 
+        Tindakan ini telah membantu menyerap emisi karbon serta menjaga kelestarian ekosistem bumi untuk masa depan yang nilai dan ketentuannya sesuai dengan IPCC AR6 dan Perpres 110/2025.
+    </p>
 
-<div style="width: 100%; max-width: 950px; margin: 20px auto; padding: 10px;">
+    <div class="sertifikat-footer">
+        <div class="info-blok">
+            <!-- KODE VERIFIKASI TELAH DIHAPUS SEPENUHNYA DI SINI -->
+            <p><strong>Tanggal Terbit:</strong> <span id="certTanggal">15 Agustus 2026</span></p>
+            <p><strong>Lokasi Penanaman:</strong> Areal Pengelolaan Hutan Berbasis Masyarakat</p>
+            <p><strong>Status:</strong> Menunggu Verifikasi Pembayaran Admin</p>
+        </div>
 
-    <!-- AREA SERTIFIKAT UNTUK DI-RENDER KE PDF -->
-    <div id="sertifikat-area" class="sertifikat-container">
-        <div class="agro-leaf-decor top-left">🍃</div>
-        <div class="agro-leaf-decor top-right">🌿</div>
-
-        <div class="issuer-title">ETHNICITIZEN AGROFORESTRY & GREENTECH</div>
-        <div class="badge-web3" id="lbl-hash">LEDGER HASH: 0x8F92C10A</div>
-        
-        <h1 class="sertifikat-header">SERTIFIKAT AKSI IKLIM</h1>
-        <div class="divider-line"></div>
-        
-        <p style="margin: 5px 0; font-size: 13px; color: #64748b;">Diberikan secara resmi kepada:</p>
-        <div class="sertifikat-nama" id="cert-nama">Sahabat Hijau</div>
-        
-        <p class="sertifikat-text">
-            Atas partisipasi aktif dan kontribusi nyata dalam penyeimbangan jejak karbon sebesar 
-            <strong id="cert-emisi">0.00</strong> kg CO₂e melalui program 
-            <strong id="cert-program">Pohon Asuh Agroforestry</strong> sebanyak 
-            <strong id="cert-unit">0</strong> unit.
-        </p>
-
-        <div class="sertifikat-footer">
-            <div class="info-blok">
-                <div>Tanggal Terbit: <strong id="cert-tanggal">-</strong></div>
-                <div>Status: <strong>Diverifikasi Manual oleh Admin</strong></div>
-            </div>
-            
-            <div class="ttd-blok">
-                <div class="ttd-grafis-ethnicitizen">Ethnicitizen</div>
-                <div class="ttd-nama">Komunitas Ethnicitizen</div>
-                <div class="ttd-jabatan">Crowdfunding Initiator</div>
-            </div>
+        <div class="ttd-blok">
+            <div class="ttd-grafis-ethnicitizen">Ethnicitizen</div>
+            <div class="ttd-nama">P. A. Q-ting</div>
+            <div class="ttd-jabatan">Climate Action Crowdfunding Initiative</div>
         </div>
     </div>
-
-    <!-- AREA TOMBOL KONTROL -->
-    <div class="action-container">
-        <button class="btn-wa-kirim" id="btn-simpan" onclick="simpanDanKirimSertifikat()">
-            <i class="fas fa-file-pdf"></i> Simpan PDF & Konfirmasi Admin
-        </button>
-        <div class="info-verifikasi-admin">
-            🍃 Sertifikat akan diunduh/disimpan otomatis sebelum diarahkan ke WhatsApp Admin.
-        </div>
-    </div>
-
 </div>
 
+<!-- TOMBOL WA & INFORMASI -->
+<div class="action-container" style="max-width: 400px; margin: 20px auto; text-align: center;">
+    <button onclick="uploadPDFKeDriveDanWA()" class="btn-wa-kirim">
+        <i class="fab fa-whatsapp"></i> Request Sertifikat & Konfirmasi WA
+    </button>
+
+    <p class="info-verifikasi-admin">
+        ℹ️ <strong>Catatan:</strong> Sertifikat akan dikirim <strong>berlaku dan terverifikasi</strong> setelah Ethnicitizen mengonfirmasi bukti pembayaran Anda.
+    </p>
+</div>
+
+<!-- SCRIPT JAVASCRIPT REVISI -->
 <script>
-// 1. MUAT DATA DARI LOCALSTORAGE
-window.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('cert-nama').innerText = localStorage.getItem('eth_nama') || 'Ethnicitizen';
-    document.getElementById('cert-emisi').innerText = localStorage.getItem('eth_emisi') || '0.00';
-    document.getElementById('cert-unit').innerText = localStorage.getItem('eth_unit') || '0';
-    document.getElementById('cert-program').innerText = localStorage.getItem('eth_program') || 'Agroforestry';
-    document.getElementById('cert-tanggal').innerText = localStorage.getItem('eth_tanggal') || new Date().toLocaleDateString('id-ID');
-    document.getElementById('lbl-hash').innerText = "LEDGER HASH: " + (localStorage.getItem('eth_hash') || "0x000000");
-});
+async function uploadPDFKeDriveDanWA() {
+    const btn = document.querySelector('.btn-wa-kirim');
+    
+    // 1. MASUKKAN URL GOOGLE APPS SCRIPT & NOMOR WA ADMIN
+    const urlWebAppGAS = "https://script.google.com/macros/s/AKfycbwNcBZIgrpVXT2xRshrZY8vukwIh2DyGJIW9uuugXGbRXWMTR7fkqMS4o6Zg0gn3B3S/exec"; 
+    const noAdminWA = "6285766594397"; // Ganti dengan nomor WA Anda (awali 62)
 
-// 2. FUNGSI UNGGAN/SIMPAN PDF (DIJAMIN HANDAL)
-async function simpanDanKirimSertifikat() {
-    const element = document.getElementById('sertifikat-area');
-    const btnSimpan = document.getElementById('btn-simpan');
-    const namaUser = (localStorage.getItem('eth_nama') || 'User').replace(/[^a-zA-Z0-9]/g, "_");
+    const namaUser = document.getElementById("certNama").innerText.trim() || "Kontributor";
 
-    // ⚠️ MASUKKAN URL GOOGLE APPS SCRIPT ANDA DI SINI
-    const URL_WEB_APP_GAS = "https://script.google.com/macros/s/AKfycbwNcBZIgrpVXT2xRshrZY8vukwIh2DyGJIW9uuugXGbRXWMTR7fkqMS4o6Zg0gn3B3S/exec";
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Memproses...';
+
+    const elemen = document.getElementById("sertifikatBox");
+
+    // 2. OPSI OPTIMASI PDF (Resolusi disesuaikan agar ukuran file kecil & ringan)
+    const opsiPDF = {
+        margin: 0,
+        filename: `Sertifikat=CFP-${namaUser.replace(/\s+/g, '_')}.pdf`,
+        image: { type: 'jpeg', quality: 0.8 },
+        html2canvas: { scale: 1.5, useCORS: true }, 
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+    };
 
     try {
-        btnSimpan.disabled = true;
-        btnSimpan.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Memproses PDF...`;
+        // Generate PDF Base64
+        const pdfWorker = html2pdf().set(opsiPDF).from(elemen).outputPdf('datauristring');
+        const pdfDataUri = await pdfWorker;
+        const pdfBase64Data = pdfDataUri.split(',')[1];
 
-        // Opsi rendering yang stabil
-        const opsiPDF = {
-            margin: [5, 5, 5, 5],
-            filename: `Sertifikat_Karbon_${namaUser}.pdf`,
-            image: { type: 'jpeg', quality: 0.8 },
-            html2canvas: { scale: 1.5, useCORS: true, logging: false },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-        };
+        // 3. Kirim data PDF ke Google Apps Script
+        const response = await fetch(urlWebAppGAS, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'text/plain;charset=utf-8', // Menghindari preflight CORS
+              },
+              body: JSON.stringify({
+              filename: `Sertifikat-CFP-${namaUser}.pdf`,
+              pdfBase64: pdfBase64Data
+              })
+         });
 
-        // Unduh langsung file PDF ke HP/Komputer User
-        await html2pdf().set(opsiPDF).from(element).save();
+        const resData = await response.json();
 
-        // Mencoba unggah ke Drive Admin (jika URL GAS diisi)
-        if (URL_WEB_APP_GAS.includes("script.google.com")) {
-            btnSimpan.innerHTML = `<i class="fas fa-cloud-upload-alt"></i> Mengunggah ke Drive...`;
-            const pdfBase64 = await html2pdf().set(opsiPDF).from(element).outputPdf('datauristring');
+        if (resData.result === "success") {
+            const fileDriveUrl = resData.fileUrl;
 
-            await fetch(URL_WEB_APP_GAS, {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({
-                    filename: `Sertifikat_${namaUser}.pdf`,
-                    pdfBase64: pdfBase64
-                })
-            });
+            // 4. PESAN WA BERSIH (TANPA KODE VERIFIKASI SEPADAN)
+            const pesanWA = `Halo Ethnicitizen,%0A%0ASaya telah mengusulkan Sertifikat Aksi Iklim atas nama: *${encodeURIComponent(namaUser)}*.%0A%0A📁 *Link File PDF di Google Drive:*%0A${fileDriveUrl}%0A%0AMohon verifikasi pembayaran saya agar sertifikat tersebut terverifikasi.%0A%0ATerima kasih! 🌿`;
+
+            window.open(`https://wa.me/${noAdminWA}?text=${pesanWA}`, '_blank');
+            btn.innerHTML = '<i class="fab fa-whatsapp"></i> Berhasil Terkirim!';
+        } else {
+            throw new Error(resData.error);
         }
-
-        alert("✅ Sertifikat PDF berhasil dibuat & diunduh!");
-        
-        // Buka WhatsApp Admin
-        const nomorWA = "6285766594397";
-        const pesanWA = `Halo Admin Ethnicitizen! Saya telah mengusulkan Kompensasi Karbon atas nama *${localStorage.getItem('eth_nama')}*. Mohon verifikasi kelanjutannya. Terima kasih!`;
-        window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesanWA)}`, '_blank');
-
     } catch (err) {
-        console.error(err);
-        alert("⚠️ Gagal memproses PDF otomatis: " + err.message + "\n\nSolusi: Gunakan fitur 'Cetak / Save as PDF' di browser Anda.");
+        console.error("Error Detail:", err);
+        alert("Gagal mengunggah ke Google Drive. Menghubungkan langsung ke WhatsApp Admin...");
+        
+        // Pesan WA Cadangan jika upload gagal (Tanpa Kode Verifikasi)
+        const pesanFallback = `Halo Ethnicitizen ,%0A%0ASaya ingin melakukan verifikasi sertifikat atas nama: *${encodeURIComponent(namaUser)}*.%0A%0AMohon bantuan untuk verifikasi pembayaran.%0A%0ATerima kasih! 🌿`;
+        window.open(`https://wa.me/${noAdminWA}?text=${pesanFallback}`, '_blank');
     } finally {
-        btnSimpan.disabled = false;
-        btnSimpan.innerHTML = `<i class="fas fa-file-pdf"></i> Simpan PDF & Konfirmasi Admin`;
+        btn.disabled = false;
     }
 }
 </script>
-
-</body>
-</html>
