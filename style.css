@@ -258,20 +258,55 @@ body.mobile-app-body {
 
 .sertifikat-container {
     position: relative;
-    max-width: 1754px; /* Ukuran Landscape A4 */
-    width: 100%;
+    width: 1000px;
+    height: 670px;
+    max-width: 100%;
     margin: 10px auto;
     background: #ffffff;
-    /* Soft Light Gradient & Subtle Leaf Pattern */
     background-image: 
         radial-gradient(circle at 90% 10%, rgba(217, 119, 6, 0.06) 0%, transparent 40%),
         radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
-    padding: 35px 45px;
-    border-radius: 20px;
-    border: 2px solid var(--forest-green);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    
+    padding: 40px 50px;
+    border-radius: 16px;
+    border: 3px solid var(--forest-green);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
     text-align: center;
     box-sizing: border-box;
+    overflow: hidden; /* Mencegah elemen meluber keluar */
+}
+
+.sertifikat-header { 
+    font-size: 28px; 
+    margin: 5px 0; 
+    font-weight: 800; 
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sertifikat-nama { 
+    font-size: 34px; 
+    font-weight: 800; 
+    color: #0f172a; 
+    margin: 10px 0; 
+}
+
+.sertifikat-text { 
+    font-size: 13.5px; 
+    line-height: 1.6; 
+    color: #334155; 
+    max-width: 780px; 
+    margin: 0 auto 20px auto; 
+}
+
+.sertifikat-footer { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-end; 
+    border-top: 1.5px solid #e2e8f0; 
+    padding-top: 15px; 
+    margin-top: 20px; 
 }
 
 /* Aksen Daun Agroforestry */
