@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Jejak Karbon & Crowdfunding Hutan - Ethnicitizen</title>
+    <title>Kalkulator Jejak Karbon - Ethnicitizen</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,8 +14,6 @@
 <div class="lang-switcher">
     <button class="lang-btn" id="btn-id" onclick="gantiBahasa('id')">🇮🇩 Bahasa</button>
     <button class="lang-btn" id="btn-en" onclick="gantiBahasa('en')">🇬🇧 English</button>
-    <button class="lang-btn" id="btn-jp" onclick="gantiBahasa('jp')">🇯🇵 日本語</button>
-    <button class="lang-btn" id="btn-kr" onclick="gantiBahasa('kr')">🇰🇷 한국어</button>
 </div>
 
 <div class="carbon-container">
@@ -35,7 +33,7 @@
     <div class="form-group">
         <label for="wilayah">Wilayah Tempat Tinggal (Grid)</label>
         <select id="wilayah">
-            <option value="jawa_bali">Java & Bali Grid</option>
+            <option value="jawa_bali">Jawa & Bali Grid</option>
             <option value="luar_jawa">Luar Jawa & Bali</option>
         </select>
     </div>
@@ -81,39 +79,10 @@
         <h3 id="txt-hasil-title">Hasil Analisis Dampak Ekologis:</h3>
         <p><span id="txt-hasil-emisi">Estimasi Emisi Bulanan:</span> <br><span class="angka-hasil" id="totalEmisi">0</span> kg CO₂e</p>
         <p><span id="txt-hasil-beban">Target Beban Kompensasi:</span> <br><span class="angka-hasil" id="totalAktivitas">0</span> <span id="labelAktivitas">Unit</span></p>
-        
-        <!-- PERBAIKAN STRUKTUR: Tautan dipindahkan langsung ke HTML asli agar tidak diblokir browser -->
-        <a href="https://whatsapp.com" id="linkDonasi" target="_blank" class="btn-donasi">Salurkan Dukungan Via WhatsApp Sekarang</a>
+        <button class="btn-donasi" id="btn-wa-kirim" onclick="kirimWhatsApp()">Salurkan Dukungan Via WhatsApp Sekarang</button>
     </div>
 </div>
 
-<div class="sertifikat-container" id="sertifikatBox">
-    <div class="issuer-title">Komunitas Ethnicitizen</div>
-    <div class="badge-web3">Verified Community Carbon Offset</div>
-    <h4 class="sertifikat-header" id="wpCertTitle">CERTIFICATE OF REFORESTATION</h4>
-    <p id="wpCertSub" style="font-size: 13px; color:#6b7280; margin:0; font-weight: 500;">Piagam Komitmen Kelestarian Iklim diberikan kepada:</p>
-    <div class="sertifikat-nama" id="certNama">Nama Pemohon</div>
-    <div class="divider-line"></div>
-    <div class="sertifikat-text" id="certTextContainer"></div>
-    <div class="sertifikat-footer">
-        <div class="info-blok">
-            <p id="certTanggal">Tanggal Terbit: -- -- ----</p>
-            <p id="certMetode">Metode Hitung: IPCC Sektor Energi & Transportasi</p>
-            <p>Ledger Hash: <strong id="hashId" style="font-family: monospace; color: #0d9488;">0x000000</strong></p>
-        </div>
-        <div class="ttd-blok">
-            <div class="ttd-grafis">P. A. Q-ting</div>
-            <div class="ttd-nama">P. A. Q-ting</div>
-            <div class="ttd-jabatan" id="wpTtdJabatan">Inisiator Ethnicitizen</div>
-        </div>
-    </div>
-    
-    <button id="btn-cetak" onclick="unduhPDF()" style="margin-top: 25px; padding: 12px 25px; background: #064e3b; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
-        🖨️ Cetak PDF Sertifikat
-    </button>
-</div>
-
-<script src="https://cloudflare.com"></script>
 <script src="script.js"></script>
 </body>
 </html>
