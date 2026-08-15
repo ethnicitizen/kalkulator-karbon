@@ -4,29 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kalkulator Karbon Footprint - Ethnicitizen</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="mobile-app-body">
 
 <div class="mobile-shell">
+    <!-- MULTI-LANGUAGE SWITCHER -->
     <div class="lang-switcher">
         <button class="lang-btn" id="btn-id" onclick="gantiBahasa('id')">🇮🇩 Bahasa</button>
         <button class="lang-btn" id="btn-en" onclick="gantiBahasa('en')">🇬🇧 English</button>
     </div>
 
+    <!-- CONTAINER KALKULATOR -->
     <div class="carbon-container">
         <div class="agro-header-tag">🌱 AGROFORESTRY & GREENTECH</div>
         <h2 id="txt-title">Hitung Jejak Karbonmu</h2>
         <p class="subtitle" id="txt-subtitle">Platform Crowdfunding Komunitas Ethnicitizen — Kelola Hutan Bersama Masyarakat</p>
         
+        <!-- INPUT NAMA -->
         <div class="form-group">
             <label id="lbl-nama" for="nama">Nama Anda / Nama Kelompok</label>
             <input type="text" id="nama" placeholder="Contoh: Sahabat Hijau">
         </div>
 
+        <!-- SEKTOR 1 -->
         <div class="section-title" id="sec-1">1. Sektor Utilitas & Bahan Bakar</div>
         <div class="form-group">
             <label id="lbl-listrik" for="listrik">Konsumsi Listrik Bulanan (kWh)</label>
@@ -48,6 +59,7 @@
             <input type="number" id="sampah" placeholder="0" min="0">
         </div>
 
+        <!-- SEKTOR 2 -->
         <div class="section-title" id="sec-2">2. Sektor Perjalanan & Transportasi</div>
         <div class="form-group">
             <label id="lbl-motor" for="jarak_motor">Jarak Tempuh Motor Pribadi (Km / Bulan)</label>
@@ -66,6 +78,7 @@
             <input type="number" id="jarak_laut" placeholder="0" min="0">
         </div>
 
+        <!-- SEKTOR 3 -->
         <div class="section-title" id="sec-3">3. Metode Penyeimbangan Karbon (Offset)</div>
         <div class="form-group">
             <label id="lbl-metode" for="metode_donasi">Pilih Program Kontribusi Anda</label>
@@ -75,16 +88,20 @@
             </select>
         </div>
 
+        <!-- TOMBOL HITUNG -->
         <button class="btn-hitung" id="btn-hitung" onclick="prosesHitungKarbon()">🍃 Mulai Analisis Dampak</button>
 
+        <!-- HASIL ANALISIS -->
         <div class="hasil-box" id="hasilBox" style="display: none;">
             <h3 id="txt-hasil-title">Hasil Analisis Dampak Ekologis:</h3>
             <p><span id="txt-hasil-emisi">Estimasi Emisi Bulanan:</span> <br><span class="angka-hasil" id="totalEmisi">0</span> kg CO₂e</p>
             <p><span id="txt-hasil-beban">Target Beban Kompensasi:</span> <br><span class="angka-hasil" id="totalAktivitas">0</span> <span id="labelAktivitas">Unit</span></p>
             
-            <button class="btn-donasi" id="btn-wa-kirim" onclick="kirimWhatsApp()">Salurkan Dukungan Via WhatsApp</button>
+            <button class="btn-donasi" id="btn-wa-kirim" onclick="kirimWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Salurkan Dukungan Via WhatsApp
+            </button>
             <br>
-            <a href="sertifikat.html" class="btn-sertifikat-link">📜 Akses & Verifikasi Sertifikat</a>
+            <a href="sertifikat.html" class="btn-sertifikat-link">📜 Akses & Lihat Sertifikat</a>
         </div>
     </div>
 </div>
