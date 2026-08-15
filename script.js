@@ -99,25 +99,42 @@ function prosesHitungKarbon() {
 
     const randomHash = "0x" + Array.from({length: 8}, () => Math.floor(Math.random()*16).toString(16)).join('').toUpperCase();
 
+    // Simpan ke Local Storage untuk Sertifikat
     localStorage.setItem("eth_nama", namaUser);
     localStorage.setItem("eth_emisi", totalEmisi.toFixed(2));
     localStorage.setItem("eth_unit", targetJumlahUnit);
     localStorage.setItem("eth_program", namaProgram);
     localStorage.setItem("eth_hash", randomHash);
 
-    const teksMurni = "Platform: Ethnicitizen Crowdfunding\nName: " + namaUser + "\nEmissions: " + totalEmisi.toFixed(2) + " kg CO2e\nProgram: " + namaProgram + " (" + targetJumlahUnit + " Unit)\nTotal Support: IDR " + totalBiayaDonasi.toLocaleString('id-ID') + "\nLedger ID: " + randomHash;
-    
-    globalLinkWA = "https://whatsapp.com" + encodeURIComponent(teksMurni);
+    // Format Pesan WhatsApp yang Baik & Terstruktur
+    const nomorWA = "6285766594397"; // ⚠️ GANTI DENGAN NOMOR WA ADMIN ETHNICITIZEN
+    const teksWA = `Halo Admin Ethnicitizen! 🌿\n\n` +
+                   `Saya ingin menyalurkan dukungan kompensasi karbon:\n` +
+                   `• *Nama/Kelompok:* ${namaUser}\n` +
+                   `• *Estimasi Emisi:* ${totalEmisi.toFixed(2)} kg CO₂e/bulan\n` +
+                   `• *Program Offset:* ${namaProgram}\n` +
+                   `• *Target Kompensasi:* ${targetJumlahUnit} ${labelUnitText}\n` +
+                   `• *Total Dukungan:* Rp ${totalBiayaDonasi.toLocaleString('id-ID')}\n` +
+                   `• *Ledger ID:* ${randomHash}\n\n` +
+                   `Mohon petunjuk untuk prosedur penyaluran donasi selanjutnya. Terima kasih!`;
+
+    // Buat URL Resmi WhatsApp
+    globalLinkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teksWA)}`;
 
     document.getElementById('hasilBox').style.display = 'block';
     document.getElementById('hasilBox').scrollIntoView({ behavior: 'smooth' });
 }
 
 function kirimWhatsApp() {
-    if(globalLinkWA !== "") {
+    if (globalLinkWA !== "") {
+        // Buka link WA di tab baru
         window.open(globalLinkWA, '_blank');
+        
+        // Arahkan ke halaman sertifikat setelah jeda singkat
         setTimeout(() => {
             window.location.href = "sertifikat.html";
-        }, 1000);
+        }, 800);
+    } else {
+        alert("Silakan klik tombol 'Mulai Analisis Emisi' terlebih dahulu.");
     }
 }
