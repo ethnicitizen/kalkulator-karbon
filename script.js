@@ -1,27 +1,27 @@
 const kamus = {
     id: {
-        title: "Hitung Jejak Karbonmu", subtitle: "Platform Crowdfunding Komunitas Ethnicitizen — Kelola Hutan Bersama Masyarakat",
+        title: "Kalkulator Karbon & Agroforestry", subtitle: "Platform Komunitas Ethnicitizen — Reboisasi & Proteksi Hutan",
         sec1: "1. Sektor Utilitas & Bahan Bakar", labelNama: "Nama Anda / Nama Kelompok", placeholderNama: "Contoh: Sahabat Hijau",
         labelListrik: "Konsumsi Listrik Bulanan (kWh)", labelBbm: "Konsumsi BBM Kendaraan (Liter / Bulan)", labelSampah: "Produksi Sampah Organik (Kg / Hari)",
         sec2: "2. Sektor Perjalanan & Transportasi", labelMotor: "Jarak Motor Pribadi (Km / Bulan)", labelMobil: "Jarak Mobil Pribadi (Km / Bulan)",
         labelPesawat: "Jarak Penerbangan Udara (Km / Bulan)", labelLaut: "Jarak Kapal / Feri Laut (Km / Bulan)",
         sec3: "3. Metode Penyeimbangan Karbon (Offset)", labelMetode: "Pilih Program Kontribusi Anda",
         optPohon: "Pohon Asuh (Penanaman & Agroforestry - Rp 30.000 / unit)", optPatroli: "Patroli Hutan (Areal Pengelolaan Hutan Berbasis Masyarakat - Rp 50.000 / unit)",
-        btnHitung: "Mulai Analisis Emisi", hasilTitle: "Hasil Analisis Dampak Ekologis:", hasilEmisi: "Estimasi Emisi Bulanan:",
-        hasilBeban: "Target Beban Kompensasi:", btnWa: "Salurkan Dukungan Via WhatsApp Sekarang",
-        pohonNama: "Adopsi & Perawatan Pohon Agroforestry", patroliNama: "Operasional Patroli Areal Pengelolaan Hutan Berbasis Masyarakat"
+        btnHitung: "🍃 Mulai Analisis Dampak", hasilTitle: "Hasil Analisis Dampak Ekologis:", hasilEmisi: "Estimasi Emisi Bulanan:",
+        hasilBeban: "Target Beban Kompensasi:", btnWa: "Salurkan Dukungan Via WhatsApp",
+        pohonNama: "Adopsi Pohon Agroforestry & Proteksi Kehati", patroliNama: "Operasional Patroli Hutan Berbasis Masyarakat"
     },
     en: {
-        title: "Calculate Your Carbon Footprint", subtitle: "Ethnicitizen Community Crowdfunding Platform — Together Managing Forests With Local Community",
+        title: "Carbon & Agroforestry Calculator", subtitle: "Ethnicitizen Platform — Reforestation & Forest Protection",
         sec1: "1. Utility & Fuel Sector", labelNama: "Your Name / Group Name", placeholderNama: "e.g., Green Friend",
         labelListrik: "Monthly Electricity Consumption (kWh)", labelBbm: "Vehicle Fuel Consumption (Liters / Month)", labelSampah: "Organic Waste Production (Kg / Day)",
         sec2: "2. Travel & Transportation Sector", labelMotor: "Motorcycle Distance (Km / Month)", labelMobil: "Car Distance (Km / Month)",
         labelPesawat: "Air Travel Distance (Km / Month)", labelLaut: "Sea/Ferry Travel Distance (Km / Month)",
         sec3: "3. Carbon Offset Method", labelMetode: "Choose Your Contribution Program",
         optPohon: "Tree Adoption (Planting & Agroforestry - IDR 30,000 / unit)", optPatroli: "Forest Patrol (Community-Based Forest Management Area - IDR 50,000 / unit)",
-        btnHitung: "Start Emission Analysis", hasilTitle: "Ecological Impact Analysis Results:", hasilEmisi: "Estimated Monthly Emissions:",
-        hasilBeban: "Target Compensation Load:", btnWa: "Send Support Via WhatsApp Now",
-        pohonNama: "Agroforestry Tree Adoption & Care", patroliNama: "Forest Patrol Operations in Community-Based Forest Management Areas"
+        btnHitung: "🍃 Start Emission Analysis", hasilTitle: "Ecological Impact Analysis Results:", hasilEmisi: "Estimated Monthly Emissions:",
+        hasilBeban: "Target Compensation Load:", btnWa: "Send Support Via WhatsApp",
+        pohonNama: "Agroforestry Tree Adoption & Biodiversity Care", patroliNama: "Community Forest Patrol Operations"
     }
 };
 
@@ -90,21 +90,19 @@ function prosesHitungKarbon() {
     let targetJumlahUnit = Math.ceil(totalEmisi / DAYA_SERAP_POHON_BULAN);
     let totalBiayaDonasi = targetJumlahUnit * (jenisKompensasi === 'pohon_asuh' ? BIAYA_POHON_ASUH : BIAYA_PATROLI_HUTAN);
     
-    let labelUnitText = jenisKompensasi === 'pohon_asuh' ? "Unit" : "Pack";
+    let labelUnitText = jenisKompensasi === 'pohon_asuh' ? "Pohon Agroforestry" : "Area Patroli";
     let namaProgram = jenisKompensasi === 'pohon_asuh' ? kamus[bahasaAktif].pohonNama : kamus[bahasaAktif].patroliNama;
 
     document.getElementById('totalEmisi').innerText = totalEmisi.toFixed(2);
     document.getElementById('totalAktivitas').innerText = targetJumlahUnit;
     document.getElementById('labelAktivitas').innerText = labelUnitText;
 
-    // Generate Verification Code (Contoh: ETH-8921) dan Ledger Hash
+    // Generate Kode Verifikasi Otomatis (dikirim ke WA Admin)
     const autoGenCode = "ETH-" + Math.floor(1000 + Math.random() * 9000);
     const randomHash = "0x" + Array.from({length: 8}, () => Math.floor(Math.random()*16).toString(16)).join('').toUpperCase();
-    
-    // Auto-update Tanggal Pengisian Hari Ini
     const tanggalHariIni = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
 
-    // Simpan Ke Local Storage
+    // Simpan Ke LocalStorage
     localStorage.setItem("eth_nama", namaUser);
     localStorage.setItem("eth_emisi", totalEmisi.toFixed(2));
     localStorage.setItem("eth_unit", targetJumlahUnit);
@@ -112,19 +110,19 @@ function prosesHitungKarbon() {
     localStorage.setItem("eth_hash", randomHash);
     localStorage.setItem("eth_vcode", autoGenCode);
     localStorage.setItem("eth_tanggal", tanggalHariIni);
-    localStorage.setItem("eth_verified", "false"); // Status verifikasi default: false
+    localStorage.setItem("eth_verified", "false");
 
-    // Susun Pesan WhatsApp dengan Kode Verifikasi
     const nomorWA = "6285766594397"; // ⚠️ GANTI DENGAN NOMOR WA ADMIN ETHNICITIZEN
     const teksWA = `Halo Ethnicitizen! 🌿\n\n` +
-                   `Saya ingin menyalurkan kompensasi karbon:\n` +
-                   `• *Nama:* ${namaUser}\n` +
-                   `• *Estimasi Emisi:* ${totalEmisi.toFixed(2)} kg CO₂e\n` +
-                   `• *Program:* ${namaProgram} (${targetJumlahUnit} ${labelUnitText})\n` +
-                   `• *Total Donasi:* Rp ${totalBiayaDonasi.toLocaleString('id-ID')}\n` +
-                   `• *Ledger ID:* ${randomHash}\n\n` +
-                   `🔐 *KODE VERIFIKASI SERTIFIKAT:* ${autoGenCode}\n\n` +
-                   `Mohon konfirmasi kode di atas untuk mengaktifkan Sertifikat Hijau saya. Terima kasih!`;
+                   `Saya mengajukan kompensasi jejak karbon:\n` +
+                   `• *Nama/Lembaga:* ${namaUser}\n` +
+                   `• *Estimasi Emisi:* ${totalEmisi.toFixed(2)} kg CO₂e/bln\n` +
+                   `• *Program Action:* ${namaProgram}\n` +
+                   `• *Beban Target:* ${targetJumlahUnit} ${labelUnitText}\n` +
+                   `• *Estimasi Dukungan:* Rp ${totalBiayaDonasi.toLocaleString('id-ID')}\n` +
+                   `• *Ledger Hash:* ${randomHash}\n\n` +
+                   `🔐 *REQ KODE VERIFIKASI SERTIFIKAT:* ${autoGenCode}\n\n` +
+                   `Mohon kirimkan balasan konfirmasi kode di atas untuk pengaktifan Sertifikat Hijau. Terima kasih!`;
 
     globalLinkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teksWA)}`;
 
@@ -137,8 +135,8 @@ function kirimWhatsApp() {
         window.open(globalLinkWA, '_blank');
         setTimeout(() => {
             window.location.href = "sertifikat.html";
-        }, 1000);
+        }, 1200);
     } else {
-        alert("Silakan klik tombol 'Mulai Analisis Emisi' terlebih dahulu.");
+        alert("Silakan hitung emisi Anda terlebih dahulu.");
     }
 }
