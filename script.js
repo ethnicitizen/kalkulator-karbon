@@ -1,33 +1,68 @@
+/* ==========================================================
+   ETHNICITIZEN - SCRIPT.JS (AGROFORESTRY & GREENTECH WEB 3.0)
+   ========================================================== */
+
 const kamus = {
     id: {
-        title: "Kalkulator Karbon & Agroforestry", subtitle: "Platform Komunitas Ethnicitizen — Reboisasi & Proteksi Hutan",
-        sec1: "1. Sektor Utilitas & Bahan Bakar", labelNama: "Nama Anda / Nama Kelompok", placeholderNama: "Contoh: Sahabat Hijau",
-        labelListrik: "Konsumsi Listrik Bulanan (kWh)", labelBbm: "Konsumsi BBM Kendaraan (Liter / Bulan)", labelSampah: "Produksi Sampah Organik (Kg / Hari)",
-        sec2: "2. Sektor Perjalanan & Transportasi", labelMotor: "Jarak Motor Pribadi (Km / Bulan)", labelMobil: "Jarak Mobil Pribadi (Km / Bulan)",
-        labelPesawat: "Jarak Penerbangan Udara (Km / Bulan)", labelLaut: "Jarak Kapal / Feri Laut (Km / Bulan)",
-        sec3: "3. Metode Penyeimbangan Karbon (Offset)", labelMetode: "Pilih Program Kontribusi Anda",
-        optPohon: "Pohon Asuh (Penanaman & Agroforestry - Rp 30.000 / unit)", optPatroli: "Patroli Hutan (Areal Pengelolaan Hutan Berbasis Masyarakat - Rp 50.000 / unit)",
-        btnHitung: "🍃 Mulai Analisis Dampak", hasilTitle: "Hasil Analisis Dampak Ekologis:", hasilEmisi: "Estimasi Emisi Bulanan:",
-        hasilBeban: "Target Beban Kompensasi:", btnWa: "Salurkan Dukungan Via WhatsApp",
-        pohonNama: "Adopsi Pohon Agroforestry & Proteksi Kehati", patroliNama: "Operasional Patroli Hutan Berbasis Masyarakat"
+        title: "Kalkulator Karbon & Agroforestry", 
+        subtitle: "Platform Komunitas Ethnicitizen — Reboisasi & Proteksi Hutan",
+        sec1: "1. Sektor Utilitas & Bahan Bakar", 
+        labelNama: "Nama Anda / Nama Kelompok", 
+        placeholderNama: "Contoh: Sahabat Hijau",
+        labelListrik: "Konsumsi Listrik Bulanan (kWh)", 
+        labelBbm: "Konsumsi BBM Kendaraan (Liter / Bulan)", 
+        labelSampah: "Produksi Sampah Organik (Kg / Hari)",
+        sec2: "2. Sektor Perjalanan & Transportasi", 
+        labelMotor: "Jarak Motor Pribadi (Km / Bulan)", 
+        labelMobil: "Jarak Mobil Pribadi (Km / Bulan)",
+        labelPesawat: "Jarak Penerbangan Udara (Km / Bulan)", 
+        labelLaut: "Jarak Kapal / Feri Laut (Km / Bulan)",
+        sec3: "3. Metode Penyeimbangan Karbon (Offset)", 
+        labelMetode: "Pilih Program Kontribusi Anda",
+        optPohon: "Pohon Asuh (Penanaman & Agroforestry - Rp 30.000 / unit)", 
+        optPatroli: "Patroli Hutan (Areal Pengelolaan Hutan Berbasis Masyarakat - Rp 50.000 / unit)",
+        btnHitung: "🍃 Mulai Analisis Dampak", 
+        hasilTitle: "Hasil Analisis Dampak Ekologis:", 
+        hasilEmisi: "Estimasi Emisi Bulanan:",
+        hasilBeban: "Target Beban Kompensasi:", 
+        btnWa: "Salurkan Dukungan Via WhatsApp",
+        pohonNama: "Adopsi Pohon Agroforestry & Proteksi Kehati", 
+        patroliNama: "Operasional Patroli Hutan Berbasis Masyarakat"
     },
     en: {
-        title: "Carbon & Agroforestry Calculator", subtitle: "Ethnicitizen Platform — Reforestation & Forest Protection",
-        sec1: "1. Utility & Fuel Sector", labelNama: "Your Name / Group Name", placeholderNama: "e.g., Green Friend",
-        labelListrik: "Monthly Electricity Consumption (kWh)", labelBbm: "Vehicle Fuel Consumption (Liters / Month)", labelSampah: "Organic Waste Production (Kg / Day)",
-        sec2: "2. Travel & Transportation Sector", labelMotor: "Motorcycle Distance (Km / Month)", labelMobil: "Car Distance (Km / Month)",
-        labelPesawat: "Air Travel Distance (Km / Month)", labelLaut: "Sea/Ferry Travel Distance (Km / Month)",
-        sec3: "3. Carbon Offset Method", labelMetode: "Choose Your Contribution Program",
-        optPohon: "Tree Adoption (Planting & Agroforestry - IDR 30,000 / unit)", optPatroli: "Forest Patrol (Community-Based Forest Management Area - IDR 50,000 / unit)",
-        btnHitung: "🍃 Start Emission Analysis", hasilTitle: "Ecological Impact Analysis Results:", hasilEmisi: "Estimated Monthly Emissions:",
-        hasilBeban: "Target Compensation Load:", btnWa: "Send Support Via WhatsApp",
-        pohonNama: "Agroforestry Tree Adoption & Biodiversity Care", patroliNama: "Community Forest Patrol Operations"
+        title: "Carbon & Agroforestry Calculator", 
+        subtitle: "Ethnicitizen Platform — Reforestation & Forest Protection",
+        sec1: "1. Utility & Fuel Sector", 
+        labelNama: "Your Name / Group Name", 
+        placeholderNama: "e.g., Green Friend",
+        labelListrik: "Monthly Electricity Consumption (kWh)", 
+        labelBbm: "Vehicle Fuel Consumption (Liters / Month)", 
+        labelSampah: "Organic Waste Production (Kg / Day)",
+        sec2: "2. Travel & Transportation Sector", 
+        labelMotor: "Motorcycle Distance (Km / Month)", 
+        labelMobil: "Car Distance (Km / Month)",
+        labelPesawat: "Air Travel Distance (Km / Month)", 
+        labelLaut: "Sea/Ferry Travel Distance (Km / Month)",
+        sec3: "3. Carbon Offset Method", 
+        labelMetode: "Choose Your Contribution Program",
+        optPohon: "Tree Adoption (Planting & Agroforestry - IDR 30,000 / unit)", 
+        optPatroli: "Forest Patrol (Community-Based Forest Management Area - IDR 50,000 / unit)",
+        btnHitung: "🍃 Start Emission Analysis", 
+        hasilTitle: "Ecological Impact Analysis Results:", 
+        hasilEmisi: "Estimated Monthly Emissions:",
+        hasilBeban: "Target Compensation Load:", 
+        btnWa: "Send Support Via WhatsApp",
+        pohonNama: "Agroforestry Tree Adoption & Biodiversity Care", 
+        patroliNama: "Community Forest Patrol Operations"
     }
 };
 
 let bahasaAktif = 'id';
 let globalLinkWA = "";
 
+// ----------------------------------------------------------
+// 1. MULTI-LANGUAGE SWITCHER
+// ----------------------------------------------------------
 function gantiBahasa(lang) {
     if (!kamus[lang]) lang = 'id';
     bahasaAktif = lang;
@@ -67,8 +102,11 @@ window.addEventListener('DOMContentLoaded', () => {
     gantiBahasa(browserLang);
 });
 
+// ----------------------------------------------------------
+// 2. PROSES KALKULASI JEJAK KARBON
+// ----------------------------------------------------------
 function prosesHitungKarbon() {
-    const namaUser = document.getElementById('nama').value || 'Ethnicitizen';
+    const namaUser = document.getElementById('nama').value.trim() || 'Ethnicitizen';
     const listrik = parseFloat(document.getElementById('listrik').value) || 0;
     const wilayah = document.getElementById('wilayah').value;
     const bbm = parseFloat(document.getElementById('bbm').value) || 0;
@@ -79,10 +117,21 @@ function prosesHitungKarbon() {
     const kmLaut = parseFloat(document.getElementById('jarak_laut').value) || 0;
     const jenisKompensasi = document.getElementById('metode_donasi').value;
 
-    const FAKTOR_LISTRIK_JAWA = 0.87; const FAKTOR_LISTRIK_LUAR = 1.11; const FAKTOR_BBM = 2.33; const FAKTOR_SAMPAH_ORGANIK = 0.41; 
-    const FAKTOR_MOTOR = 0.05; const FAKTOR_MOBIL = 0.18; const FAKTOR_PESAWAT = 0.12; const FAKTOR_LAUT = 0.04;    
-    const DAYA_SERAP_POHON_BULAN = 22 / 12; const BIAYA_POHON_ASUH = 30000; const BIAYA_PATROLI_HUTAN = 50000;
+    // FAKTOR EMISI SEKTOR
+    const FAKTOR_LISTRIK_JAWA = 0.87; 
+    const FAKTOR_LISTRIK_LUAR = 1.11; 
+    const FAKTOR_BBM = 2.33; 
+    const FAKTOR_SAMPAH_ORGANIK = 0.41; 
+    const FAKTOR_MOTOR = 0.05; 
+    const FAKTOR_MOBIL = 0.18; 
+    const FAKTOR_PESAWAT = 0.12; 
+    const FAKTOR_LAUT = 0.04;    
+    
+    const DAYA_SERAP_POHON_BULAN = 22 / 12; 
+    const BIAYA_POHON_ASUH = 30000; 
+    const BIAYA_PATROLI_HUTAN = 50000;
 
+    // HITUNG EMISI
     let emisiListrik = listrik * (wilayah === 'jawa_bali' ? FAKTOR_LISTRIK_JAWA : FAKTOR_LISTRIK_LUAR);
     let totalEmisi = emisiListrik + (bbm * FAKTOR_BBM) + ((sampahHarian * 30) * FAKTOR_SAMPAH_ORGANIK) + (kmMotor * FAKTOR_MOTOR) + (kmMobil * FAKTOR_MOBIL) + (kmPesawat * FAKTOR_PESAWAT) + (kmLaut * FAKTOR_LAUT);
     if (totalEmisi < 0) totalEmisi = 0;
@@ -93,36 +142,34 @@ function prosesHitungKarbon() {
     let labelUnitText = jenisKompensasi === 'pohon_asuh' ? "Pohon Agroforestry" : "Area Patroli";
     let namaProgram = jenisKompensasi === 'pohon_asuh' ? kamus[bahasaAktif].pohonNama : kamus[bahasaAktif].patroliNama;
 
+    // UPDATE TAMPILAN DOM
     document.getElementById('totalEmisi').innerText = totalEmisi.toFixed(2);
     document.getElementById('totalAktivitas').innerText = targetJumlahUnit;
     document.getElementById('labelAktivitas').innerText = labelUnitText;
 
-    // Generate Kode Verifikasi Otomatis (dikirim ke WA Admin)
-    const autoGenCode = "ETH-" + Math.floor(1000 + Math.random() * 9000);
+    // GENERATE METADATA & WEB3 HASH (TANPA KODE VERIFIKASI)
     const randomHash = "0x" + Array.from({length: 8}, () => Math.floor(Math.random()*16).toString(16)).join('').toUpperCase();
     const tanggalHariIni = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
 
-    // Simpan Ke LocalStorage
+    // SIMPAN KE LOCALSTORAGE (UNTUK DITAMPILKAN DI SERTIFIKAT.HTML)
     localStorage.setItem("eth_nama", namaUser);
     localStorage.setItem("eth_emisi", totalEmisi.toFixed(2));
     localStorage.setItem("eth_unit", targetJumlahUnit);
     localStorage.setItem("eth_program", namaProgram);
     localStorage.setItem("eth_hash", randomHash);
-    localStorage.setItem("eth_vcode", autoGenCode);
     localStorage.setItem("eth_tanggal", tanggalHariIni);
-    localStorage.setItem("eth_verified", "false");
 
-    const nomorWA = "6285766594397"; // ⚠️ GANTI DENGAN NOMOR WA ADMIN ETHNICITIZEN
-    const teksWA = `Halo Ethnicitizen! 🌿\n\n` +
-                   `Saya mengajukan kompensasi jejak karbon:\n` +
+    // PERSIPAN PESAN WHATSAPP KE ADMIN (TANPA MENANYAKAN KODE VERIFIKASI)
+    const nomorWA = "6285766594397"; // Nomor WA Admin
+    const teksWA = `Halo Ethnicitizen Agroforestry! 🌿\n\n` +
+                   `Saya ingin mengajukan kompensasi jejak karbon:\n` +
                    `• *Nama/Lembaga:* ${namaUser}\n` +
                    `• *Estimasi Emisi:* ${totalEmisi.toFixed(2)} kg CO₂e/bln\n` +
                    `• *Program Action:* ${namaProgram}\n` +
                    `• *Beban Target:* ${targetJumlahUnit} ${labelUnitText}\n` +
                    `• *Estimasi Dukungan:* Rp ${totalBiayaDonasi.toLocaleString('id-ID')}\n` +
                    `• *Ledger Hash:* ${randomHash}\n\n` +
-                   `🔐 *REQ KODE VERIFIKASI SERTIFIKAT:* ${autoGenCode}\n\n` +
-                   `Mohon kirimkan balasan konfirmasi kode di atas untuk pengaktifan Sertifikat Hijau. Terima kasih!`;
+                   `Saya akan mengunggah/mengonfirmasi pembayaran untuk verifikasi resmi sertifikat. Terima kasih!`;
 
     globalLinkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teksWA)}`;
 
@@ -130,6 +177,9 @@ function prosesHitungKarbon() {
     document.getElementById('hasilBox').scrollIntoView({ behavior: 'smooth' });
 }
 
+// ----------------------------------------------------------
+// 3. HANDLER TOMBOL WHATSAPP
+// ----------------------------------------------------------
 function kirimWhatsApp() {
     if (globalLinkWA !== "") {
         window.open(globalLinkWA, '_blank');
