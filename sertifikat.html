@@ -126,20 +126,30 @@
         const tombol = document.getElementById("btn-unduh");
         tombol.style.display = "none";
 
-        // Pengaturan html2pdf Presisi 1 Halaman A4 Landscape
         const opsi = {
-            margin:       [0.15, 0.15, 0.15, 0.15],
+            margin:       0,
             filename:     'Sertifikat_CFP_Ethnicitizen.pdf',
-            image:        { type: 'jpeg', quality: 1.50 },
-            html2canvas:  { scale: 2, useCORS: true, logging: false },
-            jsPDF:        { unit: 'in', format: 'a4', orientation: 'landscape' },
+            image:        { type: 'jpeg', quality: 1.0 },
+            html2canvas:  { 
+                scale: 2,
+                useCORS: true, 
+                logging: false,
+                scrollX: 0,
+                scrollY: 0
+            },
+            jsPDF:        { 
+                unit: 'mm', 
+                format: 'a4', 
+                orientation: 'landscape',
+                compress: true 
+            },
             pagebreak:    { mode: 'avoid-all' }
         };
 
         html2pdf().set(opsi).from(elemen).save().then(() => {
             tombol.style.display = "block";
         });
-    }
+}
 </script>
 </body>
 </html>
