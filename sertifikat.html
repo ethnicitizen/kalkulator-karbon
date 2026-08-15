@@ -64,7 +64,7 @@ async function uploadPDFKeDriveDanWA() {
     // 2. OPSI OPTIMASI PDF (Resolusi disesuaikan agar ukuran file kecil & ringan)
     const opsiPDF = {
         margin: 0,
-        filename: `Sertifikat=CFP-${namaUser.replace(/\s+/g, '_')}.pdf`,
+        filename: `Sertifikat-CFP-${namaUser.replace(/\s+/g, '_')}.pdf`,
         image: { type: 'jpeg', quality: 0.8 },
         html2canvas: { scale: 1.5, useCORS: true }, 
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
@@ -103,7 +103,7 @@ async function uploadPDFKeDriveDanWA() {
         }
     } catch (err) {
         console.error("Error Detail:", err);
-        alert("Gagal mengunggah ke Google Drive. Menghubungkan langsung ke WhatsApp Admin...");
+        alert("Gagal mengunggah. Menghubungkan langsung ke WhatsApp Admin...");
         
         // Pesan WA Cadangan jika upload gagal (Tanpa Kode Verifikasi)
         const pesanFallback = `Halo Ethnicitizen ,%0A%0ASaya ingin melakukan verifikasi sertifikat atas nama: *${encodeURIComponent(namaUser)}*.%0A%0AMohon bantuan untuk verifikasi pembayaran.%0A%0ATerima kasih! 🌿`;
