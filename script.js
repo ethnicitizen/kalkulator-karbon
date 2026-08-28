@@ -17,11 +17,7 @@ const kamus = {
         lblMetode: "Pilih Program Kontribusi Anda",
         optPohon: "Pohon Asuh (Reforestasi & Agroforestry)",
         optPatroli: "Patroli Areal Pengelolaan Hutan Berbasis Masyarakat",
-        btnHitung: "🍃 Mulai Analisis Dampak",
-        txtHasilTitle: "Hasil Analisis Dampak Ekologis:",
-        txtHasilEmisi: "Estimasi Emisi Bulanan:",
-        txtHasilBeban: "Target Beban Kompensasi:",
-        btnTelegram: '<i class="fab fa-telegram"></i> Salurkan Kontribusi via Telegram'
+        btnHitung: "🍃 Mulai Analisis Dampak",        
     },
     en: {
         title: "Calculate Your Carbon Footprint",
@@ -41,10 +37,6 @@ const kamus = {
         optPohon: "Tree Adoption (Reforestation & Agroforestry)",
         optPatroli: "Community Forest Patrol Program",
         btnHitung: "🍃 Start Impact Analysis",
-        txtHasilTitle: "Ecological Impact Analysis Results:",
-        txtHasilEmisi: "Estimated Monthly Emission:",
-        txtHasilBeban: "Compensation Target:",
-        btnTelegram: '<i class="fab fa-telegram"></i> Submit Contribution via Telegram'
     }
 };
 
@@ -72,10 +64,6 @@ function gantiBahasa(lang) {
     document.getElementById('opt-pohon').innerText = t.optPohon;
     document.getElementById('opt-patroli').innerText = t.optPatroli;
     document.getElementById('btn-hitung').innerText = t.btnHitung;
-    document.getElementById('txt-hasil-title').innerText = t.txtHasilTitle;
-    document.getElementById('txt-hasil-emisi').innerText = t.txtHasilEmisi;
-    document.getElementById('txt-hasil-beban').innerText = t.txtHasilBeban;
-    document.getElementById('btn-telegram-kirim').innerHTML = t.btnTelegram;
 
     // Toggle kelas aktif pada tombol bahasa
     document.getElementById('btn-id').classList.toggle('active', lang === 'id');
@@ -156,32 +144,4 @@ function prosesHitungKarbon() {
     
     // Redirect ke Halaman Hasil Analisis
     window.location.href = "hasil.html";
-}
-
-// Fungsi Kirim ke Telegram dengan Rincian Nominal Pembayaran
-function kirimTelegram() {
-    const data = JSON.parse(localStorage.getItem('karbonData')) || {
-        nama: document.getElementById('nama').value.trim() || 'Sahabat Hijau',
-        totalEmisi: '0',
-        targetBeban: '0',
-        labelBeban: 'Unit',
-        totalRupiah: 0,
-        metode: 'Kompensasi Karbon'
-    };
-
-    const usernameTelegram = "ethnicitizen";
-    const nominalFormatted = "Rp " + (data.totalRupiah || 0).toLocaleString('id-ID');
-    
-    const teksPesan = 
-        "Halo Admin @ethnicitizen,\n\n" +
-        "Saya telah menghitung estimasi jejak karbon di Ethnicitizen Carbon Calculator:\n" +
-        "👤 Nama/Kelompok: " + data.nama + "\n" +
-        "💨 Total Emisi: " + data.totalEmisi.toLocaleString('id-ID') + " kg CO2e\n" +
-        "🌱 Program Kompensasi: " + data.metode + " (" + data.targetBeban.toLocaleString('id-ID') + " " + data.labelBeban + ")\n" +
-        "💰 Total Kompensasi: " + nominalFormatted + "\n\n" +
-        "💳 Pembayaran ke Ethnicitizen Wallet - DANA pada link https://bit.ly/Ec97wallet.\n\n" +
-        "Mohon konfirmasi pembayaran dan penerbitan Sertifikat resmi saya. Terima kasih!";
-
-    const urlTelegram = "https://t.me/" + usernameTelegram + "?text=" + encodeURIComponent(teksPesan);
-    window.open(urlTelegram, '_blank');
 }
