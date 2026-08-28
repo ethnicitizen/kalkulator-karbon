@@ -270,9 +270,9 @@
                 "Saya mengonfirmasi penerbitan Sertifikat Jejak Karbon:\n" +
                 "- Nama             : " + storedData.nama + "\n" +
                 "- Total Emisi      : " + storedData.totalEmisi.toLocaleString('id-ID') + " kg CO2e\n" +
-                "- Target Kompensasi: " + storedData.targetBeban.toLocaleString('id-ID') + " " + storedData.labelBeban + "\n" +
+                "- Beban Kompensasi: " + storedData.targetBeban.toLocaleString('id-ID') + " " + storedData.labelBeban + "\n" +
                 "- Nilai Kompensasi : " + nominalFormatted + "\n\n" +
-                "Pembayaran ke Ethnicitizen Wallet - DANA pada link https://bit.ly/Ec97wallet.\n\n" +
+                "Pembayaran telah dilakukan ke Wallet Ethnicitizen.\n\n" +
                 "Mohon diproses sertifikat resminya. Terima kasih!";
 
             window.open("https://t.me/" + usernameTelegram + "?text=" + encodeURIComponent(pesan), '_blank');
@@ -289,7 +289,7 @@
                 const image = canvas.toDataURL("image/png");
                 const link = document.createElement("a");
                 const nama = document.getElementById('viewNama').innerText.replace(/\s+/g, '_');
-                link.download = `Sertifikat_Karbon_Ethnicitizen_${nama}.png`;
+                link.download = `Sertifikat_JejakKarbon_${nama}.png`;
                 link.href = image;
                 link.click();
             } catch (err) {
