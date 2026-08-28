@@ -1,8 +1,8 @@
-// Kamus Bahasa (Multi-Language)
+// Kamus Bahasa
 const kamus = {
     id: {
         title: "Hitung Jejak Karbonmu",
-        subtitle: "Platform Crowdfunding Ethnicitizen — Pengelolaan Hutan Berbasis Masyarakat",
+        subtitle: "Platform Crowdfunding Ethnicitizen",
         lblNama: "Nama Anda / Nama Kelompok",
         sec1: "1. Sektor Utilitas & Bahan Bakar",
         lblListrik: "Konsumsi Listrik Bulanan (kWh)",
@@ -17,11 +17,11 @@ const kamus = {
         lblMetode: "Pilih Program Kontribusi Anda",
         optPohon: "Pohon Asuh (Reforestasi & Agroforestry)",
         optPatroli: "Patroli Areal Pengelolaan Hutan Berbasis Masyarakat",
-        btnHitung: "🍃 Mulai Analisis Dampak",        
+        btnHitung: "🍃 Mulai Analisis Dampak"
     },
     en: {
         title: "Calculate Your Carbon Footprint",
-        subtitle: "Ethnicitizen Crowdfunding Platform — Community-Based Forest Management",
+        subtitle: "Ethnicitizen Crowdfunding Platform",
         lblNama: "Your Name / Group Name",
         sec1: "1. Utility & Fuel Sector",
         lblListrik: "Monthly Electricity Usage (kWh)",
@@ -36,100 +36,82 @@ const kamus = {
         lblMetode: "Select Your Contribution Program",
         optPohon: "Tree Adoption (Reforestation & Agroforestry)",
         optPatroli: "Community Forest Patrol Program",
-        btnHitung: "🍃 Start Impact Analysis",
+        btnHitung: "🍃 Start Impact Analysis"
     }
 };
 
 let bahasaAktif = 'id';
 
-// Fungsi Switch Bahasa
 function gantiBahasa(lang) {
     bahasaAktif = lang;
     const t = kamus[lang];
+    if(!t) return;
     
-    document.getElementById('txt-title').innerText = t.title;
-    document.getElementById('txt-subtitle').innerText = t.subtitle;
-    document.getElementById('lbl-nama').innerText = t.lblNama;
-    document.getElementById('sec-1').innerText = t.sec1;
-    document.getElementById('lbl-listrik').innerText = t.lblListrik;
-    document.getElementById('lbl-bbm').innerText = t.lblBbm;
-    document.getElementById('lbl-sampah').innerText = t.lblSampah;
-    document.getElementById('sec-2').innerText = t.sec2;
-    document.getElementById('lbl-motor').innerText = t.lblMotor;
-    document.getElementById('lbl-mobil').innerText = t.lblMobil;
-    document.getElementById('lbl-pesawat').innerText = t.lblPesawat;
-    document.getElementById('lbl-laut').innerText = t.lblLaut;
-    document.getElementById('sec-3').innerText = t.sec3;
-    document.getElementById('lbl-metode').innerText = t.lblMetode;
-    document.getElementById('opt-pohon').innerText = t.optPohon;
-    document.getElementById('opt-patroli').innerText = t.optPatroli;
-    document.getElementById('btn-hitung').innerText = t.btnHitung;
+    if(document.getElementById('txt-title')) document.getElementById('txt-title').innerText = t.title;
+    if(document.getElementById('txt-subtitle')) document.getElementById('txt-subtitle').innerText = t.subtitle;
+    if(document.getElementById('lbl-nama')) document.getElementById('lbl-nama').innerText = t.lblNama;
+    if(document.getElementById('sec-1')) document.getElementById('sec-1').innerText = t.sec1;
+    if(document.getElementById('lbl-listrik')) document.getElementById('lbl-listrik').innerText = t.lblListrik;
+    if(document.getElementById('lbl-bbm')) document.getElementById('lbl-bbm').innerText = t.lblBbm;
+    if(document.getElementById('lbl-sampah')) document.getElementById('lbl-sampah').innerText = t.lblSampah;
+    if(document.getElementById('sec-2')) document.getElementById('sec-2').innerText = t.sec2;
+    if(document.getElementById('lbl-motor')) document.getElementById('lbl-motor').innerText = t.lblMotor;
+    if(document.getElementById('lbl-mobil')) document.getElementById('lbl-mobil').innerText = t.lblMobil;
+    if(document.getElementById('lbl-pesawat')) document.getElementById('lbl-pesawat').innerText = t.lblPesawat;
+    if(document.getElementById('lbl-laut')) document.getElementById('lbl-laut').innerText = t.lblLaut;
+    if(document.getElementById('sec-3')) document.getElementById('sec-3').innerText = t.sec3;
+    if(document.getElementById('lbl-metode')) document.getElementById('lbl-metode').innerText = t.lblMetode;
+    if(document.getElementById('opt-pohon')) document.getElementById('opt-pohon').innerText = t.optPohon;
+    if(document.getElementById('opt-patroli')) document.getElementById('opt-patroli').innerText = t.optPatroli;
+    if(document.getElementById('btn-hitung')) document.getElementById('btn-hitung').innerText = t.btnHitung;
 
-    // Toggle kelas aktif pada tombol bahasa
-    document.getElementById('btn-id').classList.toggle('active', lang === 'id');
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    if(document.getElementById('btn-id')) document.getElementById('btn-id').classList.toggle('active', lang === 'id');
+    if(document.getElementById('btn-en')) document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 }
 
-// Fungsi Utama Kalkulasi Karbon (Standar IPCC AR6 & Rujukan Perpres 110/2025)
 function prosesHitungKarbon() {
-    const nama = document.getElementById('nama').value.trim() || (bahasaAktif === 'id' ? 'Sahabat Hijau' : 'Green Friend');
+    const namaInput = document.getElementById('nama');
+    const nama = (namaInput && namaInput.value.trim() !== "") ? namaInput.value.trim() : "Sahabat Hijau";
     
-    // Ambil input angka (default 0 jika kosong)
-    const listrik = parseFloat(document.getElementById('listrik').value) || 0;
-    const bbm = parseFloat(document.getElementById('bbm').value) || 0;
-    const sampah = parseFloat(document.getElementById('sampah').value) || 0;
-    const motor = parseFloat(document.getElementById('jarak_motor').value) || 0;
-    const mobil = parseFloat(document.getElementById('jarak_mobil').value) || 0;
-    const pesawat = parseFloat(document.getElementById('jarak_pesawat').value) || 0;
-    const laut = parseFloat(document.getElementById('jarak_laut').value) || 0;
-    const wilayah = document.getElementById('wilayah').value;
-    const metode = document.getElementById('metode_donasi').value;
+    const listrik = parseFloat(document.getElementById('listrik')?.value) || 0;
+    const bbm = parseFloat(document.getElementById('bbm')?.value) || 0;
+    const sampah = parseFloat(document.getElementById('sampah')?.value) || 0;
+    const motor = parseFloat(document.getElementById('jarak_motor')?.value) || 0;
+    const mobil = parseFloat(document.getElementById('jarak_mobil')?.value) || 0;
+    const pesawat = parseFloat(document.getElementById('jarak_pesawat')?.value) || 0;
+    const laut = parseFloat(document.getElementById('jarak_laut')?.value) || 0;
+    const wilayah = document.getElementById('wilayah')?.value || 'jawa_bali';
+    const metode = document.getElementById('metode_donasi')?.value || 'pohon_asuh';
 
-    // Faktor Emisi (kg CO2e)
-    const faktorListrik = wilayah === 'jawa_bali' ? 0.85 : 0.75;
+    // Perhitungan IPCC AR6 & Perpres 110/2025
+    const faktorListrik = (wilayah === 'jawa_bali') ? 0.87 : 0.78;
     const emisiListrik = listrik * faktorListrik;
-    const emisiBbm = bbm * 2.31;
-    const emisiSampah = (sampah * 30) * 0.5; // dikali 30 hari
-    const emisiMotor = motor * 0.04;
-    const emisiMobil = mobil * 0.19;
-    const emisiPesawat = pesawat * 0.24;
-    const emisiLaut = laut * 0.08;
+    const emisiBbm = bbm * 2.35;
+    const emisiSampah = (sampah * 30) * 0.58;
+    const emisiMotor = motor * 0.045;
+    const emisiMobil = mobil * 0.192;
+    const emisiPesawat = pesawat * 0.245;
+    const emisiLaut = laut * 0.082;
 
     const totalEmisi = Math.round(emisiListrik + emisiBbm + emisiSampah + emisiMotor + emisiMobil + emisiPesawat + emisiLaut);
 
-    // Hitung Kompensasi
     let targetBeban = 0;
     let labelBeban = '';
+    let hargaPerUnit = 0;
     
     if (metode === 'pohon_asuh') {
-        // 1 Pohon Asuh = 22 - 25 kg CO2e/tahun (~1.83kg/bulan) | Harga: Rp25.000 / batang
         targetBeban = Math.max(1, Math.ceil(totalEmisi / 22));
-        labelBeban = bahasaAktif === 'id' ? 'Batang Pohon Asuh' : 'Adopted Trees';
+        labelBeban = 'Batang Pohon Asuh';
         hargaPerUnit = 25000;
     } else {
-        // 1 Hari Patroli Hutan = Menjaga serapan Area 50 kg CO2e | Harga: Rp50.000 / hari
         targetBeban = Math.max(1, Math.ceil(totalEmisi / 50));
-        labelBeban = bahasaAktif === 'id' ? 'Hari Patroli Hutan' : 'Forest Patrol Days';
+        labelBeban = 'Hari Patroli Hutan';
         hargaPerUnit = 50000;
     }
 
-    // Total Biaya Kompensasi Rupiah
-    const totalRupiah = targetBeban * hargaPerUnit
+    const totalRupiah = targetBeban * hargaPerUnit;
 
-    // Tampilkan Hasil di Layar HTML
-    document.getElementById('totalEmisi').innerText = totalEmisi.toLocaleString('id-ID');
-    document.getElementById('totalAktivitas').innerText = targetBeban.toLocaleString('id-ID');
-    document.getElementById('labelAktivitas').innerText = labelBeban;
-
-    // Tampilkan / Update Elemen Nominal Biaya Rupiah (jika ada elemen id="totalRupiah")
-    const elemRupiah = document.getElementById('totalRupiah');
-    if (elemRupiah) {
-        elemRupiah.innerText = "Rp " + totalRupiah.toLocaleString('id-ID');
-    }
-
-    document.getElementById('hasilBox').style.display = 'block';
-
-    // Simpan data lengkap ke localStorage
+    // Simpan Data
     const dataKarbon = {
         nama: nama,
         totalEmisi: totalEmisi,
@@ -141,7 +123,7 @@ function prosesHitungKarbon() {
         bahasa: bahasaAktif
     };
     localStorage.setItem('karbonData', JSON.stringify(dataKarbon));
-    
-    // Redirect ke Halaman Hasil Analisis
+
+    // Redirect ke hasil.html
     window.location.href = "hasil.html";
 }
