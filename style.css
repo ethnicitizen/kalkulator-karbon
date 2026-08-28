@@ -262,10 +262,10 @@ body.mobile-app-body {
 
 /* Container Sertifikat (Format A4 Landscape Ratio) */
 .sertifikat-container {
-    position: relative;
+    position: centre;
     width: 100%;
-    max-width: 900px;
-    min-height: 600px;
+    max-width: 1123px;
+    min-height: 794px;
     margin: 15px auto;
     background: #ffffff;
     background-image: 
@@ -374,8 +374,8 @@ body.mobile-app-body {
 
 /* TANDA TANGAN ETHNICITIZEN ARTISTIK BERWARNA EMAS */
 .ttd-grafis-ethnicitizen {
-    font-family: 'Dancing Script', cursive;
-    font-size: 38px;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 33px;
     font-style: italic;
     font-weight: 700;
     color: var(--gold-main);
@@ -399,7 +399,7 @@ body.mobile-app-body {
 }
 
 /* ----------------------------------------------------------
-   7. ACTION BUTTON & INFO VERIFIKASI (TOMBOL UPLOAD & WA)
+   7. ACTION BUTTON & INFO VERIFIKASI (TOMBOL UPLOAD & TELEGRAM)
    ---------------------------------------------------------- */
 .action-container {
     margin: 20px auto;
