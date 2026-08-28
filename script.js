@@ -70,20 +70,32 @@ function gantiBahasa(lang) {
 }
 
 function prosesHitungKarbon() {
-    const namaInput = document.getElementById('nama');
-    const nama = (namaInput && namaInput.value.trim() !== "") ? namaInput.value.trim() : "Sahabat Hijau";
+    // Ambil Input Nama & Email
+    const inputNama = document.getElementById('nama').value.trim();
+    const namaUser = inputNama !== "" ? inputNama : "Sahabat Hijau";
     
-    const listrik = parseFloat(document.getElementById('listrik')?.value) || 0;
-    const bbm = parseFloat(document.getElementById('bbm')?.value) || 0;
-    const sampah = parseFloat(document.getElementById('sampah')?.value) || 0;
-    const motor = parseFloat(document.getElementById('jarak_motor')?.value) || 0;
-    const mobil = parseFloat(document.getElementById('jarak_mobil')?.value) || 0;
-    const pesawat = parseFloat(document.getElementById('jarak_pesawat')?.value) || 0;
-    const laut = parseFloat(document.getElementById('jarak_laut')?.value) || 0;
-    const wilayah = document.getElementById('wilayah')?.value || 'jawa_bali';
-    const metode = document.getElementById('metode_donasi')?.value || 'pohon_asuh';
+    const inputEmail = document.getElementById('email').value.trim();
+    const emailUser = inputEmail !== "" ? inputEmail : "-";
 
-    // Perhitungan IPCC AR6 & Perpres 110/2025
+    // Validation Sederhana (Jika email wajib diisi)
+    if (inputEmail === "") {
+        alert("Silakan masukkan email Anda untuk konfirmasi & pengiriman sertifikat.");
+        document.getElementById('email').focus();
+        return;
+    }
+
+    // Ambil Input Angka (Default 0)
+    const listrik = parseFloat(document.getElementById('listrik').value) || 0;
+    const bbm = parseFloat(document.getElementById('bbm').value) || 0;
+    const sampah = parseFloat(document.getElementById('sampah').value) || 0;
+    const motor = parseFloat(document.getElementById('jarak_motor').value) || 0;
+    const mobil = parseFloat(document.getElementById('jarak_mobil').value) || 0;
+    const pesawat = parseFloat(document.getElementById('jarak_pesawat').value) || 0;
+    const laut = parseFloat(document.getElementById('jarak_laut').value) || 0;
+    const wilayah = document.getElementById('wilayah').value;
+    const metode = document.getElementById('metode_donasi').value;
+
+    // Hitung Emisi Karbon (IPCC AR6 Standard)
     const faktorListrik = (wilayah === 'jawa_bali') ? 0.87 : 0.78;
     const emisiListrik = listrik * faktorListrik;
     const emisiBbm = bbm * 2.35;
@@ -95,35 +107,39 @@ function prosesHitungKarbon() {
 
     const totalEmisi = Math.round(emisiListrik + emisiBbm + emisiSampah + emisiMotor + emisiMobil + emisiPesawat + emisiLaut);
 
+    // Hitung Beban & Rupiah
     let targetBeban = 0;
     let labelBeban = '';
     let hargaPerUnit = 0;
-    
+    let namaMetode = '';
+
     if (metode === 'pohon_asuh') {
         targetBeban = Math.max(1, Math.ceil(totalEmisi / 22));
         labelBeban = 'Batang Pohon Asuh';
         hargaPerUnit = 25000;
+        namaMetode = 'Pohon Asuh (Reforestasi & Agroforestry) - Rp. 25.000 per Batang';
     } else {
         targetBeban = Math.max(1, Math.ceil(totalEmisi / 50));
         labelBeban = 'Hari Patroli Hutan';
         hargaPerUnit = 50000;
+        namaMetode = 'Patroli Areal Pengelolaan Hutan Berbasis Masyarakat - Rp. 50.000 per hari';
     }
 
     const totalRupiah = targetBeban * hargaPerUnit;
 
-    // Simpan Data
+    // Simpan data lengkap ke LocalStorage
     const dataKarbon = {
-        nama: nama,
+        nama: namaUser,
+        email: emailUser,
         totalEmisi: totalEmisi,
         targetBeban: targetBeban,
         labelBeban: labelBeban,
-        hargaPerUnit: hargaPerUnit,
         totalRupiah: totalRupiah,
-        metode: metode === 'pohon_asuh' ? 'Pohon Asuh' : 'Patroli Hutan',
-        bahasa: bahasaAktif
+        metode: namaMetode
     };
+
     localStorage.setItem('karbonData', JSON.stringify(dataKarbon));
 
-    // Redirect ke hasil.html
-    window.location.href = "hasil.html";
+    // Pindah ke halaman hasil.html secara pasti
+    window.location.href = "./hasil.html";
 }
