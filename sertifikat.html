@@ -1,115 +1,273 @@
-<!-- AREA SERTIFIKAT -->
-<div class="sertifikat-container" id="sertifikatBox">
-    <div class="agro-leaf-decor top-left">🌿</div>
-    <div class="agro-leaf-decor top-right">🍃</div>
-
-    <div class="issuer-title">ETHNICITIZEN CARBON FOOTPRINT</div>
-    <div class="badge-web3">Ethnicitizen Crowdfunding Platform</div>
-
-    <h1 class="sertifikat-header">SERTIFIKAT JEJAK KARBON</h1>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifikat Jejak Karbon ~ Ethnicitizen Crowdfunding Platform</title>
     
-    <p style="font-size: 11px; color: #64748b; margin-bottom: 5px;">Diberikan dengan bangga kepada:</p>
-    <div class="sertifikat-nama" id="certNama">Nama User</div>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <div class="divider-line"></div>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- html2canvas Library untuk Ekspor Gambar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-    <p class="sertifikat-text">
-        Atas partisipasi aktif dan kontribusi nyata dalam mendukung program <strong>Pengelolaan Hutan Berbasis Masyarakat</strong>. 
-        Tindakan ini telah membantu menyerap emisi karbon serta menjaga kelestarian ekosistem bumi untuk masa depan yang nilai dan ketentuannya sesuai dengan IPCC AR6 dan Perpres 110/2025.
-    </p>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
 
-    <div class="sertifikat-footer">
-        <div class="info-blok">
-            <!-- KODE VERIFIKASI TELAH DIHAPUS SEPENUHNYA DI SINI -->
-            <p><strong>Tanggal Terbit:</strong> <span id="certTanggal">Tanggal hari ini</span></p>
-            <p><strong>Lokasi Penanaman:</strong> Areal Pengelolaan Hutan Berbasis Masyarakat</p>
-            <p><strong>Status:</strong> Disetujui</p>
-        </div>
+        .action-bar {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
 
-        <div class="ttd-blok">
-            <div class="ttd-grafis-ethnicitizen">Ethnicitizen</div>
-            <div class="ttd-nama">P. A. Q-ting</div>
-            <div class="ttd-jabatan">Climate Actions Crowdfunding Initiative</div>
+        .btn-action {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .btn-back { background-color: #6c757d; color: white; }
+        .btn-tg { background-color: #0088cc; color: white; }
+        .btn-dl { background-color: #2e7d32; color: white; }
+
+        /* Pembungkus Responsive Sertifikat */
+        .cert-outer-wrapper {
+            width: 100%;
+            max-width: 800px;
+            overflow-x: auto;
+        }
+
+        /* Desain Sertifikat Official */
+        #sertifikat-frame {
+            width: 750px;
+            height: 520px;
+            background: #ffffff;
+            border: 12px solid #1b4d3e;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            margin: 0 auto;
+            background-image: radial-gradient(circle at center, #fbfdfb 0%, #eaf4ed 100%);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .cert-border-inner {
+            border: 2px solid #c5a059;
+            height: 100%;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .cert-header {
+            font-family: 'Cinzel', serif;
+            color: #1b4d3e;
+            letter-spacing: 2px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .cert-subheader {
+            color: #c5a059;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        .cert-recipient {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            border-bottom: 2px solid #c5a059;
+            padding-bottom: 5px;
+            margin: 15px 0 10px 0;
+            min-width: 250px;
+        }
+
+        .cert-desc {
+            font-size: 14px;
+            color: #4a5568;
+            max-width: 580px;
+            line-height: 1.5;
+        }
+
+        .cert-metrics {
+            display: flex;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .metric-card {
+            background: #ffffff;
+            border: 1px solid #dcdcdc;
+            padding: 10px 20px;
+            border-radius: 8px;
+            min-width: 180px;
+        }
+
+        .metric-val {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1b4d3e;
+        }
+
+        .metric-lbl {
+            font-size: 11px;
+            color: #718096;
+            text-transform: uppercase;
+        }
+
+        .cert-footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 11px;
+            color: #718096;
+        }
+
+        .watermark {
+            font-weight: 700;
+            color: #1b4d3e;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bar Navigasi & Aksi -->
+    <div class="action-bar">
+        <a href="index.html" class="btn-action btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
+        <button class="btn-action btn-tg" onclick="kirimTelegramSertifikat()"><i class="fab fa-telegram"></i> Konfirmasi via Telegram</button>
+        <button class="btn-action btn-dl" onclick="unduhSertifikat()"><i class="fas fa-download"></i> Unduh Sertifikat</button>
+    </div>
+
+    <!-- Frame Sertifikat (Di-capture oleh html2canvas) -->
+    <div class="cert-outer-wrapper">
+        <div id="sertifikat-frame">
+            <div class="cert-border-inner">
+                <div>
+                    <div class="cert-header">ETHNICITIZEN CROWDFUNDING PLATFORM</div>
+                    <div class="cert-subheader">Sertifikat Kompensasi Jejak Karbon</div>
+                </div>
+
+                <div style="width: 100%;">
+                    <p style="font-size: 12px; color: #718096;">Diberikan sebagai bentuk apresiasi kepada:</p>
+                    <div class="cert-recipient" id="viewNama">Sahabat Hijau</div>
+                    <p class="cert-desc">
+                        Telah berpartisipasi menghitung dan berkomitmen melakukan netralisasi emisi karbon demi kelestarian ekosistem dan pengelolaan hutan berbasis masyarakat.
+                    </p>
+                </div>
+
+                <div class="cert-metrics">
+                    <div class="metric-card">
+                        <div class="metric-val" id="viewEmisi">0 kg</div>
+                        <div class="metric-lbl">Total Emisi CO₂e</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val" id="viewBeban">0 Unit</div>
+                        <div class="metric-lbl" id="viewLabelBeban">Target Offset</div>
+                    </div>
+                </div>
+
+                <div class="cert-footer">
+                    <div>
+                        Tanggal: <strong id="viewTanggal">-</strong>
+                    </div>
+                    <div class="watermark">
+                        🌱 ethnicitizen.github.io
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- TOMBOL TELEGRAM & INFORMASI -->
-<div class="action-container" style="max-width: 400px; margin: 20px auto; text-align: center;">
-    <button onclick="uploadPDFKeDriveDanTelegram()" class="btn-telegram-kirim">
-        <i class="fab fa-telegram"></i> Request Sertifikat & Konfirmasi Telegram
-    </button>
+    <script>
+        // Load Data saat Halaman Dibuka
+        document.addEventListener("DOMContentLoaded", () => {
+            const storedData = localStorage.getItem('karbonData');
+            if (storedData) {
+                const data = JSON.parse(storedData);
+                document.getElementById('viewNama').innerText = data.nama || 'Sahabat Hijau';
+                document.getElementById('viewEmisi').innerText = `${data.totalEmisi.toLocaleString()} kg`;
+                document.getElementById('viewBeban').innerText = `${data.targetBeban.toLocaleString()} Unit`;
+                document.getElementById('viewLabelBeban').innerText = data.labelBeban || 'Target Offset';
+            }
+            
+            // Set Tanggal Cetak
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('viewTanggal').innerText = today.toLocaleDateString('id-ID', options);
+        });
 
-    <p class="info-verifikasi-admin">
-        ℹ️ <strong>Catatan:</strong> Sertifikat akan dikirim <strong>berlaku dan terverifikasi</strong> setelah Ethnicitizen mengkonfirmasi bukti pembayaran Anda.
-    </p>
-</div>
+        // Kirim Telegram
+        function kirimTelegramSertifikat() {
+            const storedData = JSON.parse(localStorage.getItem('karbonData')) || {
+                nama: 'Sahabat Hijau', totalEmisi: 0, targetBeban: 0, labelBeban: 'Unit', metode: 'Offset Karbon'
+            };
+            
+            const usernameTelegram = "ethnicitizen";
+            const pesan = `Halo Admin @ethnicitizen,\n\n` +
+                          `Saya mengkonfirmasi penerbitan Sertifikat Jejak Karbon:\n` +
+                          `- Nama: ${storedData.nama}\n` +
+                          `- Total Emisi: ${storedData.totalEmisi} kg CO₂e\n` +
+                          `- Target Kompensasi: ${storedData.targetBeban} ${storedData.labelBeban}\n\n` +
+                          `Pembayaran ke Ethnicitizen Wallet - DANA pada link https://bit.ly/Ec97wallet.\n\n` +
+                          `Mohon diproses sertifikat resminya. Terima kasih!`;
 
-<!-- SCRIPT JAVASCRIPT REVISI -->
-<script>
-async function uploadPDFKeDriveDanWA() {
-    const btn = document.querySelector('.btn-wa-kirim');
-    
-    // 1. MASUKKAN URL GOOGLE APPS SCRIPT & NOMOR TELEGRAM ETHNICITIZEN
-    const urlWebAppGAS = "https://script.google.com/macros/s/AKfycbwNcBZIgrpVXT2xRshrZY8vukwIh2DyGJIW9uuugXGbRXWMTR7fkqMS4o6Zg0gn3B3S/exec"; 
-    const usernameTelegram = "ethnicitizen"; // Ganti dengan username Telegram Anda
-
-    const namaUser = document.getElementById("certNama").innerText.trim() || "Kontributor";
-
-    btn.disabled = true;
-    btn.innerHTML = '⏳ Memproses...';
-
-    const elemen = document.getElementById("sertifikatBox");
-
-    // 2. OPSI OPTIMASI PDF (Resolusi disesuaikan agar ukuran file kecil & ringan)
-    const opsiPDF = {
-        margin: 0,
-        filename: `Sertifikat-CFP-${namaUser.replace(/\s+/g, '_')}.pdf`,
-        image: { type: 'jpeg', quality: 0.8 },
-        html2canvas: { scale: 1.5, useCORS: true }, 
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-    };
-
-    try {
-        // Generate PDF Base64
-        const pdfWorker = html2pdf().set(opsiPDF).from(elemen).outputPdf('datauristring');
-        const pdfDataUri = await pdfWorker;
-        const pdfBase64Data = pdfDataUri.split(',')[1];
-
-        // 3. Kirim data PDF ke Google Apps Script
-        const response = await fetch(urlWebAppGAS, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'text/plain;charset=utf-8', // Menghindari preflight CORS
-              },
-              body: JSON.stringify({
-              filename: `Sertifikat-CFP-${namaUser}.pdf`,
-              pdfBase64: pdfBase64Data
-              })
-         });
-
-        const resData = await response.json();
-
-        if (resData.result === "success") {
-            const fileDriveUrl = resData.fileUrl;
-
-            // 4. PESAN TELEGRAM BERSIH (TANPA KODE VERIFIKASI SEPADAN)
-            const pesanTelegram = `Halo Ethnicitizen,%0A%0ASaya telah melakukan pembayaran Kompensasi Jejak Karbon atas nama: *${encodeURIComponent(namaUser)}*.%0A%0A📁 *Link File PDF di Google Drive:*%0A${fileDriveUrl}%0A%0AMohon verifikasi pembayaran saya agar sertifikat tersebut terverifikasi.%0A%0ATerima kasih! 🌿`;
-
-            window.open(`https://t.me/${nusernamaTelegram}?text=${pesanTelegram}`, '_blank');
-            btn.innerHTML = '<i class="fab fa-telegram"></i> Berhasil Terkirim!';
-        } else {
-            throw new Error(resData.error);
+            window.open(`https://t.me/${usernameTelegram}?text=${encodeURIComponent(pesan)}`, '_blank');
         }
-    } catch (err) {
-        console.error("Error Detail:", err);
-        alert("Gagal mengunggah. Menghubungkan langsung ke Telegram ethnicitizen...");
-        
-        // Pesan Telegram Cadangan jika upload gagal (Tanpa Kode Verifikasi)
-        const pesanFallback = `Halo Ethnicitizen ,%0A%0ASaya ingin melakukan verifikasi sertifikat atas nama: *${encodeURIComponent(namaUser)}*.%0A%0AMohon bantuan untuk pengiriman sertifikat.%0A%0ATerima kasih! 🌿`;
-        window.open(`https://t.me/${usernamaTelegram}?text=${pesanFallback}`, '_blank');
-    } finally {
-        btn.disabled = false;
-    }
-}
-</script>
+
+        // Unduh Sertifikat sebagai Gambar PNG
+        async function unduhSertifikat() {
+            const frame = document.getElementById("sertifikat-frame");
+            try {
+                const canvas = await html2canvas(frame, {
+                    scale: 2,
+                    useCORS: true
+                });
+                const image = canvas.toDataURL("image/png");
+                const link = document.createElement("a");
+                const nama = document.getElementById('viewNama').innerText.replace(/\s+/g, '_');
+                link.download = `Sertifikat_Karbon_Ethnicitizen_${nama}.png`;
+                link.href = image;
+                link.click();
+            } catch (err) {
+                alert("Gagal mengunduh sertifikat: " + err.message);
+            }
+        }
+    </script>
+</body>
+</html>
