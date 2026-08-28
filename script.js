@@ -4,6 +4,8 @@ const kamus = {
         title: "Hitung Jejak Karbonmu",
         subtitle: "Platform Crowdfunding Ethnicitizen",
         lblNama: "Nama Anda / Nama Kelompok",
+        lblEmail: "Email Anda",
+        lblNoPhone: "Nomor Handphone",
         sec1: "1. Sektor Utilitas & Bahan Bakar",
         lblListrik: "Konsumsi Listrik Bulanan (kWh)",
         lblBbm: "Konsumsi BBM Kendaraan (Liter / Bulan)",
@@ -15,14 +17,16 @@ const kamus = {
         lblLaut: "Jarak Jelajah Kapal / Feri Laut (Km / Bulan)",
         sec3: "3. Metode Penyeimbangan Karbon (Offset)",
         lblMetode: "Pilih Program Kontribusi Anda",
-        optPohon: "Pohon Asuh (Reforestasi & Agroforestry)",
-        optPatroli: "Patroli Areal Pengelolaan Hutan Berbasis Masyarakat",
+        optPohon: "Pohon Asuh (Reforestasi & Agroforestry) - Rp. 25.000/batang",
+        optPatroli: "Patroli Perlindungan Kawasan Kelola - Rp. 50.000/orang/hari",
         btnHitung: "🍃 Mulai Analisis Dampak"
     },
     en: {
         title: "Calculate Your Carbon Footprint",
         subtitle: "Ethnicitizen Crowdfunding Platform",
         lblNama: "Your Name / Group Name",
+        lblEmail: "Your Email",
+        lblNoPhone: "Handphone Number",
         sec1: "1. Utility & Fuel Sector",
         lblListrik: "Monthly Electricity Usage (kWh)",
         lblBbm: "Vehicle Fuel Consumption (Liters / Month)",
@@ -34,8 +38,8 @@ const kamus = {
         lblLaut: "Ship / Ferry Distance (Km / Month)",
         sec3: "3. Carbon Offset Method",
         lblMetode: "Select Your Contribution Program",
-        optPohon: "Tree Adoption (Reforestation & Agroforestry)",
-        optPatroli: "Community Forest Patrol Program",
+        optPohon: "Tree Adoption (Reforestation & Agroforestry) - IDR 25.000/batang",
+        optPatroli: "Community Forest Patrol Program - IDR 50.000/person/day",
         btnHitung: "🍃 Start Impact Analysis"
     }
 };
@@ -50,6 +54,8 @@ function gantiBahasa(lang) {
     if(document.getElementById('txt-title')) document.getElementById('txt-title').innerText = t.title;
     if(document.getElementById('txt-subtitle')) document.getElementById('txt-subtitle').innerText = t.subtitle;
     if(document.getElementById('lbl-nama')) document.getElementById('lbl-nama').innerText = t.lblNama;
+    if(document.getElementById('lbl-email')) document.getElementById('lbl-email').innerText = t.lblEmail;
+    if(document.getElementById('lbl-nophone')) document.getElementById('lbl-nophone').innerText = t.lblNoPhone;
     if(document.getElementById('sec-1')) document.getElementById('sec-1').innerText = t.sec1;
     if(document.getElementById('lbl-listrik')) document.getElementById('lbl-listrik').innerText = t.lblListrik;
     if(document.getElementById('lbl-bbm')) document.getElementById('lbl-bbm').innerText = t.lblBbm;
@@ -77,9 +83,13 @@ function prosesHitungKarbon() {
     const inputEmail = document.getElementById('email').value.trim();
     const emailUser = inputEmail !== "" ? inputEmail : "-";
 
-    // Validation Sederhana (Jika email wajib diisi)
+    // Validation Sederhana (Jika email dan nomor phone wajib diisi)
     if (inputEmail === "") {
-        alert("Silakan masukkan email Anda untuk konfirmasi & pengiriman sertifikat.");
+        alert("Silakan masukkan email Anda untuk konfirmasi.");
+        document.getElementById('email').focus();
+        return;
+    if (inputNoPhone === "") {
+        alert("Silakan masukkan nomor handphone Anda untuk konfirmasi.");
         document.getElementById('email').focus();
         return;
     }
@@ -117,12 +127,12 @@ function prosesHitungKarbon() {
         targetBeban = Math.max(1, Math.ceil(totalEmisi / 22));
         labelBeban = 'Batang Pohon Asuh';
         hargaPerUnit = 25000;
-        namaMetode = 'Pohon Asuh (Reforestasi & Agroforestry) - Rp. 25.000 per Batang';
+        namaMetode = 'Pohon Asuh (Reforestasi & Agroforestry) - Rp. 25.000/batang';
     } else {
         targetBeban = Math.max(1, Math.ceil(totalEmisi / 50));
         labelBeban = 'Hari Patroli Hutan';
         hargaPerUnit = 50000;
-        namaMetode = 'Patroli Areal Pengelolaan Hutan Berbasis Masyarakat - Rp. 50.000 per hari';
+        namaMetode = 'Patroli Perlindungan Kawasan Kelola - Rp. 50.000/orang/hari';
     }
 
     const totalRupiah = targetBeban * hargaPerUnit;
@@ -131,6 +141,7 @@ function prosesHitungKarbon() {
     const dataKarbon = {
         nama: namaUser,
         email: emailUser,
+        nophone: nophoneUser
         totalEmisi: totalEmisi,
         targetBeban: targetBeban,
         labelBeban: labelBeban,
