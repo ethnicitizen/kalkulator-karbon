@@ -60,7 +60,8 @@
             document.getElementById('resLabelBeban').innerText = data.labelBeban || 'Unit';
             document.getElementById('resRupiah').innerText = "Rp " + (data.totalRupiah || 0).toLocaleString('id-ID');
         } else {
-            // Jika tidak ada data, arahkan kembali ke form input
+            // Belum ada data, silahkan isi form terlebih dahulu
+            alert("Data belum diisi, silahkan isi Form terlebih dahulu");
             window.location.href = "index.html";
         }
     });
@@ -81,8 +82,7 @@
             "💳 Pembayaran ke Ethnicitizen Wallet - DANA pada link https://bit.ly/Ec97wallet.\n\n" +
             "Mohon konfirmasi pembayaran dan penerbitan Sertifikat resmi saya. Terima kasih!";
 
-        const urlTelegram = "https://t.me/" + usernameTelegram + "?text=" + encodeURIComponent(teksPesan);
-        window.open(urlTelegram, '_blank');
+        window.open("https://t.me/" + usernameTelegram + "?text=" + encodeURIComponent(teksPesan), '_blank');
     }
 </script>
 </body>
