@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hasil Analisis Penghitungan Emisi</title>
+    <sub-title>Ethnicitizen Crowdfunding Platform</sub-title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Gunakan CSS yang sama -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="mobile-app-body">
+
+<div class="mobile-shell">
+    <div class="carbon-container">
+        <div class="agro-header-tag">🌱 HASIL ANALISIS PENGHITUNGAN EMISI</div>
+        
+        <h2 style="margin-bottom: 5px;">Hasil Analisis Dampak</h2>
+        <p class="subtitle" style="margin-bottom: 25px;">Rincian jejak karbon & kontribusi kompensasi ekologis Anda.</p>
+        
+        <!-- BOX METRIK HASIL -->
+        <div class="hasil-box" style="display: block; width: 100%; box-sizing: border-box;">
+            <p><strong>Nama / Kelompok:</strong><br><span id="resNama" style="font-size: 18px; font-weight: 700; color: #2c3e50;">-</span></p>
+            <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
+            
+            <p><span>Estimasi Emisi Bulanan:</span><br><span class="angka-hasil" id="resEmisi">0</span> kg CO₂e</p>
+            <p><span>Program Kompensasi:</span><br><strong id="resMetode" style="color: #2e7d32;">-</strong></p>
+            <p><span>Target Beban Kompensasi:</span><br><span class="angka-hasil" id="resBeban">0</span> <span id="resLabelBeban">Unit</span></p>
+            
+            <p><span>Total Nilai Kompensasi:</span><br><span class="angka-hasil" id="resRupiah" style="color: #2e7d32; font-weight: 800; font-size: 24px;">Rp 0</span></p>
+
+            <!-- TOMBOL AKSI -->
+            <button class="btn-donasi" onclick="kirimTelegram()" style="width: 100%; margin-top: 15px; background-color: #0088cc;">
+                <i class="fab fa-telegram"></i> Salurkan Kontribusi via Telegram
+            </button>
+            <br>
+            <a href="sertifikat.html" class="btn-sertifikat-link" style="display: block; text-align: center; margin-top: 15px; text-decoration: none;">📜 Lihat Sertifikat Karbon</a>
+            <br>
+            <a href="index.html" style="display: block; text-align: center; color: #6c757d; font-size: 13px; text-decoration: none; margin-top: 10px;">← Hitung Ulang Emisi</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Memuat data dari localStorage saat halaman hasil.html dibuka
+    document.addEventListener("DOMContentLoaded", () => {
+        const storedData = localStorage.getItem('karbonData');
+        if (storedData) {
+            const data = JSON.parse(storedData);
+            document.getElementById('resNama').innerText = data.nama || 'Sahabat Hijau';
+            document.getElementById('resEmisi').innerText = (data.totalEmisi || 0).toLocaleString('id-ID');
+            document.getElementById('resMetode').innerText = data.metode || '-';
+            document.getElementById('resBeban').innerText = (data.targetBeban || 0).toLocaleString('id-ID');
+            document.getElementById('resLabelBeban').innerText = data.labelBeban || 'Unit';
+            document.getElementById('resRupiah').innerText = "Rp " + (data.totalRupiah || 0).toLocaleString('id-ID');
+        } else {
+            // Jika tidak ada data, arahkan kembali ke form input
+            window.location.href = "index.html";
+        }
+    });
+
+    // Fungsi Kirim Konfirmasi ke Telegram @ethnicitizen
+    function kirimTelegram() {
+        const data = JSON.parse(localStorage.getItem('karbonData')) || {};
+        const usernameTelegram = "ethnicitizen";
+        const nominalFormatted = "Rp " + (data.totalRupiah || 0).toLocaleString('id-ID');
+        
+        const teksPesan = 
+            "Halo Admin @ethnicitizen,\n\n" +
+            "Saya telah menghitung estimasi jejak karbon di Ethnicitizen Carbon Calculator:\n" +
+            "👤 Nama/Kelompok: " + (data.nama || 'Sahabat Hijau') + "\n" +
+            "💨 Total Emisi: " + (data.totalEmisi || 0).toLocaleString('id-ID') + " kg CO2e\n" +
+            "🌱 Program Kompensasi: " + (data.metode || 'Offset Karbon') + " (" + (data.targetBeban || 0).toLocaleString('id-ID') + " " + (data.labelBeban || 'Unit') + ")\n" +
+            "💰 Total Kompensasi: " + nominalFormatted + "\n\n" +
+            "💳 Pembayaran ke Ethnicitizen Wallet - DANA pada link https://bit.ly/Ec97wallet.\n\n" +
+            "Mohon konfirmasi pembayaran dan penerbitan Sertifikat resmi saya. Terima kasih!";
+
+        const urlTelegram = "https://t.me/" + usernameTelegram + "?text=" + encodeURIComponent(teksPesan);
+        window.open(urlTelegram, '_blank');
+    }
+</script>
+</body>
+</html>
