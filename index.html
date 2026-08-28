@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kalkulator Karbon Footprint - Ethnicitizen</title>
+    <title>QThink-X ~ Kalkulator Jejak Karbon</title>
     
     <!-- Google Fonts (Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,9 +27,9 @@
 
     <!-- CONTAINER KALKULATOR -->
     <div class="carbon-container">
-        <div class="agro-header-tag">🌱 AGROFORESTRY & GREENTECH</div>
+        <div class="agro-header-tag">🌱 QTHINK-X ~ KALKULATOR JEJAK KARBON</div>
         <h2 id="txt-title">Hitung Jejak Karbonmu</h2>
-        <p class="subtitle" id="txt-subtitle">Platform Crowdfunding Komunitas Ethnicitizen — Kelola Hutan Bersama Masyarakat</p>
+        <p class="subtitle" id="txt-subtitle">Platform Crowdfunding Ethnicitizen — Pengelolaan Hutan Berbasis Masyarakat</p>
         
         <!-- INPUT NAMA -->
         <div class="form-group">
@@ -83,8 +83,8 @@
         <div class="form-group">
             <label id="lbl-metode" for="metode_donasi">Pilih Program Kontribusi Anda</label>
             <select id="metode_donasi">
-                <option id="opt-pohon" value="pohon_asuh">Pohon Asuh (Penanaman & Agroforestry)</option>
-                <option id="opt-patroli" value="patroli_hutan">Patroli Hutan (Areal Pengelolaan Hutan Berbasis Masyarakat)</option>
+                <option id="opt-pohon" value="pohon_asuh">Pohon Asuh (Reforestasi & Agroforestry)</option>
+                <option id="opt-patroli" value="patroli_hutan">Patroli Areal Pengelolaan Hutan Berbasis Masyarakat)</option>
             </select>
         </div>
 
@@ -97,8 +97,8 @@
             <p><span id="txt-hasil-emisi">Estimasi Emisi Bulanan:</span> <br><span class="angka-hasil" id="totalEmisi">0</span> kg CO₂e</p>
             <p><span id="txt-hasil-beban">Target Beban Kompensasi:</span> <br><span class="angka-hasil" id="totalAktivitas">0</span> <span id="labelAktivitas">Unit</span></p>
             
-            <button class="btn-donasi" id="btn-wa-kirim" onclick="kirimWhatsApp()">
-                <i class="fab fa-whatsapp"></i> Salurkan Dukungan Via WhatsApp
+            <button class="btn-donasi" id="btn-wa-kirim" onclick="kirimTelegram()">
+                <i class="fab fa-telegram"></i> Salurkan Dukungan Via Telegram
             </button>
             <br>
             <a href="sertifikat.html" class="btn-sertifikat-link">📜 Akses & Lihat Sertifikat</a>
