@@ -1,192 +1,166 @@
-/* ==========================================================
-   ETHNICITIZEN - SCRIPT.JS (AGROFORESTRY & GREENTECH WEB 3.0)
-   ========================================================== */
-
+// Kamus Bahasa (Multi-Language)
 const kamus = {
     id: {
-        title: "Ethnicitizen ~ Smart Carbon Footprint Platform", 
-        subtitle: "Platform Crowdfunding Ethnicitizen — Reforestasi & Perlindungan Hutan",
-        sec1: "1. Sektor Utilitas & Bahan Bakar", 
-        labelNama: "Nama Anda / Nama Kelompok", 
-        placeholderNama: "Contoh: Sahabat Hijau",
-        labelListrik: "Konsumsi Listrik Bulanan (kWh)", 
-        labelBbm: "Konsumsi BBM Kendaraan (Liter / Bulan)", 
-        labelSampah: "Produksi Sampah Organik (Kg / Hari)",
-        sec2: "2. Sektor Perjalanan & Transportasi", 
-        labelMotor: "Jarak Motor Pribadi (Km / Bulan)", 
-        labelMobil: "Jarak Mobil Pribadi (Km / Bulan)",
-        labelPesawat: "Jarak Penerbangan Udara (Km / Bulan)", 
-        labelLaut: "Jarak Kapal / Feri Laut (Km / Bulan)",
-        sec3: "3. Metode Penyeimbangan Karbon (Offset)", 
-        labelMetode: "Pilih Program Kontribusi Anda",
-        optPohon: "Pohon Asuh (Reforestasi & Agroforestry - Rp 30.000 / unit)", 
-        optPatroli: "Patroli Areal Pengelolaan Hutan Berbasis Masyarakat - Rp 50.000 / unit)",
-        btnHitung: "🍃 Mulai Analisis Dampak", 
-        hasilTitle: "Hasil Analisis Dampak Ekologis:", 
-        hasilEmisi: "Estimasi Emisi Bulanan:",
-        hasilBeban: "Target Beban Kompensasi:", 
-        btnWa: "Salurkan Dukungan Via Telegram",
-        pohonNama: "Adopsi Asuh Reforestasi & Agroforestry", 
-        patroliNama: "Operasional Patroli Areal Pengelolaan Hutan Berbasis Masyarakat"
+        title: "Hitung Jejak Karbonmu",
+        subtitle: "Platform Crowdfunding Ethnicitizen — Pengelolaan Hutan Berbasis Masyarakat",
+        lblNama: "Nama Anda / Nama Kelompok",
+        sec1: "1. Sektor Utilitas & Bahan Bakar",
+        lblListrik: "Konsumsi Listrik Bulanan (kWh)",
+        lblBbm: "Konsumsi BBM Kendaraan (Liter / Bulan)",
+        lblSampah: "Produksi Sampah Organik (Kg / Hari)",
+        sec2: "2. Sektor Perjalanan & Transportasi",
+        lblMotor: "Jarak Tempuh Motor Pribadi (Km / Bulan)",
+        lblMobil: "Jarak Tempuh Mobil Pribadi (Km / Bulan)",
+        lblPesawat: "Jarak Penerbangan Udara (Km / Bulan)",
+        lblLaut: "Jarak Jelajah Kapal / Feri Laut (Km / Bulan)",
+        sec3: "3. Metode Penyeimbangan Karbon (Offset)",
+        lblMetode: "Pilih Program Kontribusi Anda",
+        optPohon: "Pohon Asuh (Reforestasi & Agroforestry)",
+        optPatroli: "Patroli Areal Pengelolaan Hutan Berbasis Masyarakat",
+        btnHitung: "🍃 Mulai Analisis Dampak",
+        txtHasilTitle: "Hasil Analisis Dampak Ekologis:",
+        txtHasilEmisi: "Estimasi Emisi Bulanan:",
+        txtHasilBeban: "Target Beban Kompensasi:",
+        btnTelegram: '<i class="fab fa-telegram"></i> Salurkan Kontribusi via Telegram'
     },
     en: {
-        title: "Ethnicitizen ~ Smart Carbon Footprint Platform", 
-        subtitle: "Platform Crowdfunding Ethnicitizen — Reforestation & Forest Protection",
-        sec1: "1. Utility & Fuel Sector", 
-        labelNama: "Your Name / Group Name", 
-        placeholderNama: "e.g., Green Friend",
-        labelListrik: "Monthly Electricity Consumption (kWh)", 
-        labelBbm: "Vehicle Fuel Consumption (Liters / Month)", 
-        labelSampah: "Organic Waste Production (Kg / Day)",
-        sec2: "2. Travel & Transportation Sector", 
-        labelMotor: "Motorcycle Distance (Km / Month)", 
-        labelMobil: "Car Distance (Km / Month)",
-        labelPesawat: "Air Travel Distance (Km / Month)", 
-        labelLaut: "Sea/Ferry Travel Distance (Km / Month)",
-        sec3: "3. Carbon Offset Method", 
-        labelMetode: "Choose Your Contribution Program",
-        optPohon: "Tree Adoption (Planting & Agroforestry - IDR 30,000 / unit)", 
-        optPatroli: "Forest Patrol (Community-Based Forest Management Area - IDR 50,000 / unit)",
-        btnHitung: "🍃 Start Emission Analysis", 
-        hasilTitle: "Ecological Impact Analysis Results:", 
-        hasilEmisi: "Estimated Monthly Emissions:",
-        hasilBeban: "Target Compensation Load:", 
-        btnWa: "Send Support Via WhatsApp",
-        pohonNama: "Agroforestry & Reforestation Tree Adoption", 
-        patroliNama: "Community Based Forest Management Area Patrol Operations"
+        title: "Calculate Your Carbon Footprint",
+        subtitle: "Ethnicitizen Crowdfunding Platform — Community-Based Forest Management",
+        lblNama: "Your Name / Group Name",
+        sec1: "1. Utility & Fuel Sector",
+        lblListrik: "Monthly Electricity Usage (kWh)",
+        lblBbm: "Vehicle Fuel Consumption (Liters / Month)",
+        lblSampah: "Organic Waste Production (Kg / Day)",
+        sec2: "2. Travel & Transportation Sector",
+        lblMotor: "Motorcycle Distance (Km / Month)",
+        lblMobil: "Car Distance (Km / Month)",
+        lblPesawat: "Flight Distance (Km / Month)",
+        lblLaut: "Ship / Ferry Distance (Km / Month)",
+        sec3: "3. Carbon Offset Method",
+        lblMetode: "Select Your Contribution Program",
+        optPohon: "Tree Adoption (Reforestation & Agroforestry)",
+        optPatroli: "Community Forest Patrol Program",
+        btnHitung: "🍃 Start Impact Analysis",
+        txtHasilTitle: "Ecological Impact Analysis Results:",
+        txtHasilEmisi: "Estimated Monthly Emission:",
+        txtHasilBeban: "Compensation Target:",
+        btnTelegram: '<i class="fab fa-telegram"></i> Submit Contribution via Telegram'
     }
 };
 
 let bahasaAktif = 'id';
-let globalLinkTelegram = "";
 
-// ----------------------------------------------------------
-// 1. MULTI-LANGUAGE SWITCHER
-// ----------------------------------------------------------
+// Fungsi Switch Bahasa
 function gantiBahasa(lang) {
-    if (!kamus[lang]) lang = 'id';
     bahasaAktif = lang;
+    const t = kamus[lang];
     
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById('btn-' + lang).classList.add('active');
+    document.getElementById('txt-title').innerText = t.title;
+    document.getElementById('txt-subtitle').innerText = t.subtitle;
+    document.getElementById('lbl-nama').innerText = t.lblNama;
+    document.getElementById('sec-1').innerText = t.sec1;
+    document.getElementById('lbl-listrik').innerText = t.lblListrik;
+    document.getElementById('lbl-bbm').innerText = t.lblBbm;
+    document.getElementById('lbl-sampah').innerText = t.lblSampah;
+    document.getElementById('sec-2').innerText = t.sec2;
+    document.getElementById('lbl-motor').innerText = t.lblMotor;
+    document.getElementById('lbl-mobil').innerText = t.lblMobil;
+    document.getElementById('lbl-pesawat').innerText = t.lblPesawat;
+    document.getElementById('lbl-laut').innerText = t.lblLaut;
+    document.getElementById('sec-3').innerText = t.sec3;
+    document.getElementById('lbl-metode').innerText = t.lblMetode;
+    document.getElementById('opt-pohon').innerText = t.optPohon;
+    document.getElementById('opt-patroli').innerText = t.optPatroli;
+    document.getElementById('btn-hitung').innerText = t.btnHitung;
+    document.getElementById('txt-hasil-title').innerText = t.txtHasilTitle;
+    document.getElementById('txt-hasil-emisi').innerText = t.txtHasilEmisi;
+    document.getElementById('txt-hasil-beban').innerText = t.txtHasilBeban;
+    document.getElementById('btn-telegram-kirim').innerHTML = t.btnTelegram;
 
-    document.getElementById('txt-title').innerText = kamus[lang].title;
-    document.getElementById('txt-subtitle').innerText = kamus[lang].subtitle;
-    document.getElementById('sec-1').innerText = kamus[lang].sec1;
-    document.getElementById('lbl-nama').innerText = kamus[lang].labelNama;
-    document.getElementById('nama').placeholder = kamus[lang].placeholderNama;
-    document.getElementById('lbl-listrik').innerText = kamus[lang].labelListrik;
-    document.getElementById('lbl-bbm').innerText = kamus[lang].labelBbm;
-    document.getElementById('lbl-sampah').innerText = kamus[lang].labelSampah;
-    document.getElementById('sec-2').innerText = kamus[lang].sec2;
-    document.getElementById('lbl-motor').innerText = kamus[lang].labelMotor;
-    document.getElementById('lbl-mobil').innerText = kamus[lang].labelMobil;
-    document.getElementById('lbl-pesawat').innerText = kamus[lang].labelPesawat;
-    document.getElementById('lbl-laut').innerText = kamus[lang].labelLaut;
-    document.getElementById('sec-3').innerText = kamus[lang].sec3;
-    document.getElementById('lbl-metode').innerText = kamus[lang].labelMetode;
-    
-    document.getElementById('opt-pohon').innerText = kamus[lang].optPohon;
-    document.getElementById('opt-patroli').innerText = kamus[lang].optPatroli;
-    
-    document.getElementById('btn-hitung').innerText = kamus[lang].btnHitung;
-    document.getElementById('txt-hasil-title').innerText = kamus[lang].hasilTitle;
-    document.getElementById('txt-hasil-emisi').innerText = kamus[lang].hasilEmisi;
-    document.getElementById('txt-hasil-beban').innerText = kamus[lang].hasilBeban;
-    document.getElementById('btn-wa-kirim').innerText = kamus[lang].btnWa;
+    // Toggle kelas aktif pada tombol bahasa
+    document.getElementById('btn-id').classList.toggle('active', lang === 'id');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    let browserLang = navigator.language || navigator.userLanguage;
-    browserLang = browserLang.substr(0, 2);
-    gantiBahasa(browserLang);
-});
-
-// ----------------------------------------------------------
-// 2. PROSES KALKULASI JEJAK KARBON
-// ----------------------------------------------------------
+// Fungsi Utama Kalkulasi Karbon (Standar IPCC AR6 & Rujukan Perpres 110/2025)
 function prosesHitungKarbon() {
-    const namaUser = document.getElementById('nama').value.trim() || 'Ethnicitizen';
+    const nama = document.getElementById('nama').value.trim() || (bahasaAktif === 'id' ? 'Sahabat Hijau' : 'Green Friend');
+    
+    // Ambil input angka (default 0 jika kosong)
     const listrik = parseFloat(document.getElementById('listrik').value) || 0;
-    const wilayah = document.getElementById('wilayah').value;
     const bbm = parseFloat(document.getElementById('bbm').value) || 0;
-    const sampahHarian = parseFloat(document.getElementById('sampah').value) || 0;
-    const kmMotor = parseFloat(document.getElementById('jarak_motor').value) || 0;
-    const kmMobil = parseFloat(document.getElementById('jarak_mobil').value) || 0;
-    const kmPesawat = parseFloat(document.getElementById('jarak_pesawat').value) || 0;
-    const kmLaut = parseFloat(document.getElementById('jarak_laut').value) || 0;
-    const jenisKompensasi = document.getElementById('metode_donasi').value;
+    const sampah = parseFloat(document.getElementById('sampah').value) || 0;
+    const motor = parseFloat(document.getElementById('jarak_motor').value) || 0;
+    const mobil = parseFloat(document.getElementById('jarak_mobil').value) || 0;
+    const pesawat = parseFloat(document.getElementById('jarak_pesawat').value) || 0;
+    const laut = parseFloat(document.getElementById('jarak_laut').value) || 0;
+    const wilayah = document.getElementById('wilayah').value;
+    const metode = document.getElementById('metode_donasi').value;
 
-    // FAKTOR EMISI SEKTOR
-    const FAKTOR_LISTRIK_JAWA = 0.87; 
-    const FAKTOR_LISTRIK_LUAR = 1.11; 
-    const FAKTOR_BBM = 2.33; 
-    const FAKTOR_SAMPAH_ORGANIK = 0.41; 
-    const FAKTOR_MOTOR = 0.05; 
-    const FAKTOR_MOBIL = 0.18; 
-    const FAKTOR_PESAWAT = 0.12; 
-    const FAKTOR_LAUT = 0.04;    
+    // Faktor Emisi (kg CO2e)
+    const faktorListrik = wilayah === 'jawa_bali' ? 0.85 : 0.75;
+    const emisiListrik = listrik * faktorListrik;
+    const emisiBbm = bbm * 2.31;
+    const emisiSampah = (sampah * 30) * 0.5; // dikali 30 hari
+    const emisiMotor = motor * 0.04;
+    const emisiMobil = mobil * 0.19;
+    const emisiPesawat = pesawat * 0.24;
+    const emisiLaut = laut * 0.08;
+
+    const totalEmisi = Math.round(emisiListrik + emisiBbm + emisiSampah + emisiMotor + emisiMobil + emisiPesawat + emisiLaut);
+
+    // Hitung Kompensasi
+    let targetBeban = 0;
+    let labelBeban = '';
     
-    const DAYA_SERAP_POHON_BULAN = 22 / 12; 
-    const BIAYA_POHON_ASUH = 30000; 
-    const BIAYA_PATROLI_HUTAN = 50000;
+    if (metode === 'pohon_asuh') {
+        // 1 Pohon mampu menyerap ± 22 - 25kg CO2e/tahun (~1.83kg/bulan)
+        targetBeban = Math.max(1, Math.ceil(totalEmisi / 22));
+        labelBeban = bahasaAktif === 'id' ? 'Pohon Asuh / Tahun' : 'Adopted Trees / Year';
+    } else {
+        // Patroli Hutan (1 Hari Patroli = Menjaga Serapan Area ± 50 kg CO2e)
+        targetBeban = Math.max(1, Math.ceil(totalEmisi / 50));
+        labelBeban = bahasaAktif === 'id' ? 'Hari Patroli Hutan' : 'Forest Patrol Days';
+    }
 
-    // PENGHITUNGAN EMISI JEJAK KARBON
-    let emisiListrik = listrik * (wilayah === 'jawa_bali' ? FAKTOR_LISTRIK_JAWA : FAKTOR_LISTRIK_LUAR);
-    let totalEmisi = emisiListrik + (bbm * FAKTOR_BBM) + ((sampahHarian * 30) * FAKTOR_SAMPAH_ORGANIK) + (kmMotor * FAKTOR_MOTOR) + (kmMobil * FAKTOR_MOBIL) + (kmPesawat * FAKTOR_PESAWAT) + (kmLaut * FAKTOR_LAUT);
-    if (totalEmisi < 0) totalEmisi = 0;
-
-    let targetJumlahUnit = Math.ceil(totalEmisi / DAYA_SERAP_POHON_BULAN);
-    let totalBiayaDonasi = targetJumlahUnit * (jenisKompensasi === 'pohon_asuh' ? BIAYA_POHON_ASUH : BIAYA_PATROLI_HUTAN);
-    
-    let labelUnitText = jenisKompensasi === 'pohon_asuh' ? "Reforestasi" : "Area Patroli";
-    let namaProgram = jenisKompensasi === 'pohon_asuh' ? kamus[bahasaAktif].pohonNama : kamus[bahasaAktif].patroliNama;
-
-    // UPDATE TAMPILAN DOM
-    document.getElementById('totalEmisi').innerText = totalEmisi.toFixed(2);
-    document.getElementById('totalAktivitas').innerText = targetJumlahUnit;
-    document.getElementById('labelAktivitas').innerText = labelUnitText;
-
-    // GENERATE METADATA & WEB3 HASH (TANPA KODE VERIFIKASI)
-    const randomHash = "0x" + Array.from({length: 8}, () => Math.floor(Math.random()*16).toString(16)).join('').toUpperCase();
-    const tanggalHariIni = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
-
-    // SIMPAN KE LOCALSTORAGE (UNTUK DITAMPILKAN DI SERTIFIKAT.HTML)
-    localStorage.setItem("eth_nama", namaUser);
-    localStorage.setItem("eth_emisi", totalEmisi.toFixed(2));
-    localStorage.setItem("eth_unit", targetJumlahUnit);
-    localStorage.setItem("eth_program", namaProgram);
-    localStorage.setItem("eth_hash", randomHash);
-    localStorage.setItem("eth_tanggal", tanggalHariIni);
-
-    // KIRIM PESAN TELEGRAM KE ETHNICITIZEN (TANPA MENANYAKAN KODE VERIFIKASI)
-    const usernamaTelegram = "ethnicitizen"; // Username Telegram ethnicitizen
-    const teksTelegram = `Halo Ethnicitizen! 🌿\n\n` +
-                   `Saya ingin mengajukan kompensasi jejak karbon:\n` +
-                   `• *Nama/Lembaga:* ${namaUser}\n` +
-                   `• *Estimasi Emisi:* ${totalEmisi.toFixed(2)} kg CO₂e/bln\n` +
-                   `• *Program Action:* ${namaProgram}\n` +
-                   `• *Beban Target:* ${targetJumlahUnit} ${labelUnitText}\n` +
-                   `• *Estimasi Dukungan:* Rp ${totalBiayaDonasi.toLocaleString('id-ID')}\n` +
-                   `• *Ledger Hash:* ${randomHash}\n\n` +
-                   `Saya akan mengunggah/mengonfirmasi pembayaran untuk verifikasi resmi sertifikat. Terima kasih!`;
-
-    globalLinkWA = `https://t.me/${usernamaTelegram}?text=${encodeURIComponent(teksTelegram)}`;
-
+    // Tampilkan Hasil di Layar
+    document.getElementById('totalEmisi').innerText = totalEmisi.toLocaleString();
+    document.getElementById('totalAktivitas').innerText = targetBeban.toLocaleString();
+    document.getElementById('labelAktivitas').innerText = labelBeban;
     document.getElementById('hasilBox').style.display = 'block';
-    document.getElementById('hasilBox').scrollIntoView({ behavior: 'smooth' });
+
+    // Simpan data ke localStorage untuk digunakan pada sertifikat.html
+    const dataKarbon = {
+        nama: nama,
+        totalEmisi: totalEmisi,
+        targetBeban: targetBeban,
+        labelBeban: labelBeban,
+        metode: metode === 'pohon_asuh' ? 'Pohon Asuh' : 'Patroli Hutan',
+        bahasa: bahasaAktif
+    };
+    localStorage.setItem('karbonData', JSON.stringify(dataKarbon));
 }
 
-// ----------------------------------------------------------
-// 3. HANDLER TOMBOL TELEGRAM
-// ----------------------------------------------------------
+// Fungsi Konfirmasi & Pembuatan Sertifikat via Telegram @ethnicitizen
 function kirimTelegram() {
-    if (globalLinkTG !== "") {
-        window.open(globalLinkTelegram, '_blank');
-        setTimeout(() => {
-            window.location.href = "sertifikat.html";
-        }, 1200);
-    } else {
-        alert("Silakan pastikan nilai emisi dan kontribusi Anda terlebih dahulu.");
-    }
+    const data = JSON.parse(localStorage.getItem('karbonData')) || {
+        nama: document.getElementById('nama').value.trim() || 'Sahabat Hijau',
+        totalEmisi: document.getElementById('totalEmisi').innerText || '0',
+        targetBeban: document.getElementById('totalAktivitas').innerText || '0',
+        labelBeban: document.getElementById('labelAktivitas').innerText || 'Unit',
+        metode: document.getElementById('metode_donasi').value === 'pohon_asuh' ? 'Pohon Asuh' : 'Patroli Hutan'
+    };
+
+    const usernameTelegram = "ethnicitizen";
+    
+    // Susun pesan Telegram lengkap dengan tautan DANA Wallet dan instruksi sertifikat
+    const pesan = `Halo Admin @ethnicitizen,\n\nSaya telah menghitung estimasi jejak karbon di Ethnicitizen Carbon Calculator:\n` +
+                  `👤 Nama/Kelompok: ${data.nama}\n` +
+                  `💨 Total Emisi: ${data.totalEmisi} kg CO₂e\n` +
+                  `🌱 Program Kompensasi: ${data.metode} (${data.targetBeban} ${data.labelBeban})\n\n` +
+                  `💳 Pembayaran ke Ethnicitizen Wallet - DANA pada link https://bit.ly/Ec97wallet.\n\n` +
+                  `Mohon konfirmasi pembayaran dan penerbitan Sertifikat resmi saya. Terima kasih!`;
+
+    const urlTelegram = `https://t.me/${usernameTelegram}?text=${encodeURIComponent(pesan)}`;
+    window.open(urlTelegram, '_blank');
 }
