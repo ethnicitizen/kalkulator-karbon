@@ -31,11 +31,20 @@
         <h2 id="txt-title">Hitung Jejak Karbonmu</h2>
         <p class="subtitle" id="txt-subtitle">Platform Crowdfunding Ethnicitizen — Pengelolaan Hutan Berbasis Masyarakat</p>
         
-        <!-- INPUT NAMA -->
+        <!-- Input Nama -->
         <div class="form-group">
-            <label id="lbl-nama" for="nama">Nama Anda / Nama Kelompok</label>
-            <input type="text" id="nama" placeholder="Contoh: Sahabat Hijau">
+        <label for="nama">Nama / Kelompok:</label>
+        <input type="text" id="nama" placeholder="Masukkan nama Anda">
         </div>
+
+        <!-- Input Email Baru -->
+        <div class="form-group">
+        <label for="email">Email Pengguna:</label>
+        <input type="email" id="email" placeholder="contoh@email.com" required>
+        </div>
+
+<!-- Tombol Hitung: Gunakan type="button" agar tidak me-refresh halaman -->
+<button type="button" class="btn-hitung" onclick="prosesHitungKarbon()">🍃 Mulai Analisis Dampak</button>
 
         <!-- SEKTOR 1 -->
         <div class="section-title" id="sec-1">1. Sektor Utilitas & Bahan Bakar</div>
