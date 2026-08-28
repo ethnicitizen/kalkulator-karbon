@@ -3,21 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hasil Analisis Penghitungan Emisi</title>
+    <title>Rincian Jejak Karbon Emisi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Gaya Tombol Bayar DANA */
+        .btn-dana {
+            width: 100%;
+            padding: 12px;
+            background-color: #118ee9; /* Warna Biru Khas DANA */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            box-sizing: border-box;
+            box-shadow: 0 3px 6px rgba(17, 142, 233, 0.3);
+        }
+        .btn-dana:hover {
+            background-color: #0d77c4;
+        }
+    </style>
 </head>
 <body class="mobile-app-body">
 
 <div class="mobile-shell">
     <div class="carbon-container">
-        <div class="agro-header-tag">🌱 ETHNICITIZEN ~ HASIL PENGHITUNGAN EMISI</div>
+        <div class="agro-header-tag">🌱 ETHNICITIZEN SMART CARBON PLATFORM</div>
         
         <h2>Hasil Analisis Dampak</h2>
-        <p class="subtitle" style="margin-bottom: 20px;">Rincian kalkulasi jejak karbon Anda</p>
+        <p class="subtitle" style="margin-bottom: 20px;">Crowdfunding untuk Aksi Iklim</p>
         
         <div class="hasil-box" style="display: block; padding: 15px; background: #ffffff; border-radius: 8px; border: 1px solid #e0e0e0;">
             <p style="margin-bottom: 10px;">
@@ -31,7 +56,7 @@
             </p>
             
             <p style="margin-bottom: 10px;">
-                <strong>Estimasi Emisi Bulanan:</strong><br>
+                <strong>Estimasi Emisi:</strong><br>
                 <span class="angka-hasil" id="resEmisi" style="font-size: 22px; color: #d32f2f; font-weight: bold;">0</span> kg CO₂e
             </p>
             
@@ -41,7 +66,7 @@
             </p>
 
             <p style="margin-bottom: 10px;">
-                <strong>Target Beban Kompensasi:</strong><br>
+                <strong>Beban Kompensasi:</strong><br>
                 <span class="angka-hasil" id="resBeban" style="font-size: 20px; font-weight: bold;">0</span> <span id="resLabelBeban">Unit</span>
             </p>
             
@@ -50,22 +75,26 @@
                 <span class="angka-hasil" id="resRupiah" style="color: #2e7d32; font-weight: 800; font-size: 24px;">Rp 0</span>
             </p>
 
-            <!-- Tombol Telegram -->
-            <button class="btn-donasi" onclick="kirimTelegram()" style="width: 100%; padding: 12px; background-color: #0088cc; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-bottom: 10px;">
-                <i class="fab fa-telegram"></i> Salurkan Kontribusi via Telegram
-            </button>
-            
-            <!-- Link ke Sertifikat -->
-            <a href="sertifikat.html" class="btn-sertifikat-link" style="display: block; text-align: center; padding: 10px; background-color: #2e7d32; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-bottom: 10px;">📜 Lihat & Download Sertifikat</a>
-            
             <!-- Hitung Ulang -->
             <a href="index.html" style="display: block; text-align: center; color: #6c757d; font-size: 13px; text-decoration: none;">← Hitung Ulang Emisi</a>
+            
+            <!-- 1. Tombol Bayar via DANA Wallet -->
+            <a href="https://bit.ly/Ec97wallet" target="_blank" class="btn-dana">
+                <i class="fas fa-wallet"></i> Bayar Kompensasi via Crowdfunding Wallet
+            </a>
+
+            <!-- 2. Tombol Konfirmasi Telegram -->
+            <button class="btn-donasi" onclick="kirimTelegram()" style="width: 100%; padding: 12px; background-color: #0088cc; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-bottom: 10px;">
+                <i class="fab fa-telegram"></i> Konfirmasi Pembayaran via Telegram
+            </button>
+            
+            <!-- 3. Link Akses Sertifikat -->
+            <a href="sertifikat.html" class="btn-sertifikat-link" style="display: block; text-align: center; padding: 10px; background-color: #2e7d32; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-bottom: 10px;">📜 Terima Sertifikat</a>            
         </div>
     </div>
 </div>
 
 <script>
-    // Menampilkan data setelah halaman hasil dimuat sempurna
     document.addEventListener("DOMContentLoaded", function() {
         const rawData = localStorage.getItem('karbonData');
         
@@ -91,14 +120,14 @@
         
         const teksPesan = 
             "Halo Admin @ethnicitizen,\n\n" +
-            "Saya telah menghitung estimasi jejak karbon di Ethnicitizen Carbon Calculator:\n" +
+            "Saya telah melakukan pembayaran kompensasi jejak karbon:\n" +
             "👤 Nama/Kelompok: " + (data.nama || '-') + "\n" +
             "📧 Email: " + (data.email || '-') + "\n" +
             "💨 Total Emisi: " + Number(data.totalEmisi || 0).toLocaleString('id-ID') + " kg CO2e\n" +
-            "🌱 Program Kompensasi: " + (data.metode || '-') + " (" + Number(data.targetBeban || 0).toLocaleString('id-ID') + " " + (data.labelBeban || 'Unit') + ")\n" +
-            "💰 Total Kompensasi: " + nominalFormatted + "\n\n" +
-            "💳 Pembayaran telah dilakukan Akun Wallet DANA pada link https://bit.ly/Ec97wallet.\n\n" +
-            "Berikut dilampirkan Bukti Bayar dan Mohon konfirmasi pembayaran dan pengiriman Sertifikat resmi ke email saya. Terima kasih!";
+            "🌱 Program: " + (data.metode || '-') + " (" + Number(data.targetBeban || 0).toLocaleString('id-ID') + " " + (data.labelBeban || 'Unit') + ")\n" +
+            "💰 Nominal Pembayaran: " + nominalFormatted + "\n\n" +
+            "💳 Pembayaran via Ethnicitizen Wallet - DANA (https://bit.ly/Ec97wallet).\n\n" +
+            "Berikut bukti pembayarannya. Mohon verifikasi dan pengiriman Sertifikat resmi ke email saya. Terima kasih!";
 
         const urlTelegram = "https://t.me/" + usernameTelegram + "?text=" + encodeURIComponent(teksPesan);
         window.open(urlTelegram, '_blank');
