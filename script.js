@@ -141,7 +141,7 @@ function prosesHitungKarbon() {
     const dataKarbon = {
         nama: namaUser,
         email: emailUser,
-        nophone: nophoneUser
+        nophone: nophoneUser,
         totalEmisi: totalEmisi,
         targetBeban: targetBeban,
         labelBeban: labelBeban,
