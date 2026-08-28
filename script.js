@@ -114,53 +114,71 @@ function prosesHitungKarbon() {
     let labelBeban = '';
     
     if (metode === 'pohon_asuh') {
-        // 1 Pohon mampu menyerap ± 22 - 25kg CO2e/tahun (~1.83kg/bulan)
+        // 1 Pohon Asuh = 22 - 25 kg CO2e/tahun (~1.83kg/bulan) | Harga: Rp25.000 / batang
         targetBeban = Math.max(1, Math.ceil(totalEmisi / 22));
-        labelBeban = bahasaAktif === 'id' ? 'Pohon Asuh / Tahun' : 'Adopted Trees / Year';
+        labelBeban = bahasaAktif === 'id' ? 'Batang Pohon Asuh' : 'Adopted Trees';
+        hargaPerUnit = 25000;
     } else {
-        // Patroli Hutan (1 Hari Patroli = Menjaga Serapan Area ± 50 kg CO2e)
+        // 1 Hari Patroli Hutan = Menjaga serapan Area 50 kg CO2e | Harga: Rp50.000 / hari
         targetBeban = Math.max(1, Math.ceil(totalEmisi / 50));
         labelBeban = bahasaAktif === 'id' ? 'Hari Patroli Hutan' : 'Forest Patrol Days';
+        hargaPerUnit = 50000;
     }
 
-    // Tampilkan Hasil di Layar
-    document.getElementById('totalEmisi').innerText = totalEmisi.toLocaleString();
-    document.getElementById('totalAktivitas').innerText = targetBeban.toLocaleString();
+    // Total Biaya Kompensasi Rupiah
+    const totalRupiah = targetBeban * hargaPerUnit
+
+    // Tampilkan Hasil di Layar HTML
+    document.getElementById('totalEmisi').innerText = totalEmisi.toLocaleString('id-ID');
+    document.getElementById('totalAktivitas').innerText = targetBeban.toLocaleString('id-ID');
     document.getElementById('labelAktivitas').innerText = labelBeban;
+
+    // Tampilkan / Update Elemen Nominal Biaya Rupiah (jika ada elemen id="totalRupiah")
+    const elemRupiah = document.getElementById('totalRupiah');
+    if (elemRupiah) {
+        elemRupiah.innerText = "Rp " + totalRupiah.toLocaleString('id-ID');
+    }
+
     document.getElementById('hasilBox').style.display = 'block';
 
-    // Simpan data ke localStorage untuk digunakan pada sertifikat.html
+    // Simpan data lengkap ke localStorage
     const dataKarbon = {
         nama: nama,
         totalEmisi: totalEmisi,
         targetBeban: targetBeban,
         labelBeban: labelBeban,
+        hargaPerUnit: hargaPerUnit,
+        totalRupiah: totalRupiah,
         metode: metode === 'pohon_asuh' ? 'Pohon Asuh' : 'Patroli Hutan',
         bahasa: bahasaAktif
     };
     localStorage.setItem('karbonData', JSON.stringify(dataKarbon));
 }
 
-// Fungsi Konfirmasi & Pembuatan Sertifikat via Telegram @ethnicitizen
+// Fungsi Kirim ke Telegram dengan Rincian Nominal Pembayaran
 function kirimTelegram() {
     const data = JSON.parse(localStorage.getItem('karbonData')) || {
         nama: document.getElementById('nama').value.trim() || 'Sahabat Hijau',
-        totalEmisi: document.getElementById('totalEmisi').innerText || '0',
-        targetBeban: document.getElementById('totalAktivitas').innerText || '0',
-        labelBeban: document.getElementById('labelAktivitas').innerText || 'Unit',
-        metode: document.getElementById('metode_donasi').value === 'pohon_asuh' ? 'Pohon Asuh' : 'Patroli Hutan'
+        totalEmisi: '0',
+        targetBeban: '0',
+        labelBeban: 'Unit',
+        totalRupiah: 0,
+        metode: 'Kompensasi Karbon'
     };
 
     const usernameTelegram = "ethnicitizen";
+    const nominalFormatted = "Rp " + (data.totalRupiah || 0).toLocaleString('id-ID');
     
-    // Susun pesan Telegram lengkap dengan tautan DANA Wallet dan instruksi sertifikat
-    const pesan = `Halo Admin @ethnicitizen,\n\nSaya telah menghitung estimasi jejak karbon di Ethnicitizen Carbon Calculator:\n` +
-                  `👤 Nama/Kelompok: ${data.nama}\n` +
-                  `💨 Total Emisi: ${data.totalEmisi} kg CO₂e\n` +
-                  `🌱 Program Kompensasi: ${data.metode} (${data.targetBeban} ${data.labelBeban})\n\n` +
-                  `💳 Pembayaran ke Ethnicitizen Wallet - DANA pada link https://bit.ly/Ec97wallet.\n\n` +
-                  `Mohon konfirmasi pembayaran dan penerbitan Sertifikat resmi saya. Terima kasih!`;
+    const teksPesan = 
+        "Halo Admin @ethnicitizen,\n\n" +
+        "Saya telah menghitung estimasi jejak karbon di Ethnicitizen Carbon Calculator:\n" +
+        "👤 Nama/Kelompok: " + data.nama + "\n" +
+        "💨 Total Emisi: " + data.totalEmisi.toLocaleString('id-ID') + " kg CO2e\n" +
+        "🌱 Program Kompensasi: " + data.metode + " (" + data.targetBeban.toLocaleString('id-ID') + " " + data.labelBeban + ")\n" +
+        "💰 Total Kompensasi: " + nominalFormatted + "\n\n" +
+        "💳 Pembayaran ke Ethnicitizen Wallet - DANA pada link https://bit.ly/Ec97wallet.\n\n" +
+        "Mohon konfirmasi pembayaran dan penerbitan Sertifikat resmi saya. Terima kasih!";
 
-    const urlTelegram = `https://t.me/${usernameTelegram}?text=${encodeURIComponent(pesan)}`;
+    const urlTelegram = "https://t.me/" + usernameTelegram + "?text=" + encodeURIComponent(teksPesan);
     window.open(urlTelegram, '_blank');
 }
