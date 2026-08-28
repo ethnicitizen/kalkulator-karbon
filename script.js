@@ -4,8 +4,8 @@
 
 const kamus = {
     id: {
-        title: "Kalkulator Karbon & Agroforestry", 
-        subtitle: "Platform Komunitas Ethnicitizen — Reboisasi & Proteksi Hutan",
+        title: "Ethnicitizen ~ Smart Carbon Footprint Platform", 
+        subtitle: "Platform Crowdfunding Ethnicitizen — Reforestasi & Perlindungan Hutan",
         sec1: "1. Sektor Utilitas & Bahan Bakar", 
         labelNama: "Nama Anda / Nama Kelompok", 
         placeholderNama: "Contoh: Sahabat Hijau",
@@ -19,19 +19,19 @@ const kamus = {
         labelLaut: "Jarak Kapal / Feri Laut (Km / Bulan)",
         sec3: "3. Metode Penyeimbangan Karbon (Offset)", 
         labelMetode: "Pilih Program Kontribusi Anda",
-        optPohon: "Pohon Asuh (Penanaman & Agroforestry - Rp 30.000 / unit)", 
-        optPatroli: "Patroli Hutan (Areal Pengelolaan Hutan Berbasis Masyarakat - Rp 50.000 / unit)",
+        optPohon: "Pohon Asuh (Reforestasi & Agroforestry - Rp 30.000 / unit)", 
+        optPatroli: "Patroli Areal Pengelolaan Hutan Berbasis Masyarakat - Rp 50.000 / unit)",
         btnHitung: "🍃 Mulai Analisis Dampak", 
         hasilTitle: "Hasil Analisis Dampak Ekologis:", 
         hasilEmisi: "Estimasi Emisi Bulanan:",
         hasilBeban: "Target Beban Kompensasi:", 
-        btnWa: "Salurkan Dukungan Via WhatsApp",
-        pohonNama: "Adopsi Pohon Agroforestry & Proteksi Kehati", 
-        patroliNama: "Operasional Patroli Hutan Berbasis Masyarakat"
+        btnWa: "Salurkan Dukungan Via Telegram",
+        pohonNama: "Adopsi Asuh Reforestasi & Agroforestry", 
+        patroliNama: "Operasional Patroli Areal Pengelolaan Hutan Berbasis Masyarakat"
     },
     en: {
-        title: "Carbon & Agroforestry Calculator", 
-        subtitle: "Ethnicitizen Platform — Reforestation & Forest Protection",
+        title: "Ethnicitizen ~ Smart Carbon Footprint Platform", 
+        subtitle: "Platform Crowdfunding Ethnicitizen — Reforestation & Forest Protection",
         sec1: "1. Utility & Fuel Sector", 
         labelNama: "Your Name / Group Name", 
         placeholderNama: "e.g., Green Friend",
@@ -52,8 +52,8 @@ const kamus = {
         hasilEmisi: "Estimated Monthly Emissions:",
         hasilBeban: "Target Compensation Load:", 
         btnWa: "Send Support Via WhatsApp",
-        pohonNama: "Agroforestry Tree Adoption & Biodiversity Care", 
-        patroliNama: "Community Forest Patrol Operations"
+        pohonNama: "Agroforestry & Reforestation Tree Adoption", 
+        patroliNama: "Community Based Forest Management Area Patrol Operations"
     }
 };
 
@@ -131,7 +131,7 @@ function prosesHitungKarbon() {
     const BIAYA_POHON_ASUH = 30000; 
     const BIAYA_PATROLI_HUTAN = 50000;
 
-    // HITUNG EMISI
+    // PENGHITUNGAN EMISI JEJAK KARBON
     let emisiListrik = listrik * (wilayah === 'jawa_bali' ? FAKTOR_LISTRIK_JAWA : FAKTOR_LISTRIK_LUAR);
     let totalEmisi = emisiListrik + (bbm * FAKTOR_BBM) + ((sampahHarian * 30) * FAKTOR_SAMPAH_ORGANIK) + (kmMotor * FAKTOR_MOTOR) + (kmMobil * FAKTOR_MOBIL) + (kmPesawat * FAKTOR_PESAWAT) + (kmLaut * FAKTOR_LAUT);
     if (totalEmisi < 0) totalEmisi = 0;
@@ -159,9 +159,9 @@ function prosesHitungKarbon() {
     localStorage.setItem("eth_hash", randomHash);
     localStorage.setItem("eth_tanggal", tanggalHariIni);
 
-    // PERSIPAN PESAN WHATSAPP KE ADMIN (TANPA MENANYAKAN KODE VERIFIKASI)
-    const nomorWA = "6285766594397"; // Nomor WA Admin
-    const teksWA = `Halo Ethnicitizen Agroforestry! 🌿\n\n` +
+    // KIRIM PESAN TELEGRAM KE ETHNICITIZEN (TANPA MENANYAKAN KODE VERIFIKASI)
+    const nomorTG = "6285766594397"; // Nomor Telegram ethnicitizen
+    const teksTG = `Halo Ethnicitizen! 🌿\n\n` +
                    `Saya ingin mengajukan kompensasi jejak karbon:\n` +
                    `• *Nama/Lembaga:* ${namaUser}\n` +
                    `• *Estimasi Emisi:* ${totalEmisi.toFixed(2)} kg CO₂e/bln\n` +
@@ -171,18 +171,18 @@ function prosesHitungKarbon() {
                    `• *Ledger Hash:* ${randomHash}\n\n` +
                    `Saya akan mengunggah/mengonfirmasi pembayaran untuk verifikasi resmi sertifikat. Terima kasih!`;
 
-    globalLinkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teksWA)}`;
+    globalLinkWA = `https://tg.me/${nomorTG}?text=${encodeURIComponent(teksTG)}`;
 
     document.getElementById('hasilBox').style.display = 'block';
     document.getElementById('hasilBox').scrollIntoView({ behavior: 'smooth' });
 }
 
 // ----------------------------------------------------------
-// 3. HANDLER TOMBOL WHATSAPP
+// 3. HANDLER TOMBOL TELEGRAM
 // ----------------------------------------------------------
-function kirimWhatsApp() {
-    if (globalLinkWA !== "") {
-        window.open(globalLinkWA, '_blank');
+function kirimTelegram() {
+    if (globalLinkTG !== "") {
+        window.open(globalLinkTG, '_blank');
         setTimeout(() => {
             window.location.href = "sertifikat.html";
         }, 1200);
