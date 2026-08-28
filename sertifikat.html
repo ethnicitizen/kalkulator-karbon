@@ -225,7 +225,13 @@
                 document.getElementById('viewBeban').innerText = `${data.targetBeban.toLocaleString()} Unit`;
                 document.getElementById('viewLabelBeban').innerText = data.labelBeban || 'Target Offset';
             }
-            
+
+            // Tampilkan nominal rupiah di sertifikat jika ada elemennya
+            const viewRupiah = document.getElementById('viewRupiah');
+            if (viewRupiah) {
+                viewRupiah.innerText = `Rp ${(data.totalRupiah || 0).toLocaleString('id-ID')}`;
+            }
+                                  
             // Set Tanggal Cetak
             const today = new Date();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -250,6 +256,27 @@
             window.open(`https://t.me/${usernameTelegram}?text=${encodeURIComponent(pesan)}`, '_blank');
         }
 
+        function kirimTelegramSertifikat() {
+        const storedData = JSON.parse(localStorage.getItem('karbonData')) || {
+            nama: 'Sahabat Hijau', totalEmisi: 0, targetBeban: 0, labelBeban: 'Unit', totalRupiah: 0, metode: 'Offset Karbon'
+        };
+    
+        const usernameTelegram = "ethnicitizen";
+        const nominalFormatted = "Rp " + (storedData.totalRupiah || 0).toLocaleString('id-ID');
+
+        const pesan = 
+                "Halo Admin @ethnicitizen,\n\n" +
+                "Saya mengonfirmasi penerbitan Sertifikat Jejak Karbon:\n" +
+                "- Nama             : " + storedData.nama + "\n" +
+                "- Total Emisi      : " + storedData.totalEmisi.toLocaleString('id-ID') + " kg CO2e\n" +
+                "- Target Kompensasi: " + storedData.targetBeban.toLocaleString('id-ID') + " " + storedData.labelBeban + "\n" +
+                "- Nilai Kompensasi : " + nominalFormatted + "\n\n" +
+                "Pembayaran ke Ethnicitizen Wallet - DANA pada link https://bit.ly/Ec97wallet.\n\n" +
+                "Mohon diproses sertifikat resminya. Terima kasih!";
+
+            window.open("https://t.me/" + usernameTelegram + "?text=" + encodeURIComponent(pesan), '_blank');
+        }
+        
         // Unduh Sertifikat sebagai Gambar PNG
         async function unduhSertifikat() {
             const frame = document.getElementById("sertifikat-frame");
