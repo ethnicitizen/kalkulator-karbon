@@ -4,44 +4,44 @@
     <div class="agro-leaf-decor top-right">🍃</div>
 
     <div class="issuer-title">ETHNICITIZEN CARBON FOOTPRINT</div>
-    <div class="badge-web3">Greentech Web 3.0 Verified</div>
+    <div class="badge-web3">Ethnicitizen Crowdfunding Platform</div>
 
-    <h1 class="sertifikat-header">SERTIFIKAT CARBON FOOTPRINT</h1>
+    <h1 class="sertifikat-header">SERTIFIKAT JEJAK KARBON</h1>
     
     <p style="font-size: 11px; color: #64748b; margin-bottom: 5px;">Diberikan dengan bangga kepada:</p>
-    <div class="sertifikat-nama" id="certNama">Nama Penanam</div>
+    <div class="sertifikat-nama" id="certNama">Nama User</div>
     
     <div class="divider-line"></div>
 
     <p class="sertifikat-text">
-        Atas partisipasi aktif dan kontribusi nyata dalam mendukung program <strong>Agroforestry & Carbon Offset</strong>. 
+        Atas partisipasi aktif dan kontribusi nyata dalam mendukung program <strong>Pengelolaan Hutan Berbasis Masyarakat</strong>. 
         Tindakan ini telah membantu menyerap emisi karbon serta menjaga kelestarian ekosistem bumi untuk masa depan yang nilai dan ketentuannya sesuai dengan IPCC AR6 dan Perpres 110/2025.
     </p>
 
     <div class="sertifikat-footer">
         <div class="info-blok">
             <!-- KODE VERIFIKASI TELAH DIHAPUS SEPENUHNYA DI SINI -->
-            <p><strong>Tanggal Terbit:</strong> <span id="certTanggal">15 Agustus 2026</span></p>
+            <p><strong>Tanggal Terbit:</strong> <span id="certTanggal">Tanggal hari ini</span></p>
             <p><strong>Lokasi Penanaman:</strong> Areal Pengelolaan Hutan Berbasis Masyarakat</p>
-            <p><strong>Status:</strong> Menunggu Verifikasi Pembayaran Admin</p>
+            <p><strong>Status:</strong> Disetujui</p>
         </div>
 
         <div class="ttd-blok">
             <div class="ttd-grafis-ethnicitizen">Ethnicitizen</div>
             <div class="ttd-nama">P. A. Q-ting</div>
-            <div class="ttd-jabatan">Climate Action Crowdfunding Initiative</div>
+            <div class="ttd-jabatan">Climate Actions Crowdfunding Initiative</div>
         </div>
     </div>
 </div>
 
-<!-- TOMBOL WA & INFORMASI -->
+<!-- TOMBOL TELEGRAM & INFORMASI -->
 <div class="action-container" style="max-width: 400px; margin: 20px auto; text-align: center;">
-    <button onclick="uploadPDFKeDriveDanWA()" class="btn-wa-kirim">
-        <i class="fab fa-whatsapp"></i> Request Sertifikat & Konfirmasi WA
+    <button onclick="uploadPDFKeDriveDanTelegram()" class="btn-telegram-kirim">
+        <i class="fab fa-telegram"></i> Request Sertifikat & Konfirmasi Telegram
     </button>
 
     <p class="info-verifikasi-admin">
-        ℹ️ <strong>Catatan:</strong> Sertifikat akan dikirim <strong>berlaku dan terverifikasi</strong> setelah Ethnicitizen mengonfirmasi bukti pembayaran Anda.
+        ℹ️ <strong>Catatan:</strong> Sertifikat akan dikirim <strong>berlaku dan terverifikasi</strong> setelah Ethnicitizen mengkonfirmasi bukti pembayaran Anda.
     </p>
 </div>
 
@@ -50,9 +50,9 @@
 async function uploadPDFKeDriveDanWA() {
     const btn = document.querySelector('.btn-wa-kirim');
     
-    // 1. MASUKKAN URL GOOGLE APPS SCRIPT & NOMOR WA ADMIN
+    // 1. MASUKKAN URL GOOGLE APPS SCRIPT & NOMOR TELEGRAM ETHNICITIZEN
     const urlWebAppGAS = "https://script.google.com/macros/s/AKfycbwNcBZIgrpVXT2xRshrZY8vukwIh2DyGJIW9uuugXGbRXWMTR7fkqMS4o6Zg0gn3B3S/exec"; 
-    const noAdminWA = "6285766594397"; // Ganti dengan nomor WA Anda (awali 62)
+    const usernameTelegram = "ethnicitizen"; // Ganti dengan username Telegram Anda
 
     const namaUser = document.getElementById("certNama").innerText.trim() || "Kontributor";
 
@@ -93,21 +93,21 @@ async function uploadPDFKeDriveDanWA() {
         if (resData.result === "success") {
             const fileDriveUrl = resData.fileUrl;
 
-            // 4. PESAN WA BERSIH (TANPA KODE VERIFIKASI SEPADAN)
-            const pesanWA = `Halo Ethnicitizen,%0A%0ASaya telah mengusulkan Sertifikat Aksi Iklim atas nama: *${encodeURIComponent(namaUser)}*.%0A%0A📁 *Link File PDF di Google Drive:*%0A${fileDriveUrl}%0A%0AMohon verifikasi pembayaran saya agar sertifikat tersebut terverifikasi.%0A%0ATerima kasih! 🌿`;
+            // 4. PESAN TELEGRAM BERSIH (TANPA KODE VERIFIKASI SEPADAN)
+            const pesanTelegram = `Halo Ethnicitizen,%0A%0ASaya telah melakukan pembayaran Kompensasi Jejak Karbon atas nama: *${encodeURIComponent(namaUser)}*.%0A%0A📁 *Link File PDF di Google Drive:*%0A${fileDriveUrl}%0A%0AMohon verifikasi pembayaran saya agar sertifikat tersebut terverifikasi.%0A%0ATerima kasih! 🌿`;
 
-            window.open(`https://wa.me/${noAdminWA}?text=${pesanWA}`, '_blank');
-            btn.innerHTML = '<i class="fab fa-whatsapp"></i> Berhasil Terkirim!';
+            window.open(`https://t.me/${nusernamaTelegram}?text=${pesanTelegram}`, '_blank');
+            btn.innerHTML = '<i class="fab fa-telegram"></i> Berhasil Terkirim!';
         } else {
             throw new Error(resData.error);
         }
     } catch (err) {
         console.error("Error Detail:", err);
-        alert("Gagal mengunggah. Menghubungkan langsung ke WhatsApp Admin...");
+        alert("Gagal mengunggah. Menghubungkan langsung ke Telegram ethnicitizen...");
         
-        // Pesan WA Cadangan jika upload gagal (Tanpa Kode Verifikasi)
-        const pesanFallback = `Halo Ethnicitizen ,%0A%0ASaya ingin melakukan verifikasi sertifikat atas nama: *${encodeURIComponent(namaUser)}*.%0A%0AMohon bantuan untuk verifikasi pembayaran.%0A%0ATerima kasih! 🌿`;
-        window.open(`https://wa.me/${noAdminWA}?text=${pesanFallback}`, '_blank');
+        // Pesan Telegram Cadangan jika upload gagal (Tanpa Kode Verifikasi)
+        const pesanFallback = `Halo Ethnicitizen ,%0A%0ASaya ingin melakukan verifikasi sertifikat atas nama: *${encodeURIComponent(namaUser)}*.%0A%0AMohon bantuan untuk pengiriman sertifikat.%0A%0ATerima kasih! 🌿`;
+        window.open(`https://t.me/${usernamaTelegram}?text=${pesanFallback}`, '_blank');
     } finally {
         btn.disabled = false;
     }
