@@ -58,7 +58,7 @@ const kamus = {
 };
 
 let bahasaAktif = 'id';
-let globalLinkWA = "";
+let globalLinkTelegram = "";
 
 // ----------------------------------------------------------
 // 1. MULTI-LANGUAGE SWITCHER
@@ -139,7 +139,7 @@ function prosesHitungKarbon() {
     let targetJumlahUnit = Math.ceil(totalEmisi / DAYA_SERAP_POHON_BULAN);
     let totalBiayaDonasi = targetJumlahUnit * (jenisKompensasi === 'pohon_asuh' ? BIAYA_POHON_ASUH : BIAYA_PATROLI_HUTAN);
     
-    let labelUnitText = jenisKompensasi === 'pohon_asuh' ? "Pohon Agroforestry" : "Area Patroli";
+    let labelUnitText = jenisKompensasi === 'pohon_asuh' ? "Reforestasi" : "Area Patroli";
     let namaProgram = jenisKompensasi === 'pohon_asuh' ? kamus[bahasaAktif].pohonNama : kamus[bahasaAktif].patroliNama;
 
     // UPDATE TAMPILAN DOM
@@ -160,8 +160,8 @@ function prosesHitungKarbon() {
     localStorage.setItem("eth_tanggal", tanggalHariIni);
 
     // KIRIM PESAN TELEGRAM KE ETHNICITIZEN (TANPA MENANYAKAN KODE VERIFIKASI)
-    const nomorTG = "6285766594397"; // Nomor Telegram ethnicitizen
-    const teksTG = `Halo Ethnicitizen! 🌿\n\n` +
+    const usernamaTelegram = "ethnicitizen"; // Username Telegram ethnicitizen
+    const teksTelegram = `Halo Ethnicitizen! 🌿\n\n` +
                    `Saya ingin mengajukan kompensasi jejak karbon:\n` +
                    `• *Nama/Lembaga:* ${namaUser}\n` +
                    `• *Estimasi Emisi:* ${totalEmisi.toFixed(2)} kg CO₂e/bln\n` +
@@ -171,7 +171,7 @@ function prosesHitungKarbon() {
                    `• *Ledger Hash:* ${randomHash}\n\n` +
                    `Saya akan mengunggah/mengonfirmasi pembayaran untuk verifikasi resmi sertifikat. Terima kasih!`;
 
-    globalLinkWA = `https://tg.me/${nomorTG}?text=${encodeURIComponent(teksTG)}`;
+    globalLinkWA = `https://t.me/${usernamaTelegram}?text=${encodeURIComponent(teksTelegram)}`;
 
     document.getElementById('hasilBox').style.display = 'block';
     document.getElementById('hasilBox').scrollIntoView({ behavior: 'smooth' });
@@ -182,11 +182,11 @@ function prosesHitungKarbon() {
 // ----------------------------------------------------------
 function kirimTelegram() {
     if (globalLinkTG !== "") {
-        window.open(globalLinkTG, '_blank');
+        window.open(globalLinkTelegram, '_blank');
         setTimeout(() => {
             window.location.href = "sertifikat.html";
         }, 1200);
     } else {
-        alert("Silakan hitung emisi Anda terlebih dahulu.");
+        alert("Silakan pastikan nilai emisi dan kontribusi Anda terlebih dahulu.");
     }
 }
