@@ -88,9 +88,10 @@ function prosesHitungKarbon() {
         alert("Silakan masukkan email Anda untuk konfirmasi.");
         document.getElementById('email').focus();
         return;
+    }    
     if (inputNoPhone === "") {
-        alert("Silakan masukkan nomor handphone Anda untuk konfirmasi.");
-        document.getElementById('email').focus();
+        alert("Silakan masukkan nomor handphone Anda untuk konfirmasi lebih lanjut.");
+        document.getElementById('nophone').focus();
         return;
     }
 
@@ -141,7 +142,7 @@ function prosesHitungKarbon() {
     const dataKarbon = {
         nama: namaUser,
         email: emailUser,
-        nophone: nophoneUser,
+        nophone: noPhone,
         totalEmisi: totalEmisi,
         targetBeban: targetBeban,
         labelBeban: labelBeban,
