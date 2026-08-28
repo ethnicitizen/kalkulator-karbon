@@ -153,6 +153,9 @@ function prosesHitungKarbon() {
         bahasa: bahasaAktif
     };
     localStorage.setItem('karbonData', JSON.stringify(dataKarbon));
+    
+    // Redirect ke Halaman Hasil Analisis
+    window.location.href = "hasil.html";
 }
 
 // Fungsi Kirim ke Telegram dengan Rincian Nominal Pembayaran
