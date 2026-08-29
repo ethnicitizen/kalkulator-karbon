@@ -226,6 +226,33 @@ body.mobile-app-body {
     transition: all 0.3s ease;
 }
 
+/* Container QR Code */
+.qr-section {
+    background-color: #f8f9fa;
+    border: 2px dashed #118ee9;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    margin: 20px 0 15px 0;
+    box-sizing: border-box;
+    width: 100%; /* Memenuhi lebar kontainer induk */
+}
+
+/* Mengatur ukuran gambar QR agar responsif dan tidak kebesaran */
+.qr-image {
+    width: 100%;           /* Menyesuaikan lebar kontainer */
+    max-width: 160px;      /* Batas lebar maksimal gambar QR (Ubah 160px ini jika ingin lebih kecil/besar) */
+    height: auto;          /* Tinggi otomatis mengikuti proporsi */
+    aspect-ratio: 1 / 1;   /* Memastikan gambar selalu kotak sempurna */
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    padding: 8px;
+    margin: 0 auto;
+    display: block;
+}
+
 .btn-donasi:hover {
     transform: translateY(-1px);
     box-shadow: 0 10px 22px rgba(217, 119, 6, 0.35);
