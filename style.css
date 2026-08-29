@@ -450,9 +450,9 @@ body.mobile-app-body {
 
 /* Styling Footer Aplikasi */
 .app-footer {
-    width: 100%;
+    width: 50%;
     text-align: center;
-    padding: 15px 10px;
+    padding: 10px 5px;
     margin-top: 25px;
     border-top: 1px dashed #dcdcdc;
     box-sizing: border-box;
@@ -461,11 +461,11 @@ body.mobile-app-body {
 .app-footer p {
     font-size: 9px;
     color: #6c757d;
-    line-height: 1.5;
+    line-height: 1.0;
     margin: 0;
 }
 
 .app-footer strong {
     color: #2e7d32; /* Sentuhan warna hijau khas ekologis */
-    font-weight: 600;
+    font-weight: 300;
 }
