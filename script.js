@@ -5,7 +5,6 @@ const kamus = {
         subtitle: "Platform Crowdfunding Ethnicitizen",
         lblNama: "Nama Anda / Nama Kelompok",
         lblEmail: "Email Anda",
-        lblNoPhone: "Nomor Handphone",
         sec1: "1. Sektor Utilitas & Bahan Bakar",
         lblListrik: "Konsumsi Listrik Bulanan (kWh)",
         lblBbm: "Konsumsi BBM Kendaraan (Liter / Bulan)",
@@ -26,7 +25,6 @@ const kamus = {
         subtitle: "Ethnicitizen Crowdfunding Platform",
         lblNama: "Your Name / Group Name",
         lblEmail: "Your Email",
-        lblNoPhone: "Handphone Number",
         sec1: "1. Utility & Fuel Sector",
         lblListrik: "Monthly Electricity Usage (kWh)",
         lblBbm: "Vehicle Fuel Consumption (Liters / Month)",
@@ -55,7 +53,6 @@ function gantiBahasa(lang) {
     if(document.getElementById('txt-subtitle')) document.getElementById('txt-subtitle').innerText = t.subtitle;
     if(document.getElementById('lbl-nama')) document.getElementById('lbl-nama').innerText = t.lblNama;
     if(document.getElementById('lbl-email')) document.getElementById('lbl-email').innerText = t.lblEmail;
-    if(document.getElementById('lbl-nophone')) document.getElementById('lbl-nophone').innerText = t.lblNoPhone;
     if(document.getElementById('sec-1')) document.getElementById('sec-1').innerText = t.sec1;
     if(document.getElementById('lbl-listrik')) document.getElementById('lbl-listrik').innerText = t.lblListrik;
     if(document.getElementById('lbl-bbm')) document.getElementById('lbl-bbm').innerText = t.lblBbm;
@@ -83,17 +80,12 @@ function prosesHitungKarbon() {
     const inputEmail = document.getElementById('email').value.trim();
     const emailUser = inputEmail !== "" ? inputEmail : "-";
 
-    // Validation Sederhana (Jika email dan nomor phone wajib diisi)
+    // Validation Sederhana (Jika email wajib diisi)
     if (inputEmail === "") {
         alert("Silakan masukkan email Anda untuk konfirmasi.");
         document.getElementById('email').focus();
         return;
     }    
-    if (inputNoPhone === "") {
-        alert("Silakan masukkan nomor handphone Anda untuk konfirmasi lebih lanjut.");
-        document.getElementById('nophone').focus();
-        return;
-    }
 
     // Ambil Input Angka (Default 0)
     const listrik = parseFloat(document.getElementById('listrik').value) || 0;
@@ -142,7 +134,6 @@ function prosesHitungKarbon() {
     const dataKarbon = {
         nama: namaUser,
         email: emailUser,
-        nophone: noPhone,
         totalEmisi: totalEmisi,
         targetBeban: targetBeban,
         labelBeban: labelBeban,
