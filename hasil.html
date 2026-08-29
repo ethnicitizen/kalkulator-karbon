@@ -42,27 +42,22 @@
         <div class="agro-header-tag">🌱 ETHNICITIZEN SMART CARBON PLATFORM</div>
         
         <h2>Hasil Analisis Dampak</h2>
-        <p class="subtitle" style="margin-bottom: 20px;">Crowdfunding untuk Aksi Iklim</p>
+        <p class="subtitle" style="margin-bottom: 17px;">Crowdfunding untuk Aksi Iklim</p>
         
         <div class="hasil-box" style="display: block; padding: 15px; background: #ffffff; border-radius: 8px; border: 1px solid #e0e0e0;">
             <p style="margin-bottom: 10px;">
                 <strong>Nama / Kelompok:</strong><br>
-                <span id="resNama" style="font-size: 18px; font-weight: 700; color: #2c3e50;">-</span>
+                <span id="resNama" style="font-size: 15px; font-weight: 700; color: #2c3e50;">-</span>
             </p>
 
             <p style="margin-bottom: 10px;">
                 <strong>Email Pengguna:</strong><br>
-                <span id="resEmail" style="font-size: 15px; font-weight: 600; color: #2c3e50;">-</span>
-            </p>
-            
-            <p style="margin-bottom: 10px;">
-                <strong>Nomor Handphone:</strong><br>
-                <span id="resNoPhone" style="font-size: 15px; font-weight: 600; color: #2c3e50;">-</span>
+                <span id="resEmail" style="font-size: 12px; font-weight: 600; color: #2c3e50;">-</span>
             </p>
             
             <p style="margin-bottom: 10px;">
                 <strong>Estimasi Emisi:</strong><br>
-                <span class="angka-hasil" id="resEmisi" style="font-size: 22px; color: #d32f2f; font-weight: bold;">0</span> kg CO₂e
+                <span class="angka-hasil" id="resEmisi" style="font-size: 19px; color: #d32f2f; font-weight: bold;">0</span> kg CO₂e
             </p>
             
             <p style="margin-bottom: 10px;">
@@ -72,12 +67,12 @@
 
             <p style="margin-bottom: 10px;">
                 <strong>Beban Kompensasi:</strong><br>
-                <span class="angka-hasil" id="resBeban" style="font-size: 20px; font-weight: bold;">0</span> <span id="resLabelBeban">Unit</span>
+                <span class="angka-hasil" id="resBeban" style="font-size: 18px; font-weight: bold;">0</span> <span id="resLabelBeban">Unit</span>
             </p>
             
             <p style="margin-bottom: 15px;">
                 <strong>Nilai Kompensasi:</strong><br>
-                <span class="angka-hasil" id="resRupiah" style="color: #2e7d32; font-weight: 800; font-size: 24px;">Rp 0</span>
+                <span class="angka-hasil" id="resRupiah" style="color: #2e7d32; font-weight: 800; font-size: 22px;">Rp 0</span>
             </p>
 
             <!-- Hitung Ulang -->
@@ -107,7 +102,6 @@
             const data = JSON.parse(rawData);
             document.getElementById('resNama').innerText = data.nama || '-';
             document.getElementById('resEmail').innerText = data.email || '-';
-            document.getElementById('resNoPhone').innerText = data.nophone || '-';
             document.getElementById('resEmisi').innerText = Number(data.totalEmisi || 0).toLocaleString('id-ID');
             document.getElementById('resMetode').innerText = data.metode || '-';
             document.getElementById('resBeban').innerText = Number(data.targetBeban || 0).toLocaleString('id-ID');
@@ -126,15 +120,14 @@
         
         const teksPesan = 
             "Halo Admin @ethnicitizen,\n\n" +
-            "Saya akan melakukan pembayaran kompensasi jejak karbon:\n" +
+            "Saya akan melakukan pembayaran Kompensasi Jejak Karbon:\n" +
             "👤 Nama/Kelompok: " + (data.nama || '-') + "\n" +
             "📧 Email: " + (data.email || '-') + "\n" +
-            "☎️ NoPhone: " + (data.nophone || '-') + "\n" +
             "💨 Total Emisi: " + Number(data.totalEmisi || 0).toLocaleString('id-ID') + " kg CO2e\n" +
             "🌱 Program: " + (data.metode || '-') + " (" + Number(data.targetBeban || 0).toLocaleString('id-ID') + " " + (data.labelBeban || 'Unit') + ")\n" +
             "💰 Nominal Pembayaran: " + nominalFormatted + "\n\n" +
             "💳 Bukti Pembayaran Terlampir. \n\n" +
-            "Mohon verifikasi dan dikirimkan Sertifikat Resmi ke email saya. Terima kasih!";
+            "Mohon verifikasi dan kirimkan Sertifikat Resmi ke email saya. Terima kasih!";
 
         const urlTelegram = "https://t.me/" + usernameTelegram + "?text=" + encodeURIComponent(teksPesan);
         window.open(urlTelegram, '_blank');
