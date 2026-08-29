@@ -42,6 +42,9 @@ body.mobile-app-body {
 
 /* Container utama dibatasi selebar layar HP (Android Mode) */
 .mobile-shell {
+    display: flex;
+    flex-direction: column; /* Menyusun dari atas ke bawah */
+    align-items center;
     width: 100%;
     max-width: 450px; 
     min-height: 100vh;
@@ -450,22 +453,23 @@ body.mobile-app-body {
 
 /* Styling Footer Aplikasi */
 .app-footer {
-    width: 50%;
+    width: 100%;
     text-align: center;
-    padding: 10px 5px;
-    margin-bottom: 5px;
-    border-bottom: 1px dashed #dcdcdc;
+    padding: 15px 10px;
+    margin-top: auto; /* Memaksa footer berada di paling bawah */
+    border-top: 1px dashed #dcdcdc;
     box-sizing: border-box;
+    clear: both;
 }
 
 .app-footer p {
     font-size: 9px;
     color: #6c757d;
-    line-height: 1.0;
+    line-height: 1.5;
     margin: 0;
 }
 
 .app-footer strong {
     color: #2e7d32; /* Sentuhan warna hijau khas ekologis */
-    font-weight: 300;
+    font-weight: 600;
 }
